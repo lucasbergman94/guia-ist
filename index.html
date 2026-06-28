@@ -1,286 +1,292 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ENKA Istanbul · New Teacher Guide (2026–27)</title>
-<meta name="description" content="A practical, central guide for new ENKA teachers moving to Istanbul: documents, work visa, housing, arrival and daily life, plus an interactive housing & commute map." />
+<meta name="description" content="A central guide for new ENKA teachers moving to Istanbul: documents, work visa, housing, arrival and daily life, plus an interactive housing & commute map." />
+<link rel="stylesheet" href="./theme.css" />
 <style>
-  :root{
-    --bg:#0f1115;--panel:#171a21;--panel2:#1f242e;--ink:#eef1f6;--muted:#9aa4b2;
-    --line:#2a3140;--accent:#3b82f6;--green:#2e9e5b;--amber:#e0a52e;--rose:#e11d48;
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);line-height:1.5;-webkit-text-size-adjust:100%}
-  a{color:#8ab4ff}
-  .wrap{max-width:840px;margin:0 auto;padding:0 16px}
-  header{padding:18px 0 10px;border-bottom:1px solid var(--line)}
-  h1{font-size:1.3rem;margin:0;font-weight:800;letter-spacing:.2px}
-  .sub{color:var(--muted);font-size:.85rem;margin-top:4px}
+  .hero{padding:34px 0 6px}
+  .hero h1{font-size:clamp(30px,7vw,52px);font-weight:600;letter-spacing:-.035em;line-height:1.02;margin-top:8px}
+  .hero .eye{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--acc)}
+  .hero p{color:var(--mut);font-size:clamp(16px,4vw,19px);margin-top:12px;max-width:620px}
+  .stack{display:flex;flex-direction:column;gap:14px;margin-top:24px}
   /* contacts */
-  .contacts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .ccard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;flex:1;min-width:240px}
-  .ccard .nm{font-weight:700;font-size:.92rem}
-  .ccard .role{color:var(--muted);font-size:.76rem;margin-bottom:8px}
+  .ccard{padding:14px 16px}
+  .ccard .nm{font-weight:600;font-size:1rem;letter-spacing:-.01em}
+  .ccard .role{color:var(--mut);font-size:.8rem;margin:2px 0 10px}
   .ccard .btns{display:flex;gap:8px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border-radius:8px;padding:7px 11px;font-size:.8rem;font-weight:600}
-  .btn.wa{background:#25d366;color:#06301a}
-  .btn.mail{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
-  /* message board */
-  .board{background:linear-gradient(180deg,rgba(59,130,246,.10),rgba(59,130,246,.02));border:1px solid #2b3a55;
-    border-radius:14px;padding:14px 16px;margin:16px 0}
-  .board h2{margin:0 0 8px;font-size:.95rem;display:flex;align-items:center;gap:8px}
-  .msg{border-top:1px dashed var(--line);padding:9px 0}
-  .msg:first-of-type{border-top:0}
-  .msg .mt{font-weight:700;font-size:.9rem}
-  .msg .md{color:var(--muted);font-size:.72rem;margin-left:6px;font-weight:400}
-  .msg .mb{font-size:.86rem;color:#d7dde6;margin-top:2px}
-  /* map hero */
-  .hero{display:flex;gap:14px;align-items:center;justify-content:space-between;background:var(--panel);
-    border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0}
-  .hero .t{font-weight:700}
-  .hero .d{color:var(--muted);font-size:.82rem;margin-top:2px}
-  .hero a{background:var(--accent);color:#fff;text-decoration:none;border-radius:10px;padding:11px 14px;font-weight:700;white-space:nowrap;font-size:.88rem}
-  /* sections (accordion) */
-  h3.sech{font-size:.8rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin:22px 0 6px}
-  details.section{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin:8px 0;overflow:hidden}
-  details.section>summary{cursor:pointer;list-style:none;padding:13px 15px;font-weight:600;font-size:.97rem;
+  .cbtn{display:inline-flex;align-items:center;gap:7px;border-radius:var(--r-pill);padding:9px 15px;font-size:.85rem;font-weight:600}
+  .cbtn.wa{background:#25d366;color:#06301a}
+  .cbtn.mail{background:var(--card2);color:var(--txt);border:1px solid var(--bd)}
+  /* board */
+  .board{padding:16px 18px;background:linear-gradient(165deg,color-mix(in srgb,var(--acc) 9%,var(--card)),var(--card))}
+  .board h2{font-size:.95rem;display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
+  .msg{border-top:1px solid var(--bd);padding:11px 0}
+  .msg:first-of-type{border-top:0;padding-top:10px}
+  .msg .mt{font-weight:600;font-size:.95rem}
+  .msg .md{color:var(--mut);font-size:.72rem;margin-left:8px;font-weight:500}
+  .msg .mb{color:var(--mut);font-size:.9rem;margin-top:3px;line-height:1.5}
+  /* map hero card */
+  .maphero{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:18px 18px}
+  .maphero .t{font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .maphero .d{color:var(--mut);font-size:.85rem;margin-top:3px;max-width:440px}
+  /* accordion */
+  .secs{margin-top:30px}
+  .secs>.eye{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding-left:4px}
+  details.section{background:var(--card);border:1px solid var(--bd);border-radius:16px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}
+  details.section>summary{cursor:pointer;list-style:none;padding:15px 17px;font-weight:600;font-size:1rem;letter-spacing:-.01em;
     display:flex;align-items:center;justify-content:space-between;gap:10px}
   details.section>summary::-webkit-details-marker{display:none}
-  details.section>summary .chev{color:var(--muted);transition:transform .2s;font-size:.9rem}
+  details.section>summary .chev{color:var(--mut);transition:transform .25s var(--ease);font-size:1.1rem}
   details.section[open]>summary .chev{transform:rotate(90deg)}
-  details.section[open]>summary{border-bottom:1px solid var(--line)}
-  .body{padding:6px 16px 14px;font-size:.92rem}
-  .body h4{margin:14px 0 4px;font-size:.9rem}
-  .body ul{margin:6px 0;padding-left:20px}
-  .body li{margin:3px 0}
+  details.section[open]>summary{border-bottom:1px solid var(--bd)}
+  .body{padding:8px 18px 16px;font-size:.94rem;color:var(--txt)}
+  .body h4{margin:14px 0 4px;font-size:.92rem;font-weight:600}
+  .body p{color:var(--mut);margin:6px 0}
+  .body ul{margin:6px 0;padding-left:20px;color:var(--mut)}
+  .body li{margin:4px 0}
+  .body a{color:var(--acc)}
   .body .todo{list-style:none;padding-left:0}
-  .body .todo li{position:relative;padding-left:24px}
-  .body .todo li::before{content:"☐";position:absolute;left:0;color:var(--muted)}
-  .body code{background:var(--panel2);padding:1px 5px;border-radius:5px;font-size:.85em}
-  .note{background:rgba(224,165,46,.08);border:1px solid rgba(224,165,46,.3);border-radius:8px;padding:8px 10px;font-size:.85rem;margin:8px 0}
-  table.kv{width:100%;border-collapse:collapse;font-size:.86rem;margin:6px 0}
-  table.kv td{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top}
-  table.kv td:first-child{color:var(--muted);width:42%}
-  footer{padding:20px 0 40px;color:var(--muted);font-size:.74rem;border-top:1px solid var(--line);margin-top:24px}
+  .body .todo li{position:relative;padding-left:25px}
+  .body .todo li::before{content:"";position:absolute;left:0;top:3px;width:15px;height:15px;border:1.5px solid var(--mut);border-radius:5px}
+  table.kv{width:100%;border-collapse:collapse;font-size:.88rem;margin:6px 0}
+  table.kv td{border-top:1px solid var(--bd);padding:7px 4px;vertical-align:top;color:var(--txt)}
+  table.kv tr:first-child td{border-top:0}
+  table.kv td:first-child{color:var(--mut);width:42%}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>🏫 ENKA Istanbul · New Teacher Guide</h1>
-    <div class="sub">Everything for the move to Istanbul: documents, work visa, housing and your commute. School year 2026–27 · first day 20 August 2026. Confirm specifics with HR.</div>
-    <div class="contacts" id="contacts"></div>
-  </header>
-
-  <section class="board" id="board"></section>
-
-  <div class="hero">
-    <div>
-      <div class="t">🗺️ Interactive housing & commute map</div>
-      <div class="d">Find a neighborhood, type your address, and get live routes to your bus stop and to school.</div>
-    </div>
-    <a href="./map.html">Open map →</a>
+  <div class="topbar">
+    <span class="brand">🏫 ENKA Istanbul</span>
+    <span class="spacer"></span>
+    <a class="tlink" href="./map.html">Map</a>
+    <button class="switch" aria-label="Toggle dark mode"><span class="s-ic sun">☀️</span><span class="s-ic moon">🌙</span><span class="knob"></span></button>
   </div>
 
-  <h3 class="sech">Tap a topic to expand</h3>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eye">New teacher guide · 2026–27</div>
+      <h1>Your move to Istanbul, in one place.</h1>
+      <p>Documents, the work-visa steps, housing and your commute — for new ENKA teachers. First day of school: 20 August 2026. Confirm specifics with HR.</p>
+    </section>
 
-  <details class="section" open><summary><span>🚦 Start here</span><span class="chev">›</span></summary>
-    <div class="body">
-      <h4>Key dates</h4>
-      <ul><li>Contract start: 1 August 2026.</li><li>First day at school: <b>Thursday, 20 August 2026</b>.</li><li>Recruiting and permits run from winter through summer; the work-permit wait is long, and that is normal.</li></ul>
-      <h4>Three things to know first</h4>
-      <ul>
-        <li>You only need to <b>apostille</b> your documents. The school handles the Turkish translation and notarization.</li>
-        <li><b>Do not book flights</b> until your work visa/permit is approved.</li>
-        <li>Most steps wait on the <b>Turkish Ministry of Education</b>. Slow does not mean wrong.</li>
-      </ul>
+    <div class="stack">
+      <section class="card board" id="board"></section>
+
+      <section class="card" id="contacts-wrap" style="padding:0">
+        <div id="contacts"></div>
+      </section>
+
+      <a class="card maphero" href="./map.html">
+        <div>
+          <div class="t">🗺️ Interactive housing & commute map</div>
+          <div class="d">Find a neighborhood, type your address, and get live routes to your bus stop and to school.</div>
+        </div>
+        <span class="btn">Open map →</span>
+      </a>
     </div>
-  </details>
 
-  <details class="section"><summary><span>🧭 The relocation roadmap</span><span class="chev">›</span></summary>
-    <div class="body">
-      <h4>Phase 1 — Documents (start now)</h4>
-      <p>Apostille these, each one individually:</p>
-      <ul class="todo">
-        <li>University diploma</li>
-        <li>University transcripts (a registrar's letter stating the transcript is official helps)</li>
-        <li>Teaching certification / license</li>
-        <li>Proof of 2 years' experience in your subject: a letter from your previous school, on letterhead, signed. It does not need to come from your country's Ministry of Education.</li>
-        <li>Police / background certificate (where required)</li>
-      </ul>
-      <h4>Phase 2 — Ministry of Education pre-approval (Ön İzin)</h4>
-      <ul><li>A teacher-specific first step: the Ministry must pre-approve your assignment before a work permit can proceed.</li><li>HR submits your translated, notarized documents. Without this approval, the work visa cannot move forward.</li><li>It is the slowest part and depends on government timelines.</li></ul>
-      <h4>Phase 3 — Work visa application</h4>
-      <ul class="todo"><li>Apply online and book an appointment at the Turkish mission in the country where you reside (have residency/work rights) or hold citizenship.</li><li>Have HR review your form before you submit.</li><li>Do not book the appointment until HR tells you to.</li></ul>
-      <h4>Phase 4 — Flights & arrival</h4>
-      <ul class="todo"><li>Wait for visa/permit approval before buying flights.</li><li>Book your own flight (economy), into Istanbul Airport (IST).</li><li>You generally cannot arrive before the contract start without a tourist-visa workaround. Arrival support may be unavailable in July.</li><li>Bringing a pet? Start the rabies titer test and paperwork early; most pets fly in-cabin.</li></ul>
-      <h4>Phase 5 — First weeks in Istanbul</h4>
-      <ul class="todo"><li>Get a Turkish SIM in your own name. This starts the 120-day clock to register your foreign phone's IMEI.</li><li>Get your tax number (vergi numarası): free, online.</li><li>Buy and load an İstanbulkart.</li><li>Set up your e-Devlet password at a PTT (post office).</li><li>Open a bank account.</li><li>Register your address (adres kayıt) within the required window.</li><li>Register your phone's IMEI within 120 days, or buy a local phone.</li></ul>
-    </div>
-  </details>
+    <section class="secs">
+      <div class="eye">Tap a topic to expand</div>
 
-  <details class="section"><summary><span>📄 Documents & apostille</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul>
-        <li>What to apostille: diploma, transcripts, teaching certificate, proof-of-experience letter (plus a police certificate if asked). Each gets its own apostille.</li>
-        <li>Proof-of-experience letter: from your previous school, on letterhead, signed.</li>
-        <li><b>US:</b> apostille via the issuing state's Secretary of State, or the US Dept. of State. Usually low cost per document.</li>
-        <li><b>Non-Hague country</b> (for example Thailand): get Ministry of Foreign Affairs approval, then take it to the nearest Turkish mission.</li>
-        <li>Email color scans to HR; no physical originals; no Turkish translation needed (the school does it).</li>
-        <li>Use a regular hard-copy apostille; digital e-apostilles have been refused.</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section" open><summary><span>🚦 Start here</span><span class="chev">›</span></summary>
+        <div class="body">
+          <h4>Key dates</h4>
+          <ul><li>Contract start: 1 August 2026.</li><li>First day at school: <b>Thursday, 20 August 2026</b>.</li><li>Recruiting and permits run from winter through summer; the work-permit wait is long, and that is normal.</li></ul>
+          <h4>Three things to know first</h4>
+          <ul>
+            <li>You only need to <b>apostille</b> your documents. The school handles the Turkish translation and notarization.</li>
+            <li><b>Do not book flights</b> until your work visa/permit is approved.</li>
+            <li>Most steps wait on the <b>Turkish Ministry of Education</b>. Slow does not mean wrong.</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🛂 The work visa application (step by step)</span><span class="chev">›</span></summary>
-    <div class="body">
-      <p>Apply at <a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">konsolosluk.gov.tr</a> and select your country and the Turkish mission.</p>
-      <table class="kv">
-        <tr><td>Name</td><td>First + middle name, exactly as in your passport</td></tr>
-        <tr><td>Type of visa</td><td>Work Visa</td></tr>
-        <tr><td>Purpose of Trip</td><td>Employment Purpose / Special Employment Purpose</td></tr>
-        <tr><td>Number of Entries</td><td>Single</td></tr>
-        <tr><td>Date of Entry</td><td>1 August 2026 (or later)</td></tr>
-        <tr><td>Duration of stay</td><td>90 days (the permit is completed after you arrive; then multiple entries, 1-year validity)</td></tr>
-        <tr><td>Means of transport</td><td>Air</td></tr>
-        <tr><td>Guarantor</td><td>No</td></tr>
-        <tr><td>Who covers travel costs</td><td>Host company</td></tr>
-        <tr><td>Host company</td><td>OZEL ENKA OKULLARI (never a person's name)</td></tr>
-        <tr><td>Host company email</td><td>melih.inan@enka.k12.tr</td></tr>
-        <tr><td>Address</td><td>Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul</td></tr>
-        <tr><td>Phone</td><td>02127056500</td></tr>
-        <tr><td>Travel/health insurance</td><td>Yes, valid until 30 June 2027</td></tr>
-        <tr><td>Where will you stay</td><td>If no address yet, use the school address</td></tr>
-      </table>
-      <ul>
-        <li>Use your own email in the personal sections (the school email is only the host-company field). Apply for yourself.</li>
-        <li>Download the PDF and check every field before submitting; typos cause delays.</li>
-        <li>After submitting, you see appointment dates. Report the earliest to HR and do not book until they confirm.</li>
-        <li>Port of entry: Istanbul Airport (IST).</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>🧭 The relocation roadmap</span><span class="chev">›</span></summary>
+        <div class="body">
+          <h4>Phase 1 — Documents (start now)</h4>
+          <p>Apostille these, each one individually:</p>
+          <ul class="todo">
+            <li>University diploma</li>
+            <li>University transcripts (a registrar's letter stating the transcript is official helps)</li>
+            <li>Teaching certification / license</li>
+            <li>Proof of 2 years' experience in your subject: a letter from your previous school, on letterhead, signed. It does not need to come from your country's Ministry of Education.</li>
+            <li>Police / background certificate (where required)</li>
+          </ul>
+          <h4>Phase 2 — Ministry of Education pre-approval (Ön İzin)</h4>
+          <ul><li>A teacher-specific first step: the Ministry must pre-approve your assignment before a work permit can proceed.</li><li>HR submits your translated, notarized documents. Without this approval, the work visa cannot move forward.</li><li>It is the slowest part and depends on government timelines.</li></ul>
+          <h4>Phase 3 — Work visa application</h4>
+          <ul class="todo"><li>Apply online and book an appointment at the Turkish mission in the country where you reside (have residency/work rights) or hold citizenship.</li><li>Have HR review your form before you submit.</li><li>Do not book the appointment until HR tells you to.</li></ul>
+          <h4>Phase 4 — Flights & arrival</h4>
+          <ul class="todo"><li>Wait for visa/permit approval before buying flights.</li><li>Book your own flight (economy), into Istanbul Airport (IST).</li><li>You generally cannot arrive before the contract start without a tourist-visa workaround. Arrival support may be unavailable in July.</li><li>Bringing a pet? Start the rabies titer test and paperwork early; most pets fly in-cabin.</li></ul>
+          <h4>Phase 5 — First weeks in Istanbul</h4>
+          <ul class="todo"><li>Get a Turkish SIM in your own name. This starts the 120-day clock to register your foreign phone's IMEI.</li><li>Get your tax number (vergi numarası): free, online.</li><li>Buy and load an İstanbulkart.</li><li>Set up your e-Devlet password at a PTT (post office).</li><li>Open a bank account.</li><li>Register your address (adres kayıt) within the required window.</li><li>Register your phone's IMEI within 120 days, or buy a local phone.</li></ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🏠 Housing & commute</span><span class="chev">›</span></summary>
-    <div class="body">
-      <p><a href="./map.html">Open the interactive map →</a> The school bus runs from 9 stops to school, so pick a neighborhood you can reach a stop from easily.</p>
-      <ul>
-        <li>School area: Sarıyer / İstinye. Walking-distance options include İstinye, Maslak, Emirgan.</li>
-        <li>Search sites: <a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">sahibinden.com/en</a> and <a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">hepsiemlak.com/en</a> (the map links to per-neighborhood searches).</li>
-        <li>Sahibinden needs a Turkish phone number to message agents: use the "call" button to get the number, then reach them on WhatsApp.</li>
-        <li>Switch the Sahibinden app to English: "bana özel" (bottom) → gear (uygulama ayarları) → dil tercihleri.</li>
-        <li>Furnished is scarce; the norm is unfurnished. There is an IKEA run with the school bus after arrival.</li>
-        <li>Do not pay a year upfront for a place you have not seen. If a landlord only rents on those terms, pass.</li>
-        <li>Common approach: arrive, stay in an Airbnb, and view places in person before signing.</li>
-        <li>Departing teachers list their apartments (HR shares a document).</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>📄 Documents & apostille</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul>
+            <li>What to apostille: diploma, transcripts, teaching certificate, proof-of-experience letter (plus a police certificate if asked). Each gets its own apostille.</li>
+            <li>Proof-of-experience letter: from your previous school, on letterhead, signed.</li>
+            <li><b>US:</b> apostille via the issuing state's Secretary of State, or the US Dept. of State. Usually low cost per document.</li>
+            <li><b>Non-Hague country</b> (for example Thailand): get Ministry of Foreign Affairs approval, then take it to the nearest Turkish mission.</li>
+            <li>Email color scans to HR; no physical originals; no Turkish translation needed (the school does it).</li>
+            <li>Use a regular hard-copy apostille; digital e-apostilles have been refused.</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🧰 Arrival setup</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul>
-        <li><b>Tax number (vergi numarası):</b> free, online at the Interactive Tax Office.</li>
-        <li><b>e-Devlet:</b> government services portal; get your password at a PTT.</li>
-        <li><b>Bank account:</b> passport, tax number, proof of address, contract.</li>
-        <li><b>SIM / phone:</b> Turkish SIM in your name; register your IMEI within 120 days or buy a local phone.</li>
-        <li><b>İstanbulkart:</b> buy at the airport or metro; personalize it with your ID number.</li>
-        <li><b>Address registration (adres kayıt):</b> within the required window after arrival.</li>
-        <li><b>Health letter:</b> a doctor's note stating you are fit to work (a generic form is fine).</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>🛂 The work visa application (step by step)</span><span class="chev">›</span></summary>
+        <div class="body">
+          <p>Apply at <a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">konsolosluk.gov.tr</a> and select your country and the Turkish mission.</p>
+          <table class="kv">
+            <tr><td>Name</td><td>First + middle name, exactly as in your passport</td></tr>
+            <tr><td>Type of visa</td><td>Work Visa</td></tr>
+            <tr><td>Purpose of Trip</td><td>Employment Purpose / Special Employment Purpose</td></tr>
+            <tr><td>Number of Entries</td><td>Single</td></tr>
+            <tr><td>Date of Entry</td><td>1 August 2026 (or later)</td></tr>
+            <tr><td>Duration of stay</td><td>90 days (the permit is completed after you arrive; then multiple entries, 1-year validity)</td></tr>
+            <tr><td>Means of transport</td><td>Air</td></tr>
+            <tr><td>Guarantor</td><td>No</td></tr>
+            <tr><td>Who covers travel costs</td><td>Host company</td></tr>
+            <tr><td>Host company</td><td>OZEL ENKA OKULLARI (never a person's name)</td></tr>
+            <tr><td>Host company email</td><td>melih.inan@enka.k12.tr</td></tr>
+            <tr><td>Address</td><td>Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul</td></tr>
+            <tr><td>Phone</td><td>02127056500</td></tr>
+            <tr><td>Travel/health insurance</td><td>Yes, valid until 30 June 2027</td></tr>
+            <tr><td>Where will you stay</td><td>If no address yet, use the school address</td></tr>
+          </table>
+          <ul>
+            <li>Use your own email in the personal sections (the school email is only the host-company field). Apply for yourself.</li>
+            <li>Download the PDF and check every field before submitting; typos cause delays.</li>
+            <li>After submitting, you see appointment dates. Report the earliest to HR and do not book until they confirm.</li>
+            <li>Port of entry: Istanbul Airport (IST).</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🌆 Daily life in Istanbul</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul>
-        <li><b>Transport:</b> metro, metrobüs and ferries with İstanbulkart, plus the school service bus.</li>
-        <li><b>Apps:</b> Moovit/Citymapper, BiTaksi (taxi), Yemeksepeti/Getir (delivery), Google Translate (offline Turkish).</li>
-        <li><b>Pets:</b> rabies titer test to enter; most fly in-cabin.</li>
-        <li><b>Sport:</b> teacher discount at the ENKA sports center.</li>
-        <li><b>Emergency:</b> 112. Locate your nearest hospital and a nöbetçi eczane (on-duty pharmacy).</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>🏠 Housing & commute</span><span class="chev">›</span></summary>
+        <div class="body">
+          <p><a href="./map.html">Open the interactive map →</a> The school bus runs from 9 stops to school, so pick a neighborhood you can reach a stop from easily.</p>
+          <ul>
+            <li>School area: Sarıyer / İstinye. Walking-distance options include İstinye, Maslak, Emirgan.</li>
+            <li>Search sites: <a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">sahibinden.com/en</a> and <a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">hepsiemlak.com/en</a> (the map links to per-neighborhood searches).</li>
+            <li>Sahibinden needs a Turkish phone number to message agents: use the "call" button to get the number, then reach them on WhatsApp.</li>
+            <li>Switch the Sahibinden app to English: "bana özel" (bottom) → gear (uygulama ayarları) → dil tercihleri.</li>
+            <li>Furnished is scarce; the norm is unfurnished. There is an IKEA run with the school bus after arrival.</li>
+            <li>Do not pay a year upfront for a place you have not seen. If a landlord only rents on those terms, pass.</li>
+            <li>Common approach: arrive, stay in an Airbnb, and view places in person before signing.</li>
+            <li>Departing teachers list their apartments (HR shares a document).</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🏫 The school (ENKA)</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul>
-        <li><b>Address:</b> Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul. Use this exact address when a map app shows the school elsewhere.</li>
-        <li><b>First day:</b> Thursday, 20 August 2026.</li>
-        <li><b>Onboarding:</b> monthly newsletter, asynchronous mandatory trainings, and optional online meetups.</li>
-        <li>The academic calendar is set by the Ministry and announced late.</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>🧰 Arrival setup</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul>
+            <li><b>Tax number (vergi numarası):</b> free, online at the Interactive Tax Office.</li>
+            <li><b>e-Devlet:</b> government services portal; get your password at a PTT.</li>
+            <li><b>Bank account:</b> passport, tax number, proof of address, contract.</li>
+            <li><b>SIM / phone:</b> Turkish SIM in your name; register your IMEI within 120 days or buy a local phone.</li>
+            <li><b>İstanbulkart:</b> buy at the airport or metro; personalize it with your ID number.</li>
+            <li><b>Address registration (adres kayıt):</b> within the required window after arrival.</li>
+            <li><b>Health letter:</b> a doctor's note stating you are fit to work (a generic form is fine).</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>❓ FAQ</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul>
-        <li><b>When will my visa be approved?</b> It takes time (often weeks) and depends on the Ministry. The school tracks it.</li>
-        <li><b>Where do I apply?</b> In the country where you have residency/work rights, or your country of citizenship.</li>
-        <li><b>Do I need to translate my documents?</b> No. The school translates them in Turkey. You only apostille.</li>
-        <li><b>Physical documents or scans?</b> Color scans by email; do not mail your diploma.</li>
-        <li><b>Is an e-apostille okay?</b> Use a regular apostille; digital ones have been refused.</li>
-        <li><b>When can I book my flight?</b> After your visa/permit is approved. Book your own, into IST.</li>
-        <li><b>Can I arrive early?</b> Generally no, without a tourist-visa workaround.</li>
-        <li><b>Sahibinden without a Turkish number?</b> Use "call" to get the number, then WhatsApp.</li>
-        <li><b>Furnished apartments?</b> Rare; plan to furnish (an IKEA run is available).</li>
-        <li><b>Bringing a pet?</b> Start the rabies titer test early; finalize after the flight is booked.</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>🌆 Daily life in Istanbul</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul>
+            <li><b>Transport:</b> metro, metrobüs and ferries with İstanbulkart, plus the school service bus.</li>
+            <li><b>Apps:</b> Moovit/Citymapper, BiTaksi (taxi), Yemeksepeti/Getir (delivery), Google Translate (offline Turkish).</li>
+            <li><b>Pets:</b> rabies titer test to enter; most fly in-cabin.</li>
+            <li><b>Sport:</b> teacher discount at the ENKA sports center.</li>
+            <li><b>Emergency:</b> 112. Locate your nearest hospital and a nöbetçi eczane (on-duty pharmacy).</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>📖 Glossary</span><span class="chev">›</span></summary>
-    <div class="body">
-      <table class="kv">
-        <tr><td>Apostille</td><td>International certification of a public document (Hague Convention)</td></tr>
-        <tr><td>Ön İzin</td><td>Pre-approval from the Ministry of Education for a foreign teacher</td></tr>
-        <tr><td>Çalışma izni</td><td>Work permit</td></tr>
-        <tr><td>İkamet</td><td>Residence permit (the work permit covers residence)</td></tr>
-        <tr><td>Vergi numarası</td><td>Tax number</td></tr>
-        <tr><td>e-Devlet</td><td>Government online services portal</td></tr>
-        <tr><td>Adres kayıt</td><td>Address registration</td></tr>
-        <tr><td>İstanbulkart</td><td>Rechargeable public-transport card</td></tr>
-        <tr><td>Nöbetçi eczane</td><td>On-duty (night) pharmacy</td></tr>
-        <tr><td>Emlakçı</td><td>Real-estate agent</td></tr>
-        <tr><td>Yeminli tercüman</td><td>Sworn translator (the school handles this)</td></tr>
-      </table>
-    </div>
-  </details>
+      <details class="section"><summary><span>🏫 The school (ENKA)</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul>
+            <li><b>Address:</b> Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul. Use this exact address when a map app shows the school elsewhere.</li>
+            <li><b>First day:</b> Thursday, 20 August 2026.</li>
+            <li><b>Onboarding:</b> monthly newsletter, asynchronous mandatory trainings, and optional online meetups.</li>
+            <li>The academic calendar is set by the Ministry and announced late.</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🔗 Useful links</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul>
-        <li><a href="./map.html">Interactive housing & commute map</a></li>
-        <li><a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">Work visa application (konsolosluk.gov.tr)</a></li>
-        <li><a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">Hepsiemlak</a> · <a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">Sahibinden</a></li>
-        <li><a href="https://www.turkiye.gov.tr/" target="_blank" rel="noopener">e-Devlet</a></li>
-        <li><a href="https://dijital.gib.gov.tr/" target="_blank" rel="noopener">Interactive Tax Office</a></li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>❓ FAQ</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul>
+            <li><b>When will my visa be approved?</b> It takes time (often weeks) and depends on the Ministry. The school tracks it.</li>
+            <li><b>Where do I apply?</b> In the country where you have residency/work rights, or your country of citizenship.</li>
+            <li><b>Do I need to translate my documents?</b> No. The school translates them in Turkey. You only apostille.</li>
+            <li><b>Physical documents or scans?</b> Color scans by email; do not mail your diploma.</li>
+            <li><b>Is an e-apostille okay?</b> Use a regular apostille; digital ones have been refused.</li>
+            <li><b>When can I book my flight?</b> After your visa/permit is approved. Book your own, into IST.</li>
+            <li><b>Can I arrive early?</b> Generally no, without a tourist-visa workaround.</li>
+            <li><b>Sahibinden without a Turkish number?</b> Use "call" to get the number, then WhatsApp.</li>
+            <li><b>Furnished apartments?</b> Rare; plan to furnish (an IKEA run is available).</li>
+            <li><b>Bringing a pet?</b> Start the rabies titer test early; finalize after the flight is booked.</li>
+          </ul>
+        </div>
+      </details>
 
-  <details class="section"><summary><span>🙋 What we still need from HR</span><span class="chev">›</span></summary>
-    <div class="body">
-      <ul class="todo">
-        <li>Who pays the real-estate agent's commission, and how much?</li>
-        <li>Driving: can we use a foreign license? Is an international permit needed? How do we get a Turkish license?</li>
-        <li>Exact pet-import requirements (titer timing, in-cabin rules).</li>
-        <li>The service-bus schedule and pickup times.</li>
-      </ul>
-    </div>
-  </details>
+      <details class="section"><summary><span>📖 Glossary</span><span class="chev">›</span></summary>
+        <div class="body">
+          <table class="kv">
+            <tr><td>Apostille</td><td>International certification of a public document (Hague Convention)</td></tr>
+            <tr><td>Ön İzin</td><td>Pre-approval from the Ministry of Education for a foreign teacher</td></tr>
+            <tr><td>Çalışma izni</td><td>Work permit</td></tr>
+            <tr><td>İkamet</td><td>Residence permit (the work permit covers residence)</td></tr>
+            <tr><td>Vergi numarası</td><td>Tax number</td></tr>
+            <tr><td>e-Devlet</td><td>Government online services portal</td></tr>
+            <tr><td>Adres kayıt</td><td>Address registration</td></tr>
+            <tr><td>İstanbulkart</td><td>Rechargeable public-transport card</td></tr>
+            <tr><td>Nöbetçi eczane</td><td>On-duty (night) pharmacy</td></tr>
+            <tr><td>Emlakçı</td><td>Real-estate agent</td></tr>
+            <tr><td>Yeminli tercüman</td><td>Sworn translator (the school handles this)</td></tr>
+          </table>
+        </div>
+      </details>
 
-  <footer>
+      <details class="section"><summary><span>🔗 Useful links</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul>
+            <li><a href="./map.html">Interactive housing & commute map</a></li>
+            <li><a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">Work visa application (konsolosluk.gov.tr)</a></li>
+            <li><a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">Hepsiemlak</a> · <a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">Sahibinden</a></li>
+            <li><a href="https://www.turkiye.gov.tr/" target="_blank" rel="noopener">e-Devlet</a></li>
+            <li><a href="https://dijital.gib.gov.tr/" target="_blank" rel="noopener">Interactive Tax Office</a></li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="section"><summary><span>🙋 What we still need from HR</span><span class="chev">›</span></summary>
+        <div class="body">
+          <ul class="todo">
+            <li>Who pays the real-estate agent's commission, and how much?</li>
+            <li>Driving: can we use a foreign license? Is an international permit needed? How do we get a Turkish license?</li>
+            <li>Exact pet-import requirements (titer timing, in-cabin rules).</li>
+            <li>The service-bus schedule and pickup times.</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="foot">
     Community guide for new ENKA teachers. Factual summaries from the school's documents and shared
     experiences; confirm specifics with HR. Last updated 28 June 2026.
   </footer>
-</div>
 
+<script src="./theme.js"></script>
 <script>
 const wa=n=>`https://wa.me/${n}`;
 fetch('./contacts.json').then(r=>r.json()).then(d=>{
@@ -289,11 +295,11 @@ fetch('./contacts.json').then(r=>r.json()).then(d=>{
       <div class="nm">${c.name}</div>
       <div class="role">${c.role||''}</div>
       <div class="btns">
-        ${c.whatsapp?`<a class="btn wa" target="_blank" rel="noopener" href="${wa(c.whatsapp)}">💬 WhatsApp</a>`:''}
-        ${c.email?`<a class="btn mail" href="mailto:${c.email}">✉️ ${c.email}</a>`:''}
+        ${c.whatsapp?`<a class="cbtn wa" target="_blank" rel="noopener" href="${wa(c.whatsapp)}">💬 WhatsApp</a>`:''}
+        ${c.email?`<a class="cbtn mail" href="mailto:${c.email}">✉️ ${c.email}</a>`:''}
       </div>
     </div>`).join('');
-}).catch(()=>{});
+}).catch(()=>{document.getElementById('contacts-wrap').style.display='none';});
 fetch('./messages.json').then(r=>r.json()).then(d=>{
   const msgs=(d.messages||[]).sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
   document.getElementById('board').innerHTML='<h2>📌 Message board</h2>'+
