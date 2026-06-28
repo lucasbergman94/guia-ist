@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>ENKA Istanbul · Where to live & how you'll commute</title>
+<meta name="description" content="A new-teacher guide to ENKA's service-bus stops and the most liveable neighborhoods around them, with live walking routes to your stop and from the stop to school." />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<style>
+  :root{
+    --bg:#0f1115; --panel:#171a21; --panel2:#1f242e; --ink:#eef1f6; --muted:#9aa4b2;
+    --line:#2a3140; --accent:#3b82f6;
+    --t1:#2e9e5b; --t2:#e0a52e; --t3:#d6543f; --school:#e11d48;
+    --eu:#2563eb; --asia:#7c3aed;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.45;-webkit-text-size-adjust:100%}
+  header{padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+  h1{font-size:1.05rem;margin:0;font-weight:700;letter-spacing:.2px}
+  .sub{color:var(--muted);font-size:.8rem;margin-top:3px}
+  .hint{font-size:.78rem;color:var(--muted);margin-top:8px;background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .hint b{color:var(--ink)}
+  .controls{padding:10px 12px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+  .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  input[type=search]{flex:1;min-width:140px;background:var(--panel2);border:1px solid var(--line);
+    color:var(--ink);border-radius:10px;padding:9px 12px;font-size:.9rem}
+  .chip{background:var(--panel2);border:1px solid var(--line);color:var(--muted);
+    border-radius:999px;padding:6px 11px;font-size:.78rem;cursor:pointer;user-select:none}
+  .chip[aria-pressed=true]{color:#fff;border-color:transparent}
+  .chip.t1[aria-pressed=true]{background:var(--t1)} .chip.t2[aria-pressed=true]{background:var(--t2);color:#1b1300}
+  .chip.t3[aria-pressed=true]{background:var(--t3)} .chip.gen[aria-pressed=true]{background:var(--accent)}
+  .label{font-size:.72rem;color:var(--muted);margin-right:2px}
+  button.act{background:var(--accent);border:0;color:#fff;border-radius:10px;padding:9px 12px;
+    font-size:.84rem;font-weight:600;cursor:pointer}
+  button.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+  #map{height:56vh;min-height:320px;width:100%;background:#0b0d11}
+  .legend{display:flex;gap:12px;flex-wrap:wrap;padding:8px 14px;font-size:.74rem;color:var(--muted);
+    border-bottom:1px solid var(--line);background:var(--panel)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle;border:1px solid rgba(255,255,255,.5)}
+  .stopBadge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;
+    color:#fff;font-size:.62rem;font-weight:700;margin-right:4px;vertical-align:middle}
+  .list{padding:10px 12px 80px}
+  .stopGroup{margin:14px 0 6px;font-size:.8rem;color:var(--muted);font-weight:600;
+    border-top:1px dashed var(--line);padding-top:10px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin:8px 0;cursor:pointer}
+  .card:hover{border-color:#3a4456}
+  .card .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .card .nm{font-weight:600;font-size:.95rem}
+  .card .ol{color:var(--muted);font-size:.8rem;margin-top:2px}
+  .pill{font-size:.66rem;padding:2px 7px;border-radius:999px;white-space:nowrap;font-weight:700}
+  .pill.t1{background:rgba(46,158,91,.18);color:#5fd394;border:1px solid rgba(46,158,91,.5)}
+  .pill.t2{background:rgba(224,165,46,.18);color:#f0c265;border:1px solid rgba(224,165,46,.5)}
+  .pill.t3{background:rgba(214,84,63,.18);color:#f08d7a;border:1px solid rgba(214,84,63,.5)}
+  .walk{font-size:.66rem;color:#5fd394;border:1px solid rgba(46,158,91,.5);border-radius:999px;padding:2px 7px}
+  /* bottom sheet */
+  .sheet{position:fixed;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--line);
+    border-radius:16px 16px 0 0;padding:14px 16px 20px;transform:translateY(110%);transition:transform .22s ease;
+    z-index:1200;max-height:78vh;overflow:auto;box-shadow:0 -10px 30px rgba(0,0,0,.4)}
+  .sheet.open{transform:translateY(0)}
+  .sheet h2{margin:0;font-size:1.1rem}
+  .sheet .meta{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+  .sheet .desc{font-size:.9rem;color:#d7dde6;margin:8px 0}
+  .sheet .cav{font-size:.82rem;color:#f0c265;background:rgba(224,165,46,.1);
+    border:1px solid rgba(224,165,46,.35);border-radius:8px;padding:7px 9px;margin:8px 0}
+  .sheet .btns{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+  .sheet a.route{display:flex;align-items:center;gap:8px;background:var(--panel2);border:1px solid var(--line);
+    color:var(--ink);text-decoration:none;border-radius:10px;padding:11px 12px;font-size:.88rem;font-weight:600}
+  .sheet a.route .mini{font-size:.72rem;color:var(--muted);font-weight:400}
+  .sheet .close{position:absolute;top:10px;right:12px;background:transparent;border:0;color:var(--muted);font-size:1.4rem;cursor:pointer}
+  .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:1100}
+  .backdrop.show{opacity:1;pointer-events:auto}
+  /* planner */
+  .planner{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin:8px 0}
+  .planner .ttl{font-weight:600;font-size:.9rem;margin-bottom:6px}
+  .planner select{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px;font-size:.86rem;margin-bottom:8px}
+  .out{font-size:.84rem;margin-top:8px}
+  footer{padding:14px 16px 28px;color:var(--muted);font-size:.72rem;border-top:1px solid var(--line)}
+  footer a{color:#8ab4ff}
+  .leaflet-popup-content{font-size:.85rem}
+  .leaflet-popup-content a{color:#1d4ed8;font-weight:600}
+  @media(min-width:820px){
+    .wrap{max-width:1080px;margin:0 auto}
+    #map{height:62vh}
+    .sheet{left:auto;right:18px;bottom:18px;width:380px;border-radius:16px;transform:translateY(140%)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>ENKA Istanbul · Where to live & how you'll commute</h1>
+    <div class="sub">The school's 9 service-bus stops, the most liveable neighborhoods around them, and live routes.</div>
+    <div class="hint">Tap any neighborhood for details and <b>live Google Maps routes</b>. The school bus runs <b>from the 9 stops to school</b>, so your real task is to live somewhere you can reach a stop easily. <b>Bus times themselves: confirm with HR.</b></div>
+  </header>
+
+  <div class="controls">
+    <div class="row">
+      <input id="q" type="search" placeholder="Search a neighborhood…" aria-label="Search a neighborhood" />
+      <button class="act" id="locate" type="button">📍 Plan from my location</button>
+    </div>
+    <div class="row">
+      <span class="label">Price</span>
+      <span class="chip t1" data-tier="1" role="button" tabindex="0" aria-pressed="false">€ Affordable</span>
+      <span class="chip t2" data-tier="2" role="button" tabindex="0" aria-pressed="false">€€ Mid</span>
+      <span class="chip t3" data-tier="3" role="button" tabindex="0" aria-pressed="false">€€€ Upscale</span>
+      <span class="chip gen" data-walk="1" role="button" tabindex="0" aria-pressed="false">🚶 Walk to school</span>
+    </div>
+    <div class="row" id="stopChips">
+      <span class="label">Stop</span>
+    </div>
+    <div class="planner" id="planner" hidden>
+      <div class="ttl">Plan my commute</div>
+      <select id="originSel" aria-label="Pick where you might live"></select>
+      <div class="out" id="plannerOut"></div>
+    </div>
+  </div>
+
+  <div id="map"></div>
+  <div class="legend" id="legend"></div>
+  <div class="list" id="list"></div>
+
+  <footer>
+    Sources: ENKA service-bus document + new-teacher experiences (anonymized). Neighborhood notes are
+    qualitative, not quoted prices. <b>Service-bus schedule and exact times: confirm with HR.</b>
+    Pin locations are auto-geocoded and may be slightly off — verify the exact address before deciding.
+    Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.
+    Last updated 2026-06-28.
+  </footer>
+</div>
+
+<div class="backdrop" id="backdrop"></div>
+<aside class="sheet" id="sheet" aria-live="polite"></aside>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+const TIER = {1:{c:'#2e9e5b',l:'€ Affordable'},2:{c:'#e0a52e',l:'€€ Mid'},3:{c:'#d6543f',l:'€€€ Upscale'}};
+const SIDE = {Europe:'#2563eb', Asia:'#7c3aed'};
+const state = {tiers:new Set(), stops:new Set(), walk:false, q:''};
+let DATA, map, schoolLL, stopById={}, nObjs=[];
+
+const gmaps = (o,d,mode)=>`https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}&travelmode=${mode}`;
+const ll = p => `${p.lat},${p.lon}`;
+function haversine(a,b){const R=6371,r=Math.PI/180,
+  dLat=(b.lat-a.lat)*r,dLon=(b.lon-a.lon)*r,
+  x=Math.sin(dLat/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(x));}
+
+fetch('./data.json').then(r=>r.json()).then(d=>{DATA=d;init();})
+  .catch(e=>{document.getElementById('list').innerHTML='<p style="color:#f08d7a">Could not load map data.</p>';console.error(e);});
+
+function init(){
+  map = L.map('map',{zoomControl:true}).setView([41.09,29.01],12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:19, attribution:'© OpenStreetMap'}).addTo(map);
+
+  const bounds=[];
+  // school
+  const s=DATA.school; schoolLL={lat:s.lat,lon:s.lon};
+  L.marker([s.lat,s.lon],{icon:L.divIcon({className:'',html:
+    '<div style="background:var(--school,#e11d48);color:#fff;border:2px solid #fff;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 6px rgba(0,0,0,.5)">★</div>',
+    iconSize:[30,30],iconAnchor:[15,15]}),zIndexOffset:1000})
+    .addTo(map).bindPopup(`<b>${s.name}</b><br>${s.address}`);
+  bounds.push([s.lat,s.lon]);
+
+  // stops
+  DATA.stops.forEach(st=>{stopById[st.num]=st; if(!st.geocodeOk)return;
+    const col=SIDE[st.side]||'#555';
+    L.marker([st.lat,st.lon],{icon:L.divIcon({className:'',html:
+      `<div style="background:${col};color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.5)">${st.num}</div>`,
+      iconSize:[24,24],iconAnchor:[12,12]})})
+      .addTo(map)
+      .bindPopup(`<b>Stop ${st.num} · ${st.name}</b><br>${st.side} side`+
+        (st.side==='Asia'?'<br><i>Asian-side stops: the school suggests settling in before choosing the Asian side.</i>':'')+
+        `<br><a href="${gmaps(ll(st),ll(schoolLL),'driving')}" target="_blank" rel="noopener">Route this stop → school ›</a>`);
+    if(st.side==='Europe') bounds.push([st.lat,st.lon]);
+  });
+
+  // neighborhoods
+  DATA.neighborhoods.forEach(n=>{
+    let marker=null;
+    if(n.geocodeOk){
+      marker=L.circleMarker([n.lat,n.lon],{radius:8,color:'#fff',weight:1,
+        fillColor:TIER[n.tier].c,fillOpacity:.95})
+        .addTo(map).bindTooltip(n.name,{direction:'top'});
+      marker.on('click',()=>openSheet(n));
+      bounds.push([n.lat,n.lon]);
+    }
+    nObjs.push({n,marker});
+  });
+
+  if(bounds.length) map.fitBounds(bounds,{padding:[30,30]});
+
+  buildStopChips(); buildLegend(); buildOriginSelect(); wireControls(); render();
+}
+
+function buildStopChips(){
+  const box=document.getElementById('stopChips');
+  DATA.stops.filter(s=>s.side==='Europe').forEach(s=>{
+    const c=document.createElement('span');
+    c.className='chip gen'; c.setAttribute('role','button'); c.tabIndex=0;
+    c.setAttribute('aria-pressed','false'); c.dataset.stop=s.num;
+    c.textContent=`${s.num}`;
+    c.title=s.name;
+    box.appendChild(c);
+  });
+}
+function buildLegend(){
+  document.getElementById('legend').innerHTML =
+    `<span><span class="stopBadge" style="background:${SIDE.Europe}">N</span>Bus stop</span>`+
+    `<span><span class="dot" style="background:var(--school,#e11d48)"></span>School ★</span>`+
+    Object.entries(TIER).map(([k,v])=>`<span><span class="dot" style="background:${v.c}"></span>${v.l}</span>`).join('')+
+    `<span>🚶 = walk to school</span>`;
+}
+function buildOriginSelect(){
+  const sel=document.getElementById('originSel');
+  sel.innerHTML='<option value="">— pick a neighborhood —</option>'+
+    DATA.neighborhoods.slice().sort((a,b)=>a.name.localeCompare(b.name))
+    .map((n,i)=>`<option value="${DATA.neighborhoods.indexOf(n)}">${n.name} (Stop ${n.stop})</option>`).join('');
+  sel.onchange=()=>{const i=sel.value; if(i==='')return;
+    const n=DATA.neighborhoods[+i]; openSheet(n);};
+}
+
+function wireControls(){
+  document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value.toLowerCase();render();});
+  document.querySelectorAll('.chip[data-tier]').forEach(c=>{
+    const t=+c.dataset.tier;
+    const tog=()=>{state.tiers.has(t)?state.tiers.delete(t):state.tiers.add(t);
+      c.setAttribute('aria-pressed',state.tiers.has(t));render();};
+    c.addEventListener('click',tog);
+    c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});
+  });
+  const wc=document.querySelector('.chip[data-walk]');
+  wc.addEventListener('click',()=>{state.walk=!state.walk;wc.setAttribute('aria-pressed',state.walk);render();});
+  document.getElementById('stopChips').addEventListener('click',e=>{
+    const c=e.target.closest('[data-stop]'); if(!c)return; const s=+c.dataset.stop;
+    state.stops.has(s)?state.stops.delete(s):state.stops.add(s);
+    c.setAttribute('aria-pressed',state.stops.has(s));render();});
+  document.getElementById('backdrop').addEventListener('click',closeSheet);
+  document.getElementById('locate').addEventListener('click',planFromLocation);
+}
+
+function match(n){
+  if(state.tiers.size && !state.tiers.has(n.tier)) return false;
+  if(state.stops.size && !state.stops.has(n.stop)) return false;
+  if(state.walk && !n.walkToSchool) return false;
+  if(state.q && !(n.name.toLowerCase().includes(state.q)||(n.oneLiner||'').toLowerCase().includes(state.q)||(n.district||'').toLowerCase().includes(state.q))) return false;
+  return true;
+}
+
+function render(){
+  // map markers
+  nObjs.forEach(({n,marker})=>{ if(!marker)return;
+    if(match(n)){if(!map.hasLayer(marker))marker.addTo(map);}
+    else{if(map.hasLayer(marker))map.removeLayer(marker);}
+  });
+  // list grouped by stop
+  const list=document.getElementById('list'); list.innerHTML='';
+  const filtered=DATA.neighborhoods.filter(match);
+  if(!filtered.length){list.innerHTML='<p style="color:var(--muted)">No neighborhoods match these filters.</p>';return;}
+  const byStop={};
+  filtered.forEach(n=>{(byStop[n.stop]=byStop[n.stop]||[]).push(n);});
+  Object.keys(byStop).map(Number).sort((a,b)=>a-b).forEach(sn=>{
+    const st=stopById[sn];
+    const h=document.createElement('div'); h.className='stopGroup';
+    h.innerHTML=`<span class="stopBadge" style="background:${SIDE[st.side]||'#555'}">${sn}</span> Stop ${sn} · ${st.name}`;
+    list.appendChild(h);
+    byStop[sn].sort((a,b)=>a.tier-b.tier||a.name.localeCompare(b.name)).forEach(n=>{
+      const card=document.createElement('div'); card.className='card';
+      card.innerHTML=`<div class="top"><span class="nm">${n.name}</span>
+        <span style="display:flex;gap:6px">${n.walkToSchool?'<span class="walk">🚶 school</span>':''}<span class="pill t${n.tier}">${['','€','€€','€€€'][n.tier]}</span></span></div>
+        <div class="ol">${n.oneLiner||''} · ${n.district}</div>`;
+      card.addEventListener('click',()=>openSheet(n));
+      list.appendChild(card);
+    });
+  });
+}
+
+function openSheet(n){
+  const st=stopById[n.stop];
+  const sheet=document.getElementById('sheet');
+  const origin = n.geocodeOk?ll(n):encodeURIComponent(n.name+', İstanbul, Türkiye');
+  const stopLL = st&&st.geocodeOk?ll(st):encodeURIComponent(st.name+', İstanbul');
+  sheet.innerHTML=`<button class="close" aria-label="Close">×</button>
+    <h2>${n.name}</h2>
+    <div class="meta">
+      <span class="pill t${n.tier}">${TIER[n.tier].l}</span>
+      <span class="pill" style="background:var(--panel2);border:1px solid var(--line);color:var(--muted)">${n.district} · ${st.side}</span>
+      <span class="pill" style="background:var(--panel2);border:1px solid var(--line);color:var(--muted)">Stop ${st.num}: ${st.name}</span>
+      ${n.walkToSchool?'<span class="walk">🚶 walk to school</span>':''}
+    </div>
+    <div class="desc">${n.desc||''}</div>
+    ${n.caveat?`<div class="cav">⚠️ ${n.caveat}</div>`:''}
+    <div class="btns">
+      <a class="route" target="_blank" rel="noopener" href="${gmaps(origin,stopLL,'walking')}">🚶 Route to your stop <span class="mini">(${n.name} → Stop ${st.num})</span></a>
+      <a class="route" target="_blank" rel="noopener" href="${gmaps(stopLL,ll(schoolLL),'driving')}">🚌 Stop → school <span class="mini">(reference of the bus route)</span></a>
+      <a class="route" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${origin}">📍 Open ${n.name} in Google Maps</a>
+    </div>`;
+  sheet.querySelector('.close').onclick=closeSheet;
+  sheet.classList.add('open'); document.getElementById('backdrop').classList.add('show');
+  if(n.geocodeOk) map.panTo([n.lat,n.lon]);
+}
+function closeSheet(){document.getElementById('sheet').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('show');}
+
+function planFromLocation(){
+  const out=document.getElementById('plannerOut');
+  const panel=document.getElementById('planner'); panel.hidden=false;
+  out.innerHTML='Locating…';
+  if(!navigator.geolocation){out.innerHTML='Geolocation not available. Pick a neighborhood above instead.';return;}
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const me={lat:pos.coords.latitude,lon:pos.coords.longitude};
+    let best=null;
+    DATA.stops.filter(s=>s.geocodeOk).forEach(s=>{const d=haversine(me,s);
+      if(!best||d<best.d)best={s,d};});
+    if(!best){out.innerHTML='No stop found.';return;}
+    const s=best.s;
+    out.innerHTML=`Nearest bus stop: <b>Stop ${s.num} · ${s.name}</b> (~${best.d.toFixed(1)} km straight-line).
+      <div class="btns" style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+      <a class="route" target="_blank" rel="noopener" href="${gmaps('',ll(s),'transit')}">🚶 You → Stop ${s.num} <span class="mini">(transit/walking)</span></a>
+      <a class="route" target="_blank" rel="noopener" href="${gmaps(ll(s),ll(schoolLL),'driving')}">🚌 Stop → school <span class="mini">(reference)</span></a>
+      </div>`;
+  },err=>{out.innerHTML='Could not get your location ('+err.message+'). Use the dropdown above to pick a neighborhood instead.';},
+  {enableHighAccuracy:false,timeout:10000});
+}
+</script>
+</body>
+</html>
