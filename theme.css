@@ -91,6 +91,30 @@ html[data-theme="dark"] .switch .knob{transform:translateX(30px)}
 .sheet .x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;border:1px solid var(--bd);
   background:var(--card);color:var(--txt);font-size:16px;cursor:pointer;line-height:1}
 
+/* in-site assistant (keyless) */
+.ask-fab{position:fixed;right:16px;bottom:16px;z-index:1300;display:inline-flex;align-items:center;gap:8px;
+  background:var(--acc);color:#fff;border:0;border-radius:var(--r-pill);padding:13px 18px;font:inherit;font-size:14px;
+  font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(1,33,105,.35)}
+.ask-fab:active{transform:scale(.97)}
+.ask-panel{position:fixed;right:16px;bottom:74px;z-index:1300;width:min(380px,calc(100vw - 32px));max-height:72vh;
+  background:var(--bg2);border:1px solid var(--bd);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.4);
+  display:none;flex-direction:column;overflow:hidden}
+.ask-panel.open{display:flex}
+.ask-head{display:flex;align-items:center;gap:8px;padding:13px 14px;border-bottom:1px solid var(--bd);font-weight:600;font-size:.95rem}
+.ask-head .x{margin-left:auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--bd);background:var(--card);color:var(--txt);cursor:pointer;font-size:15px}
+.ask-body{padding:12px 14px;overflow:auto}
+.ask-input{width:100%;background:var(--card);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:11px 14px;font:inherit;font-size:14px;outline:none}
+.ask-input:focus{border-color:var(--acc)}
+.ask-sugg{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.ask-sugg button{background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:7px 11px;font:inherit;font-size:.78rem;cursor:pointer;text-align:left}
+.ask-sugg button:hover{border-color:var(--acc)}
+.ask-results{margin-top:12px;display:flex;flex-direction:column;gap:10px}
+.ask-item{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:11px 12px}
+.ask-item .qq{font-weight:600;font-size:.88rem}
+.ask-item .aa{color:var(--mut);font-size:.84rem;margin-top:4px;line-height:1.45}
+.ask-item .go{display:inline-block;margin-top:8px;color:var(--acc);font-weight:600;font-size:.82rem}
+.ask-hint{color:var(--mut);font-size:.78rem;margin-top:8px}
+
 .foot{text-align:center;color:var(--mut);font-size:13px;margin-top:48px;padding:26px 22px 44px;border-top:1px solid var(--bd);line-height:1.6}
 .foot a{color:var(--acc)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
