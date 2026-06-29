@@ -57,7 +57,11 @@
   a.tag{display:inline-flex;align-items:center;gap:5px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:8px 11px;font-size:.8rem;font-weight:500}
   a.tag:hover{border-color:var(--acc)}
   a.route{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:12px;padding:11px 12px;font-size:.86rem;font-weight:600;margin-top:8px}
-  a.route .mini{font-size:.72rem;color:var(--mut);font-weight:400}
+  a.route .ic{flex:0 0 auto;font-size:1rem;line-height:1}
+  a.route .rt{display:flex;flex-direction:column;min-width:0;gap:1px}
+  a.route .lbl{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+  a.route .mini{font-size:.72rem;color:var(--mut);font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
+  .meta .pill,.chips a.tag{white-space:nowrap}
   .leaflet-popup-content a{color:var(--acc);font-weight:600}
   @media(max-width:420px){.topbar{gap:8px;padding-left:12px;padding-right:12px}.brand .logo{height:26px}.langtog button{padding:5px 9px}}
 </style>
@@ -224,6 +228,7 @@ function renderSide(){
   side.innerHTML=html;
   side.querySelectorAll('.ncard').forEach(function(c){c.addEventListener('click',function(){var nm=decodeURIComponent(c.dataset.n);var n=DATA.neighborhoods.filter(function(x){return x.name===nm;})[0];if(n)openDetail(n);});});
 }
+function routeBtn(href,icon,label,mini){return '<a class="route" target="_blank" rel="noopener" href="'+href+'"><span class="ic">'+icon+'</span><span class="rt"><span class="lbl">'+label+'</span><span class="mini">'+mini+'</span></span></a>';}
 function openDetail(n){
   selId=n.name;
   var st=stopById[n.stop];
@@ -239,8 +244,8 @@ function openDetail(n){
     '<div class="desc">'+(nz(n,'desc')||'')+'</div>'+
     (cav?'<div class="cav">⚠️ '+cav+'</div>':'')+
     '<div class="grp"><h3>'+S().commute+'</h3>'+
-      '<a class="route" target="_blank" rel="noopener" href="'+gmDir(origin,stopLL,'walking')+'">🚶 '+S().toStop+' <span class="mini">('+n.name+' → '+S().stop+' '+st.num+')</span></a>'+
-      '<a class="route" target="_blank" rel="noopener" href="'+gmDir(stopLL,ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().busRef+'</span></a></div>'+
+      routeBtn(gmDir(origin,stopLL,'walking'),'🚶',S().toStop,'('+n.name+' → '+S().stop+' '+st.num+')')+
+      routeBtn(gmDir(stopLL,ll(schoolLL),'driving'),'🚌',S().stopSchool,S().busRef)+'</div>'+
     '<div class="grp"><h3>'+S().nearby+'</h3><div class="chips">'+near+'</div></div>'+
     '<div class="grp"><h3>'+S().rentals+'</h3><div class="chips">'+
       '<a class="tag" target="_blank" rel="noopener" href="'+hep+'">🏠 Hepsiemlak</a>'+
@@ -280,8 +285,8 @@ function focusAddress(p,label){
     '<div>'+S().nearestStop+' <b>'+S().stop+' '+s.num+' · '+s.name+'</b></div>'+
     '<div style="color:var(--mut);font-size:.84rem;margin-top:2px">'+S().home2stop+': ~'+best.d.toFixed(1)+' '+S().km+' · '+S().toSchool+' ~'+toSchoolKm.toFixed(1)+' '+S().km+'</div>'+
     '<div class="actrow">'+
-    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(p),ll(s),'transit')+'">🚶 '+S().homeStop+' '+s.num+' <span class="mini">'+S().transitWalk+'</span></a>'+
-    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(s),ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().ref+'</span></a>'+
+    routeBtn(gmDir(ll(p),ll(s),'transit'),'🚶',S().homeStop+' '+s.num,S().transitWalk)+
+    routeBtn(gmDir(ll(s),ll(schoolLL),'driving'),'🚌',S().stopSchool,S().ref)+
     '<button class="resetbtn" type="button" id="resetFocus">'+S().showAll+'</button></div>';
   document.getElementById('resetFocus').addEventListener('click',function(){clearFocus(false);});
   renderSide();

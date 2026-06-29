@@ -2,55 +2,595 @@
   "school": {
     "name": "ENKA Schools",
     "address": "Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul",
-    "geoQuery": ["ENKA Okulları, Sarıyer, İstanbul", "ENKA Schools, İstinye, Sarıyer, İstanbul", "Poligon Mahallesi, Sarıyer, İstanbul"]
+    "geoQuery": [
+      "ENKA Okulları, Sarıyer, İstanbul",
+      "ENKA Schools, İstinye, Sarıyer, İstanbul",
+      "Poligon Mahallesi, Sarıyer, İstanbul"
+    ]
   },
   "stops": [
-    {"num": 1, "name": "Hacıosman Metro", "side": "Europe", "geoQuery": ["Hacıosman metro istasyonu, İstanbul", "Hacıosman, Sarıyer, İstanbul"]},
-    {"num": 2, "name": "Darüşşafaka Metro", "side": "Europe", "geoQuery": ["Darüşşafaka metro, İstanbul", "Darüşşafaka, Sarıyer, İstanbul"]},
-    {"num": 3, "name": "İTÜ-Ayazağa Metro", "side": "Europe", "geoQuery": ["İTÜ-Ayazağa metro, İstanbul", "Ayazağa, Sarıyer, İstanbul"]},
-    {"num": 4, "name": "Zincirlikuyu Metrobus", "side": "Europe", "geoQuery": ["Zincirlikuyu, Şişli, İstanbul", "Zincirlikuyu metrobüs, İstanbul"]},
-    {"num": 5, "name": "Cevahir Mecidiyeköy Metro", "side": "Europe", "geoQuery": ["Mecidiyeköy metro, İstanbul", "Mecidiyeköy, Şişli, İstanbul"]},
-    {"num": 6, "name": "Osmanbey Metro (Pangaltı)", "side": "Europe", "geoQuery": ["Osmanbey metro, İstanbul", "Osmanbey, Şişli, İstanbul"]},
-    {"num": 7, "name": "Üsküdar Happy Center", "side": "Asia", "geoQuery": ["Üsküdar, İstanbul"]},
-    {"num": 8, "name": "Suadiye Metro", "side": "Asia", "geoQuery": ["Suadiye metro, İstanbul", "Suadiye, Kadıköy, İstanbul"]},
-    {"num": 9, "name": "Kozyatağı Metro", "side": "Asia", "geoQuery": ["Kozyatağı metro, İstanbul", "Kozyatağı, Kadıköy, İstanbul"]}
+    {
+      "num": 1,
+      "name": "Hacıosman Metro",
+      "side": "Europe",
+      "geoQuery": [
+        "Hacıosman metro istasyonu, İstanbul",
+        "Hacıosman, Sarıyer, İstanbul"
+      ],
+      "coords": [
+        41.13976,
+        29.03045
+      ]
+    },
+    {
+      "num": 2,
+      "name": "Darüşşafaka Metro",
+      "side": "Europe",
+      "geoQuery": [
+        "Darüşşafaka metro, İstanbul",
+        "Darüşşafaka, Sarıyer, İstanbul"
+      ],
+      "coords": [
+        41.12928,
+        29.02508
+      ]
+    },
+    {
+      "num": 3,
+      "name": "İTÜ-Ayazağa Metro",
+      "side": "Europe",
+      "geoQuery": [
+        "İTÜ-Ayazağa metro, İstanbul",
+        "Ayazağa, Sarıyer, İstanbul"
+      ],
+      "coords": [
+        41.10807,
+        29.02097
+      ]
+    },
+    {
+      "num": 4,
+      "name": "Zincirlikuyu Metrobus",
+      "side": "Europe",
+      "geoQuery": [
+        "Zincirlikuyu, Şişli, İstanbul",
+        "Zincirlikuyu metrobüs, İstanbul"
+      ]
+    },
+    {
+      "num": 5,
+      "name": "Cevahir Mecidiyeköy Metro",
+      "side": "Europe",
+      "geoQuery": [
+        "Mecidiyeköy metro, İstanbul",
+        "Mecidiyeköy, Şişli, İstanbul"
+      ],
+      "coords": [
+        41.06518,
+        28.99552
+      ]
+    },
+    {
+      "num": 6,
+      "name": "Osmanbey Metro (Pangaltı)",
+      "side": "Europe",
+      "geoQuery": [
+        "Osmanbey metro, İstanbul",
+        "Osmanbey, Şişli, İstanbul"
+      ],
+      "coords": [
+        41.05278,
+        28.9874
+      ]
+    },
+    {
+      "num": 7,
+      "name": "Üsküdar Happy Center",
+      "side": "Asia",
+      "geoQuery": [
+        "Üsküdar, İstanbul"
+      ]
+    },
+    {
+      "num": 8,
+      "name": "Suadiye Metro",
+      "side": "Asia",
+      "geoQuery": [
+        "Suadiye metro, İstanbul",
+        "Suadiye, Kadıköy, İstanbul"
+      ],
+      "coords": [
+        40.96048,
+        29.08441
+      ]
+    },
+    {
+      "num": 9,
+      "name": "Kozyatağı Metro",
+      "side": "Asia",
+      "geoQuery": [
+        "Kozyatağı metro, İstanbul",
+        "Kozyatağı, Kadıköy, İstanbul"
+      ],
+      "coords": [
+        40.97539,
+        29.09968
+      ]
+    }
   ],
   "neighborhoods": [
-    {"name": "Çamlıtepe / Hacıosman", "stop": 1, "district": "Sarıyer", "tier": 2, "walkToSchool": false, "oneLiner": "Calm, green, metro-connected easy landing pad", "desc": "Residential and quiet right by the station, with good local amenities and a growing expat presence. Metro connects you to the rest of the city in minutes.", "caveat": "", "geoQuery": ["Çamlıtepe, Sarıyer, İstanbul", "Hacıosman, Sarıyer, İstanbul"]},
-    {"name": "Tarabya", "stop": 1, "district": "Sarıyer", "tier": 3, "walkToSchool": false, "oneLiner": "Cosmopolitan Bosphorus waterfront village", "desc": "Charming waterfront village with consulate summer residences, good restaurants and a slower pace that helps newcomers decompress. Upscale but easy to navigate.", "caveat": "", "geoQuery": ["Tarabya, Sarıyer, İstanbul"]},
-    {"name": "Kireçburnu", "stop": 1, "district": "Sarıyer", "tier": 3, "walkToSchool": false, "oneLiner": "Lovely seafront, great seafood", "desc": "A pretty waterfront area known for its seafood restaurants.", "caveat": "May not be the most convenient for getting to/from school.", "geoQuery": ["Kireçburnu, Sarıyer, İstanbul"]},
-    {"name": "Darüşşafaka", "stop": 2, "district": "Sarıyer", "tier": 1, "walkToSchool": false, "oneLiner": "Quiet, green, walkable to the metro", "desc": "Green and residential right by the metro stop, with less traffic than areas further south. A practical, lower-friction landing spot. Compounds like Gazeticiler Sitesi can have decent options.", "caveat": "", "geoQuery": ["Darüşşafaka, Sarıyer, İstanbul"]},
-    {"name": "Emirgan", "stop": 2, "district": "Sarıyer", "tier": 3, "walkToSchool": false, "oneLiner": "Coveted Bosphorus village with a famous park", "desc": "One of the most coveted Bosphorus addresses: water views, the famous Emirgan Park (spectacular during tulip season), fish restaurants and a relaxed village pace.", "caveat": "Housing skews expensive.", "geoQuery": ["Emirgan, Sarıyer, İstanbul"]},
-    {"name": "Maslak", "stop": 2, "district": "Sarıyer", "tier": 2, "walkToSchool": false, "oneLiner": "Business district; some gated compounds", "desc": "Mainly a business center, with fancy residential compounds behind it. One of the neighborhoods the school flags as walking-distance-friendly.", "caveat": "Few residential options in Maslak proper.", "geoQuery": ["Maslak, Sarıyer, İstanbul"]},
-    {"name": "Poligon", "stop": 2, "district": "Sarıyer", "tier": 1, "walkToSchool": true, "oneLiner": "Close to school, lower cost", "desc": "Very close to the school, with some lower-cost options.", "caveat": "The street feel varies; check Google Street View first.", "geoQuery": ["Poligon, Sarıyer, İstanbul", "Poligon Mahallesi, Sarıyer, İstanbul"]},
-    {"name": "Reşitpaşa", "stop": 2, "district": "Sarıyer", "tier": 1, "walkToSchool": false, "oneLiner": "Lower cost, near Maslak", "desc": "Has some of the more affordable options in the area.", "caveat": "The neighborhood may not be what you want; check Google Street View.", "geoQuery": ["Reşitpaşa, Sarıyer, İstanbul"]},
-    {"name": "Yeniköy", "stop": 2, "district": "Sarıyer", "tier": 3, "walkToSchool": false, "oneLiner": "Pretty Bosphorus village, pricey", "desc": "A lovely Bosphorus neighborhood.", "caveat": "Expensive.", "geoQuery": ["Yeniköy, Sarıyer, İstanbul"]},
-    {"name": "İstinye", "stop": 3, "district": "Sarıyer", "tier": 3, "walkToSchool": true, "oneLiner": "Walk to school; huge mall has everything", "desc": "A Bosphorus cove anchored by the İstinye Park mall, genuinely useful when newly arrived (furniture, groceries, pharmacy, cinema). Walking distance to school, up a hill.", "caveat": "Uphill walk to school.", "geoQuery": ["İstinye, Sarıyer, İstanbul"]},
-    {"name": "Baltalimanı", "stop": 3, "district": "Sarıyer", "tier": 3, "walkToSchool": false, "oneLiner": "Tiny removed cove, older villas", "desc": "A tiny, protected cove between Emirgan and Rumelihisarı: a small fishing harbour and a few waterfront restaurants. Housing is mostly older villas and garden apartments.", "caveat": "No metro; infrequent buses; retail is in Emirgan/İstinye 10-15 min away.", "geoQuery": ["Baltalimanı, Sarıyer, İstanbul"]},
-    {"name": "Levent", "stop": 4, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Most internationally legible, polished", "desc": "Istanbul's most internationally legible neighborhood: dense with international restaurants, gyms and malls, with direct M2 access. Max urban convenience, zero settling-in friction.", "caveat": "", "geoQuery": ["Levent, Beşiktaş, İstanbul"]},
-    {"name": "Nisbetiye", "stop": 4, "district": "Beşiktaş", "tier": 3, "walkToSchool": false, "oneLiner": "Quiet, leafy, favorite of long-stay expats", "desc": "The quieter, residential counterpart to Levent: low-rise streets, tree-lined avenues, boutique cafes and embassies. Very walkable and safe.", "caveat": "", "geoQuery": ["Nisbetiye, Beşiktaş, İstanbul"]},
-    {"name": "Bebek", "stop": 4, "district": "Beşiktaş", "tier": 3, "walkToSchool": false, "oneLiner": "The classic glamorous expat address", "desc": "Arguably the single most desirable expat address on the European Bosphorus shore: legendary seafront promenade, iconic café culture, and a dense international community.", "caveat": "Expensive.", "geoQuery": ["Bebek, Beşiktaş, İstanbul"]},
-    {"name": "Etiler", "stop": 4, "district": "Beşiktaş", "tier": 3, "walkToSchool": false, "oneLiner": "Prestigious, established expat community", "desc": "Consistently among the city's most prestigious addresses: low-rise villas, great restaurants, top private schools nearby and a strong established expat community.", "caveat": "", "geoQuery": ["Etiler, Beşiktaş, İstanbul"]},
-    {"name": "Esentepe", "stop": 4, "district": "Şişli", "tier": 2, "walkToSchool": false, "oneLiner": "Most practical; walkable from the stop", "desc": "Essentially walkable from Zincirlikuyu: a mixed business-residential district with modern high-rise stock, good dining and excellent connectivity. Zorlu Centre is minutes away.", "caveat": "", "geoQuery": ["Esentepe, Şişli, İstanbul"]},
-    {"name": "Balmumcu", "stop": 4, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Underrated, calm, central", "desc": "A quiet, low-key residential pocket between Zincirlikuyu and Beşiktaş, with Zorlu Centre on its doorstep. Central access without the buzz.", "caveat": "", "geoQuery": ["Balmumcu, Beşiktaş, İstanbul"]},
-    {"name": "Arnavutköy", "stop": 4, "district": "Beşiktaş", "tier": 3, "walkToSchool": false, "oneLiner": "Intact Ottoman Bosphorus village", "desc": "One of the last intact Ottoman Bosphorus villages: a waterfront row of 19th-century wooden yalıs and an unhurried pace. Popular with a creative, culturally literate expat crowd.", "caveat": "Older, quirky housing; car or bus dependent.", "geoQuery": ["Arnavutköy, Beşiktaş, İstanbul"]},
-    {"name": "Kuruçeşme", "stop": 4, "district": "Beşiktaş", "tier": 3, "walkToSchool": false, "oneLiner": "Glamorous Bosphorus-front, nightlife", "desc": "A narrow Bosphorus-front strip famous for summer beach clubs and upscale meyhanes, with one of the most spectacular daily commutes in Europe.", "caveat": "Limited, pricey housing; best for a single or couple without children.", "geoQuery": ["Kuruçeşme, Beşiktaş, İstanbul"]},
-    {"name": "Kültür", "stop": 4, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Etiler adjacency without the price tag", "desc": "A quieter residential mahalle in the hills between Etiler and the Bosphorus ridge: calm, green, low-rise, with easy access to Etiler's cafe scene. Understated value.", "caveat": "", "geoQuery": ["Kültür Mahallesi, Beşiktaş, İstanbul", "Etiler, Beşiktaş, İstanbul"]},
-    {"name": "Rumelihisarı", "stop": 4, "district": "Sarıyer", "tier": 3, "walkToSchool": false, "oneLiner": "Scenic, by Boğaziçi University", "desc": "Built around the 15th-century fortress, on one of the most scenic stretches of the Bosphorus, next to Boğaziçi University. Intellectual, international energy and excellent waterfront fish restaurants.", "caveat": "Small village feel, limited retail.", "geoQuery": ["Rumelihisarı, Sarıyer, İstanbul"]},
-    {"name": "Gayrettepe", "stop": 4, "district": "Şişli", "tier": 2, "walkToSchool": false, "oneLiner": "Pragmatic, well-connected, accessible rents", "desc": "A transitional business/residential area well connected by both M2 metro and metrobüs, with mid-range apartments. The commute math works out better than almost anywhere else.", "caveat": "Lacks the prestige or character of Etiler or Bebek.", "geoQuery": ["Gayrettepe, Şişli, İstanbul"]},
-    {"name": "Dikilitaş", "stop": 4, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Reliably liveable, good value", "desc": "A compact residential mahalle between Balmumcu and Beşiktaş centre: good local shops, walkable to the Bosphorus and within reach of the ferry and metrobüs. Good value for location.", "caveat": "", "geoQuery": ["Dikilitaş, Beşiktaş, İstanbul"]},
-    {"name": "Akatlar", "stop": 4, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Practical, expat-popular, real daily life", "desc": "A well-established residential district popular with expats: big supermarkets (Migros, CarrefourSA), parks and a calm suburban feel rare this close to the center.", "caveat": "Less charismatic than the Bosphorus neighborhoods.", "geoQuery": ["Akatlar, Beşiktaş, İstanbul"]},
-    {"name": "Mecidiyeköy", "stop": 5, "district": "Şişli", "tier": 2, "walkToSchool": false, "oneLiner": "Best-connected transit hub", "desc": "One of the best-connected single points on the European side (metrobüs, M2 metro, many buses). Dense and urban, with reasonable rents for the location.", "caveat": "Loud, lacks greenery.", "geoQuery": ["Mecidiyeköy, Şişli, İstanbul"]},
-    {"name": "19 Mayıs", "stop": 5, "district": "Şişli", "tier": 1, "walkToSchool": false, "oneLiner": "No-frills, mid-range, central", "desc": "Just northeast of Mecidiyeköy, quieter and more residential, with solid everyday infrastructure. Central access at mid-range rents without the chaos. Honest and unpretentious.", "caveat": "", "geoQuery": ["19 Mayıs Mahallesi, Şişli, İstanbul", "Mecidiyeköy, Şişli, İstanbul"]},
-    {"name": "İzzet Paşa", "stop": 5, "district": "Şişli", "tier": 1, "walkToSchool": false, "oneLiner": "Liveable, good-value secondary choice", "desc": "A small, tightly built residential mahalle with local bakeries and tea houses that make daily life easy. Central enough to matter, removed enough to breathe.", "caveat": "", "geoQuery": ["İzzet Paşa, Şişli, İstanbul", "Şişli, İstanbul"]},
-    {"name": "Şişli (merkez)", "stop": 5, "district": "Şişli", "tier": 2, "walkToSchool": false, "oneLiner": "Hospitals, retail, cosmopolitan", "desc": "The commercial heart of Şişli: department stores, private hospitals (good for expats), consulates and a cosmopolitan history. Excellent hospital and clinic access, mid-range rents.", "caveat": "", "geoQuery": ["Şişli, İstanbul"]},
-    {"name": "Teşvikiye & Meşrutiyet", "stop": 6, "district": "Şişli", "tier": 3, "walkToSchool": false, "oneLiner": "Quietly glamorous old-money address", "desc": "The polished heart of old European Istanbul money: premium boutiques, a density of private clinics, large prestige buildings, with the Nişantaşı dining ecosystem on the doorstep.", "caveat": "Expensive.", "geoQuery": ["Teşvikiye, Şişli, İstanbul"]},
-    {"name": "Harbiye & Halaskargazi", "stop": 6, "district": "Şişli", "tier": 2, "walkToSchool": false, "oneLiner": "Practical, central, great transport", "desc": "A practical address cluster equidistant from Taksim, Nişantaşı and Şişli, with excellent bus and metro access. Logistics over aesthetics.", "caveat": "", "geoQuery": ["Harbiye, Şişli, İstanbul"]},
-    {"name": "Abbasağa & Vişnezade", "stop": 6, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Sweet spot: liveable and characterful", "desc": "Hillside mahalles just inland from Beşiktaş, among the most pleasant everyday-living areas in the city: a beloved park, independent cafes and wine bars. Popular with younger expats.", "caveat": "Rents have risen but remain reasonable vs the Bosphorus corridor.", "geoQuery": ["Abbasağa, Beşiktaş, İstanbul"]},
-    {"name": "Beşiktaş (merkez)", "stop": 6, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Loud, alive, authentically urban", "desc": "The beating heart of the district: ferry terminal, fish market, stadium and a chaotic but beloved square. Outstanding connectivity (ferry to Asia, metrobüs, buses) and a genuinely mixed population.", "caveat": "Not quiet; stadium matchdays require adjustment.", "geoQuery": ["Beşiktaş, İstanbul"]},
-    {"name": "Cihannüma", "stop": 6, "district": "Beşiktaş", "tier": 2, "walkToSchool": false, "oneLiner": "Hilltop views, quiet, characterful", "desc": "Perched on the ridge above Beşiktaş, with panoramic views toward the Marmara and the Asian shore. Quiet, residential and slightly bohemian-intellectual.", "caveat": "Walking back up from Beşiktaş counts as cardio.", "geoQuery": ["Cihannüma, Beşiktaş, İstanbul"]},
-    {"name": "Bomonti & Feriköy", "stop": 6, "district": "Şişli", "tier": 2, "walkToSchool": false, "oneLiner": "Gentrified, energetic, good value", "desc": "Adjacent gentrified neighborhoods with boutique hotels, craft beer bars, design studios and one of Istanbul's best organic markets (Feriköy). Good M2 access via Osmanbey or Şişli.", "caveat": "", "geoQuery": ["Bomonti, Şişli, İstanbul"]},
-    {"name": "İnönü & Gümüşsuyu", "stop": 6, "district": "Beyoğlu", "tier": 2, "walkToSchool": false, "oneLiner": "Steep, spectacular views, very central", "desc": "Steep neighborhoods cascading from Taksim toward Kabataş, with spectacular Bosphorus and Marmara views from upper floors and direct access to the Kabataş metrobüs/tram interchange.", "caveat": "Very steep terrain; vertical, dense living.", "geoQuery": ["Gümüşsuyu, Beyoğlu, İstanbul"]},
-    {"name": "Cihangir", "stop": 6, "district": "Beyoğlu", "tier": 3, "walkToSchool": false, "oneLiner": "The classic bohemian expat soft-landing", "desc": "Istanbul's most internationally recognised bohemian neighborhood: independent cafes, bookshops, street cats and a long-established creative expat community. English is widely spoken and it absorbs newcomers gracefully.", "caveat": "Steep hills, older buildings with variable maintenance; rents have risen sharply.", "geoQuery": ["Cihangir, Beyoğlu, İstanbul"]}
+    {
+      "name": "Çamlıtepe / Hacıosman",
+      "stop": 1,
+      "district": "Sarıyer",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Calm, green, metro-connected easy landing pad",
+      "desc": "Residential and quiet right by the station, with good local amenities and a growing expat presence. Metro connects you to the rest of the city in minutes.",
+      "caveat": "",
+      "geoQuery": [
+        "Çamlıtepe, Sarıyer, İstanbul",
+        "Hacıosman, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Tarabya",
+      "stop": 1,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Cosmopolitan Bosphorus waterfront village",
+      "desc": "Charming waterfront village with consulate summer residences, good restaurants and a slower pace that helps newcomers decompress. Upscale but easy to navigate.",
+      "caveat": "",
+      "geoQuery": [
+        "Tarabya, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Kireçburnu",
+      "stop": 1,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Lovely seafront, great seafood",
+      "desc": "A pretty waterfront area known for its seafood restaurants.",
+      "caveat": "May not be the most convenient for getting to/from school.",
+      "geoQuery": [
+        "Kireçburnu, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Darüşşafaka",
+      "stop": 2,
+      "district": "Sarıyer",
+      "tier": 1,
+      "walkToSchool": false,
+      "oneLiner": "Quiet, green, walkable to the metro",
+      "desc": "Green and residential right by the metro stop, with less traffic than areas further south. A practical, lower-friction landing spot. Compounds like Gazeticiler Sitesi can have decent options.",
+      "caveat": "",
+      "geoQuery": [
+        "Darüşşafaka, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Emirgan",
+      "stop": 2,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Coveted Bosphorus village with a famous park",
+      "desc": "One of the most coveted Bosphorus addresses: water views, the famous Emirgan Park (spectacular during tulip season), fish restaurants and a relaxed village pace.",
+      "caveat": "Housing skews expensive.",
+      "geoQuery": [
+        "Emirgan, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Maslak",
+      "stop": 2,
+      "district": "Sarıyer",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Business district; some gated compounds",
+      "desc": "Mainly a business center, with fancy residential compounds behind it. One of the neighborhoods the school flags as walking-distance-friendly.",
+      "caveat": "Few residential options in Maslak proper.",
+      "geoQuery": [
+        "Maslak, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Poligon",
+      "stop": 2,
+      "district": "Sarıyer",
+      "tier": 1,
+      "walkToSchool": true,
+      "oneLiner": "Close to school, lower cost",
+      "desc": "Very close to the school, with some lower-cost options.",
+      "caveat": "The street feel varies; check Google Street View first.",
+      "geoQuery": [
+        "Poligon, Sarıyer, İstanbul",
+        "Poligon Mahallesi, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Reşitpaşa",
+      "stop": 2,
+      "district": "Sarıyer",
+      "tier": 1,
+      "walkToSchool": false,
+      "oneLiner": "Lower cost, near Maslak",
+      "desc": "Has some of the more affordable options in the area.",
+      "caveat": "The neighborhood may not be what you want; check Google Street View.",
+      "geoQuery": [
+        "Reşitpaşa, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Yeniköy",
+      "stop": 2,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Pretty Bosphorus village, pricey",
+      "desc": "A lovely Bosphorus neighborhood.",
+      "caveat": "Expensive.",
+      "geoQuery": [
+        "Yeniköy, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "İstinye",
+      "stop": 3,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": true,
+      "oneLiner": "Walk to school; huge mall has everything",
+      "desc": "A Bosphorus cove anchored by the İstinye Park mall, genuinely useful when newly arrived (furniture, groceries, pharmacy, cinema). Walking distance to school, up a hill.",
+      "caveat": "Uphill walk to school.",
+      "geoQuery": [
+        "İstinye, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Baltalimanı",
+      "stop": 3,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Tiny removed cove, older villas",
+      "desc": "A tiny, protected cove between Emirgan and Rumelihisarı: a small fishing harbour and a few waterfront restaurants. Housing is mostly older villas and garden apartments.",
+      "caveat": "No metro; infrequent buses; retail is in Emirgan/İstinye 10-15 min away.",
+      "geoQuery": [
+        "Baltalimanı, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Levent",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Most internationally legible, polished",
+      "desc": "Istanbul's most internationally legible neighborhood: dense with international restaurants, gyms and malls, with direct M2 access. Max urban convenience, zero settling-in friction.",
+      "caveat": "",
+      "geoQuery": [
+        "Levent, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Nisbetiye",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Quiet, leafy, favorite of long-stay expats",
+      "desc": "The quieter, residential counterpart to Levent: low-rise streets, tree-lined avenues, boutique cafes and embassies. Very walkable and safe.",
+      "caveat": "",
+      "geoQuery": [
+        "Nisbetiye, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Bebek",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "The classic glamorous expat address",
+      "desc": "Arguably the single most desirable expat address on the European Bosphorus shore: legendary seafront promenade, iconic café culture, and a dense international community.",
+      "caveat": "Expensive.",
+      "geoQuery": [
+        "Bebek, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Etiler",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Prestigious, established expat community",
+      "desc": "Consistently among the city's most prestigious addresses: low-rise villas, great restaurants, top private schools nearby and a strong established expat community.",
+      "caveat": "",
+      "geoQuery": [
+        "Etiler, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Esentepe",
+      "stop": 4,
+      "district": "Şişli",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Most practical; walkable from the stop",
+      "desc": "Essentially walkable from Zincirlikuyu: a mixed business-residential district with modern high-rise stock, good dining and excellent connectivity. Zorlu Centre is minutes away.",
+      "caveat": "",
+      "geoQuery": [
+        "Esentepe, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "Balmumcu",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Underrated, calm, central",
+      "desc": "A quiet, low-key residential pocket between Zincirlikuyu and Beşiktaş, with Zorlu Centre on its doorstep. Central access without the buzz.",
+      "caveat": "",
+      "geoQuery": [
+        "Balmumcu, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Arnavutköy",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Intact Ottoman Bosphorus village",
+      "desc": "One of the last intact Ottoman Bosphorus villages: a waterfront row of 19th-century wooden yalıs and an unhurried pace. Popular with a creative, culturally literate expat crowd.",
+      "caveat": "Older, quirky housing; car or bus dependent.",
+      "geoQuery": [
+        "Arnavutköy, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Kuruçeşme",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Glamorous Bosphorus-front, nightlife",
+      "desc": "A narrow Bosphorus-front strip famous for summer beach clubs and upscale meyhanes, with one of the most spectacular daily commutes in Europe.",
+      "caveat": "Limited, pricey housing; best for a single or couple without children.",
+      "geoQuery": [
+        "Kuruçeşme, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Kültür",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Etiler adjacency without the price tag",
+      "desc": "A quieter residential mahalle in the hills between Etiler and the Bosphorus ridge: calm, green, low-rise, with easy access to Etiler's cafe scene. Understated value.",
+      "caveat": "",
+      "geoQuery": [
+        "Kültür Mahallesi, Beşiktaş, İstanbul",
+        "Etiler, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Rumelihisarı",
+      "stop": 4,
+      "district": "Sarıyer",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Scenic, by Boğaziçi University",
+      "desc": "Built around the 15th-century fortress, on one of the most scenic stretches of the Bosphorus, next to Boğaziçi University. Intellectual, international energy and excellent waterfront fish restaurants.",
+      "caveat": "Small village feel, limited retail.",
+      "geoQuery": [
+        "Rumelihisarı, Sarıyer, İstanbul"
+      ]
+    },
+    {
+      "name": "Gayrettepe",
+      "stop": 4,
+      "district": "Şişli",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Pragmatic, well-connected, accessible rents",
+      "desc": "A transitional business/residential area well connected by both M2 metro and metrobüs, with mid-range apartments. The commute math works out better than almost anywhere else.",
+      "caveat": "Lacks the prestige or character of Etiler or Bebek.",
+      "geoQuery": [
+        "Gayrettepe, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "Dikilitaş",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Reliably liveable, good value",
+      "desc": "A compact residential mahalle between Balmumcu and Beşiktaş centre: good local shops, walkable to the Bosphorus and within reach of the ferry and metrobüs. Good value for location.",
+      "caveat": "",
+      "geoQuery": [
+        "Dikilitaş, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Akatlar",
+      "stop": 4,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Practical, expat-popular, real daily life",
+      "desc": "A well-established residential district popular with expats: big supermarkets (Migros, CarrefourSA), parks and a calm suburban feel rare this close to the center.",
+      "caveat": "Less charismatic than the Bosphorus neighborhoods.",
+      "geoQuery": [
+        "Akatlar, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Mecidiyeköy",
+      "stop": 5,
+      "district": "Şişli",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Best-connected transit hub",
+      "desc": "One of the best-connected single points on the European side (metrobüs, M2 metro, many buses). Dense and urban, with reasonable rents for the location.",
+      "caveat": "Loud, lacks greenery.",
+      "geoQuery": [
+        "Mecidiyeköy, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "19 Mayıs",
+      "stop": 5,
+      "district": "Şişli",
+      "tier": 1,
+      "walkToSchool": false,
+      "oneLiner": "No-frills, mid-range, central",
+      "desc": "Just northeast of Mecidiyeköy, quieter and more residential, with solid everyday infrastructure. Central access at mid-range rents without the chaos. Honest and unpretentious.",
+      "caveat": "",
+      "geoQuery": [
+        "19 Mayıs Mahallesi, Şişli, İstanbul",
+        "Mecidiyeköy, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "İzzet Paşa",
+      "stop": 5,
+      "district": "Şişli",
+      "tier": 1,
+      "walkToSchool": false,
+      "oneLiner": "Liveable, good-value secondary choice",
+      "desc": "A small, tightly built residential mahalle with local bakeries and tea houses that make daily life easy. Central enough to matter, removed enough to breathe.",
+      "caveat": "",
+      "geoQuery": [
+        "İzzet Paşa, Şişli, İstanbul",
+        "Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "Şişli (merkez)",
+      "stop": 5,
+      "district": "Şişli",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Hospitals, retail, cosmopolitan",
+      "desc": "The commercial heart of Şişli: department stores, private hospitals (good for expats), consulates and a cosmopolitan history. Excellent hospital and clinic access, mid-range rents.",
+      "caveat": "",
+      "geoQuery": [
+        "Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "Teşvikiye & Meşrutiyet",
+      "stop": 6,
+      "district": "Şişli",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "Quietly glamorous old-money address",
+      "desc": "The polished heart of old European Istanbul money: premium boutiques, a density of private clinics, large prestige buildings, with the Nişantaşı dining ecosystem on the doorstep.",
+      "caveat": "Expensive.",
+      "geoQuery": [
+        "Teşvikiye, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "Harbiye & Halaskargazi",
+      "stop": 6,
+      "district": "Şişli",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Practical, central, great transport",
+      "desc": "A practical address cluster equidistant from Taksim, Nişantaşı and Şişli, with excellent bus and metro access. Logistics over aesthetics.",
+      "caveat": "",
+      "geoQuery": [
+        "Harbiye, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "Abbasağa & Vişnezade",
+      "stop": 6,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Sweet spot: liveable and characterful",
+      "desc": "Hillside mahalles just inland from Beşiktaş, among the most pleasant everyday-living areas in the city: a beloved park, independent cafes and wine bars. Popular with younger expats.",
+      "caveat": "Rents have risen but remain reasonable vs the Bosphorus corridor.",
+      "geoQuery": [
+        "Abbasağa, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Beşiktaş (merkez)",
+      "stop": 6,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Loud, alive, authentically urban",
+      "desc": "The beating heart of the district: ferry terminal, fish market, stadium and a chaotic but beloved square. Outstanding connectivity (ferry to Asia, metrobüs, buses) and a genuinely mixed population.",
+      "caveat": "Not quiet; stadium matchdays require adjustment.",
+      "geoQuery": [
+        "Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Cihannüma",
+      "stop": 6,
+      "district": "Beşiktaş",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Hilltop views, quiet, characterful",
+      "desc": "Perched on the ridge above Beşiktaş, with panoramic views toward the Marmara and the Asian shore. Quiet, residential and slightly bohemian-intellectual.",
+      "caveat": "Walking back up from Beşiktaş counts as cardio.",
+      "geoQuery": [
+        "Cihannüma, Beşiktaş, İstanbul"
+      ]
+    },
+    {
+      "name": "Bomonti & Feriköy",
+      "stop": 6,
+      "district": "Şişli",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Gentrified, energetic, good value",
+      "desc": "Adjacent gentrified neighborhoods with boutique hotels, craft beer bars, design studios and one of Istanbul's best organic markets (Feriköy). Good M2 access via Osmanbey or Şişli.",
+      "caveat": "",
+      "geoQuery": [
+        "Bomonti, Şişli, İstanbul"
+      ]
+    },
+    {
+      "name": "İnönü & Gümüşsuyu",
+      "stop": 6,
+      "district": "Beyoğlu",
+      "tier": 2,
+      "walkToSchool": false,
+      "oneLiner": "Steep, spectacular views, very central",
+      "desc": "Steep neighborhoods cascading from Taksim toward Kabataş, with spectacular Bosphorus and Marmara views from upper floors and direct access to the Kabataş metrobüs/tram interchange.",
+      "caveat": "Very steep terrain; vertical, dense living.",
+      "geoQuery": [
+        "Gümüşsuyu, Beyoğlu, İstanbul"
+      ]
+    },
+    {
+      "name": "Cihangir",
+      "stop": 6,
+      "district": "Beyoğlu",
+      "tier": 3,
+      "walkToSchool": false,
+      "oneLiner": "The classic bohemian expat soft-landing",
+      "desc": "Istanbul's most internationally recognised bohemian neighborhood: independent cafes, bookshops, street cats and a long-established creative expat community. English is widely spoken and it absorbs newcomers gracefully.",
+      "caveat": "Steep hills, older buildings with variable maintenance; rents have risen sharply.",
+      "geoQuery": [
+        "Cihangir, Beyoğlu, İstanbul"
+      ]
+    }
   ]
 }

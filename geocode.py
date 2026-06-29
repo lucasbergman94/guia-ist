@@ -38,19 +38,28 @@ def qlist(item):
     return [g] if isinstance(g, str) else (g or [])
 
 
+def resolve(item):
+    """Manual coords (verified against OSM) win over Nominatim, so fixed
+    transit stations are never re-placed wrongly by a fuzzy first hit."""
+    c = item.get("coords")
+    if isinstance(c, (list, tuple)) and len(c) == 2:
+        return float(c[0]), float(c[1]), "manual (OSM-verified)", True
+    return geocode(qlist(item))
+
+
 src = json.load(open(SRC, encoding="utf-8"))
 
 s = src["school"]
-s["lat"], s["lon"], s["geocodeUsed"], s["geocodeOk"] = geocode(qlist(s))
+s["lat"], s["lon"], s["geocodeUsed"], s["geocodeOk"] = resolve(s)
 print("SCHOOL", s["geocodeOk"], s["lat"], s["lon"], "<-", s["geocodeUsed"])
 
 for st in src["stops"]:
-    st["lat"], st["lon"], st["geocodeUsed"], st["geocodeOk"] = geocode(qlist(st))
+    st["lat"], st["lon"], st["geocodeUsed"], st["geocodeOk"] = resolve(st)
     print(f"STOP {st['num']:>2} {st['name']:<28}", st["geocodeOk"], st["lat"], st["lon"])
 
 miss = []
 for n in src["neighborhoods"]:
-    n["lat"], n["lon"], n["geocodeUsed"], n["geocodeOk"] = geocode(qlist(n))
+    n["lat"], n["lon"], n["geocodeUsed"], n["geocodeOk"] = resolve(n)
     if not n["geocodeOk"]:
         miss.append(n["name"])
     print(f"N  {n['name']:<28}", n["geocodeOk"], n["lat"], n["lon"])

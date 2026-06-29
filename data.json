@@ -21,9 +21,9 @@
         "Hacıosman metro istasyonu, İstanbul",
         "Hacıosman, Sarıyer, İstanbul"
       ],
-      "lat": 41.1397645,
-      "lon": 29.0304548,
-      "geocodeUsed": "Hacıosman, Sarıyer, İstanbul",
+      "lat": 41.13976,
+      "lon": 29.03045,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     },
     {
@@ -34,9 +34,9 @@
         "Darüşşafaka metro, İstanbul",
         "Darüşşafaka, Sarıyer, İstanbul"
       ],
-      "lat": 41.1292759,
-      "lon": 29.0250803,
-      "geocodeUsed": "Darüşşafaka, Sarıyer, İstanbul",
+      "lat": 41.12928,
+      "lon": 29.02508,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     },
     {
@@ -47,9 +47,9 @@
         "İTÜ-Ayazağa metro, İstanbul",
         "Ayazağa, Sarıyer, İstanbul"
       ],
-      "lat": 41.1157496,
-      "lon": 28.9985596,
-      "geocodeUsed": "Ayazağa, Sarıyer, İstanbul",
+      "lat": 41.10807,
+      "lon": 29.02097,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     },
     {
@@ -73,9 +73,9 @@
         "Mecidiyeköy metro, İstanbul",
         "Mecidiyeköy, Şişli, İstanbul"
       ],
-      "lat": 41.0745906,
-      "lon": 28.9908048,
-      "geocodeUsed": "Mecidiyeköy metro, İstanbul",
+      "lat": 41.06518,
+      "lon": 28.99552,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     },
     {
@@ -86,9 +86,9 @@
         "Osmanbey metro, İstanbul",
         "Osmanbey, Şişli, İstanbul"
       ],
-      "lat": 41.0476602,
-      "lon": 28.9859684,
-      "geocodeUsed": "Pangaltı, Şişli, İstanbul",
+      "lat": 41.05278,
+      "lon": 28.9874,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     },
     {
@@ -111,9 +111,9 @@
         "Suadiye metro, İstanbul",
         "Suadiye, Kadıköy, İstanbul"
       ],
-      "lat": 40.9604766,
-      "lon": 29.0844121,
-      "geocodeUsed": "Suadiye, Kadıköy, İstanbul",
+      "lat": 40.96048,
+      "lon": 29.08441,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     },
     {
@@ -124,9 +124,9 @@
         "Kozyatağı metro, İstanbul",
         "Kozyatağı, Kadıköy, İstanbul"
       ],
-      "lat": 40.9757225,
-      "lon": 29.0992245,
-      "geocodeUsed": "Kozyatağı metro, İstanbul",
+      "lat": 40.97539,
+      "lon": 29.09968,
+      "geocodeUsed": "manual (OSM-verified)",
       "geocodeOk": true
     }
   ],
