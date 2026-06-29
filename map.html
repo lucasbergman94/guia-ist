@@ -20,6 +20,9 @@
   .addr .row{display:flex;gap:8px;flex-wrap:wrap}
   .addr .out{font-size:.88rem;margin-top:10px}
   .resetbtn{display:inline-block;margin-top:10px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:7px 13px;font-size:.8rem;font-weight:600;cursor:pointer}
+  .actrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;align-items:center}
+  .actrow .route{margin-top:0;flex:0 1 auto;padding:9px 13px;font-size:.82rem}
+  .actrow .resetbtn{margin-top:0}
   .row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
   .label{font-size:.74rem;color:var(--mut);font-weight:600;margin-right:2px}
   /* map + side-panel dashboard layout */
@@ -145,7 +148,7 @@ var TIERC={1:"#34a853",2:"#d9a328",3:"#e0533a"};
 var SIDE={Europe:"#012169",Asia:"#7c3aed"};
 var state={tiers:new Set(),stops:new Set(),walk:false,q:""};
 var DATA,map,schoolLL,stopById={},nObjs=[],selId=null;
-var homeMarker=null,focusLines=[],focused=false;
+var homeMarker=null,focusLines=[],focused=false,focusStop=null;
 var enc=encodeURIComponent;
 var gmDir=function(o,d,m){return "https://www.google.com/maps/dir/?api=1&origin="+o+"&destination="+d+"&travelmode="+m;};
 var gmSearch=function(q){return "https://www.google.com/maps/search/?api=1&query="+enc(q);};
@@ -209,6 +212,7 @@ function applyMarkers(){ /* show/hide neighborhood markers per filters (skipped 
 function renderSide(){
   var side=document.getElementById('side');
   var filtered=DATA.neighborhoods.filter(match);
+  if(focused&&focusStop)filtered=filtered.filter(function(n){return n.stop===focusStop.num;});
   var html='<div class="stt">'+S().sideTitle+' · '+filtered.length+'</div>';
   if(!filtered.length){side.innerHTML=html+'<p style="color:var(--mut);font-size:.88rem">'+(LANG==="tr"?"Bu filtrelerle eşleşen mahalle yok.":"No neighborhoods match these filters.")+'</p>';return;}
   var byStop={};filtered.forEach(function(n){(byStop[n.stop]=byStop[n.stop]||[]).push(n);});
@@ -247,12 +251,12 @@ function openDetail(n){
 
 /* ---- address focus mode ---- */
 function clearFocus(silent){
-  focused=false;
+  focused=false;focusStop=null;
   if(homeMarker){map.removeLayer(homeMarker);homeMarker=null;}
   focusLines.forEach(function(l){map.removeLayer(l);});focusLines=[];
   DATA.stops.forEach(function(st){if(st._mk&&!map.hasLayer(st._mk))st._mk.addTo(map);});
   applyMarkers();
-  if(!silent){document.getElementById('addrOut').innerHTML='';if(homeBounds.length)map.fitBounds(homeBounds,{padding:[30,30]});}
+  if(!silent){document.getElementById('addrOut').innerHTML='';selId=null;renderSide();if(homeBounds.length)map.fitBounds(homeBounds,{padding:[30,30]});}
 }
 function focusAddress(p,label){
   focused=false; /* allow applyMarkers to run once to know state, then hide */
@@ -262,9 +266,10 @@ function focusAddress(p,label){
   nObjs.forEach(function(o){if(o.marker&&map.hasLayer(o.marker))map.removeLayer(o.marker);});
   focused=true;
   var best=nearestStop(p);var s=best.s;
+  focusStop=s;selId=null;
   /* hide every stop except the nearest pickup */
   DATA.stops.forEach(function(st){if(st._mk){if(st===s){if(!map.hasLayer(st._mk))st._mk.addTo(map);}else if(map.hasLayer(st._mk))map.removeLayer(st._mk);}});
-  homeMarker=L.marker([p.lat,p.lon],{icon:L.divIcon({className:'',html:'<div style="background:#10b981;color:#fff;border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.45)">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]}),zIndexOffset:1100}).addTo(map);
+  homeMarker=L.marker([p.lat,p.lon],{icon:L.divIcon({className:'',html:'<div style="background:#10b981;color:#fff;border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.45)">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]}),zIndexOffset:1100}).addTo(map).bindPopup('<b>'+S().legHome+'</b>'+(label?'<br>'+label:''));
   var l1=L.polyline([[p.lat,p.lon],[s.lat,s.lon]],{color:'#10b981',weight:3,dashArray:'6,8',opacity:.9}).addTo(map);
   var l2=L.polyline([[s.lat,s.lon],[schoolLL.lat,schoolLL.lon]],{color:'#012169',weight:3,dashArray:'2,7',opacity:.85}).addTo(map);
   focusLines=[l1,l2];
@@ -273,11 +278,12 @@ function focusAddress(p,label){
   document.getElementById('addrOut').innerHTML=(label?'<div style="color:var(--mut);font-size:.78rem;margin-bottom:6px">'+label+'</div>':'')+
     '<div>'+S().nearestStop+' <b>'+S().stop+' '+s.num+' · '+s.name+'</b></div>'+
     '<div style="color:var(--mut);font-size:.84rem;margin-top:2px">'+S().home2stop+': ~'+best.d.toFixed(1)+' '+S().km+' · '+S().toSchool+' ~'+toSchoolKm.toFixed(1)+' '+S().km+'</div>'+
-    '<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">'+
+    '<div class="actrow">'+
     '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(p),ll(s),'transit')+'">🚶 '+S().homeStop+' '+s.num+' <span class="mini">'+S().transitWalk+'</span></a>'+
-    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(s),ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().ref+'</span></a></div>'+
-    '<button class="resetbtn" type="button" id="resetFocus">'+S().showAll+'</button>';
+    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(s),ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().ref+'</span></a>'+
+    '<button class="resetbtn" type="button" id="resetFocus">'+S().showAll+'</button></div>';
   document.getElementById('resetFocus').addEventListener('click',function(){clearFocus(false);});
+  renderSide();
 }
 function planFromAddress(){
   var q=document.getElementById('addr').value.trim();var out=document.getElementById('addrOut');
