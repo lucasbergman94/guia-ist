@@ -1,27 +1,225 @@
 {
-  "_note": "Curated Q&A for the in-site assistant. Each item: q (question), a (answer, plain text), keywords (extra match terms), link (in-site anchor or page), phase. Edit freely.",
+  "_note": "Curated Q&A for the in-site assistant. Each item: q (question), a (answer, plain text), keywords (extra match terms), link (in-site anchor or page), phase. Edit freely. Bilingual: q_tr/a_tr/keywords_tr added; the assistant shows TR when enka-lang=tr.",
   "items": [
-    {"q": "How long does the visa take? Is it normal that it's taking weeks?", "a": "Yes, it is normal. The work permit depends on the Turkish Ministry of Education and takes time (often several weeks). International recruiting starts in winter exactly because of this. The school is tracking it; you don't need to chase it.", "keywords": "visa timeline wait waiting normal weeks how long delay update ministry slow status", "link": "#sec-roadmap", "phase": "waiting"},
-    {"q": "Do I need to translate my documents into Turkish?", "a": "No. You only need to apostille your documents. The school translates and notarizes them in Turkey. Email color scans to HR.", "keywords": "translate translation turkish sworn translator notarize documents", "link": "#sec-docs", "phase": "documents"},
-    {"q": "What documents do I need to apostille?", "a": "Your university diploma, transcripts, teaching certificate, and a proof-of-2-years-experience letter from your previous school (on letterhead, signed). Each gets its own apostille. A police certificate too if asked.", "keywords": "apostille documents diploma transcript certificate experience letter which what", "link": "#sec-docs", "phase": "documents"},
-    {"q": "Where do I get an apostille and how much does it cost?", "a": "It varies by country. In the US it's cheap via the issuing state's Secretary of State or the US Dept. of State. If your country isn't in the Hague Convention, get Ministry of Foreign Affairs approval then take it to the nearest Turkish mission. Avoid digital e-apostilles (use hard copies).", "keywords": "apostille cost where price service notary24 secretary of state hague e-apostille digital", "link": "#sec-docs", "phase": "documents"},
-    {"q": "Where do I apply for the work visa?", "a": "At the Turkish consulate/embassy in the country where you have residency or work rights, or your country of citizenship. Apply online first at konsolosluk.gov.tr, then book the appointment when HR tells you to.", "keywords": "where apply visa consulate embassy country residency citizenship appointment konsolosluk", "link": "#sec-visa", "phase": "visa"},
-    {"q": "How do I fill in the work visa application?", "a": "Open konsolosluk.gov.tr. Key fields: Type = Work Visa; Purpose = Employment / Special Employment; Single entry; Duration 90 days; Host company = OZEL ENKA OKULLARI; host email = melih.inan@enka.k12.tr; address = Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul; insurance = Yes (until 30 June 2027). Use your own email in the personal sections. Check every field before submitting.", "keywords": "visa application form fields how fill konsolosluk host company purpose entries 90 days", "link": "#sec-visa", "phase": "visa"},
-    {"q": "When can I book my flight?", "a": "Only after your work visa/permit is approved. Booking earlier risks costly changes. Book your own flight (economy), into Istanbul Airport (IST), which is closer to Sarıyer than Sabiha Gökçen.", "keywords": "flight book when buy ticket airport IST sabiha airline economy travel", "link": "#sec-roadmap", "phase": "travel"},
-    {"q": "Which airport should I fly into?", "a": "Istanbul Airport (IST) on the European side, closer to the school in Sarıyer.", "keywords": "airport which IST SAW sabiha gokcen fly into arrive", "link": "#sec-roadmap", "phase": "travel"},
-    {"q": "Can I arrive before the contract starts?", "a": "Generally no, without a tourist-visa workaround (then exit and re-enter on the work visa at your own cost). Arrival support may also be unavailable in July. First day at school is 20 August 2026.", "keywords": "arrive early before contract start july tourist visa first day august", "link": "#sec-roadmap", "phase": "travel"},
-    {"q": "I'm bringing a pet. What do I need?", "a": "Start the rabies titer test and paperwork early; most pets fly in-cabin (large dogs are an exception). The final pet booking happens once your flight is set. Confirm the exact requirements with HR.", "keywords": "pet cat dog rabies titer test in-cabin import animal", "link": "#sec-daily", "phase": "travel"},
-    {"q": "Which neighborhoods are good, and near the school?", "a": "Walking-distance options include İstinye, Maslak and Emirgan (Sarıyer). The bus runs from 9 stops, so you can also live near any stop. Open the interactive map to filter by price and stop and to plan your commute.", "keywords": "neighborhood where live area district near school istinye maslak emirgan sariyer housing", "link": "map.html", "phase": "housing"},
-    {"q": "How do I find an apartment? Which sites?", "a": "Use sahibinden.com/en and hepsiemlak.com/en (many prefer Hepsiemlak). Furnished is scarce; the norm is unfurnished. Many teachers arrive, stay in an Airbnb, and view places in person before signing. The map links to a filtered rental search per neighborhood.", "keywords": "apartment rent find sahibinden hepsiemlak furnished airbnb housing flat", "link": "map.html", "phase": "housing"},
-    {"q": "Sahibinden won't let me message agents without a Turkish number. What do I do?", "a": "Use the 'call' button to get the agent's number, then reach them on WhatsApp. Agents usually speak English; use ChatGPT to translate to Turkish when needed.", "keywords": "sahibinden turkish phone number message agent call whatsapp english", "link": "map.html", "phase": "housing"},
-    {"q": "How do I find my nearest bus stop and commute?", "a": "Open the interactive map and type your address (or use 'my location'). It shows your nearest service-bus stop and two routes: home → stop and stop → school.", "keywords": "commute bus stop nearest route address map distance school service", "link": "map.html", "phase": "housing"},
-    {"q": "How do I get a Turkish phone number / SIM, and what's the IMEI rule?", "a": "Get a Turkish SIM in your own name (needed for e-Devlet, banking, apps). Important: this starts a 120-day clock to register your foreign phone's IMEI, or it gets blocked. The fee is high, so many people just buy a local phone instead.", "keywords": "sim phone number turkish imei register 120 days blocked turkcell vodafone", "link": "#sec-arrival", "phase": "arrived"},
-    {"q": "How do I get a tax number (vergi numarası)?", "a": "It's free and online at the Interactive Tax Office (dijital.gib.gov.tr). You can get it even before you have your foreigner ID.", "keywords": "tax number vergi numarasi free online how get gib", "link": "#sec-arrival", "phase": "arrived"},
-    {"q": "What do I set up in my first weeks (bank, e-Devlet, transport)?", "a": "Turkish SIM, tax number, an İstanbulkart for transport, your e-Devlet password (at a PTT post office), a bank account, and your address registration (adres kayıt) within the required window.", "keywords": "first weeks setup bank e-devlet istanbulkart address registration ptt arrival checklist", "link": "#sec-arrival", "phase": "arrived"},
-    {"q": "How do I contact HR?", "a": "Melih İnan handles legal logistics and work visas. Email melih.inan@enka.k12.tr, or use the WhatsApp button at the top of the guide.", "keywords": "contact hr melih help question who email whatsapp human support", "link": "#contacts-wrap", "phase": "any"},
-    {"q": "When is the first day of school?", "a": "Thursday, 20 August 2026. Contract start is 1 August. The full academic calendar is set by the Ministry and announced late.", "keywords": "first day school start date august 20 calendar contract", "link": "#sec-school", "phase": "any"},
-    {"q": "What's the school's exact address?", "a": "Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul. Use this exact address if a map app shows the school somewhere else.", "keywords": "address school location where map sariyer poligon istinye exact", "link": "#sec-school", "phase": "housing"},
-    {"q": "Is the apartment with the pizza oven / a specific listing still available?", "a": "Departing teachers list their apartments and HR shares a document with the options. Ask HR for the current list.", "keywords": "apartment available listing departing teachers leaving document list", "link": "#contacts-wrap", "phase": "housing"},
-    {"q": "Do I need a health check / doctor's letter?", "a": "Yes, a simple doctor's note stating you are fit to work (a generic form is fine).", "keywords": "health letter doctor medical fit to work physical check", "link": "#sec-docs", "phase": "documents"}
+    {
+      "q": "How long does the visa take? Is it normal that it's taking weeks?",
+      "a": "Yes, it is normal. The work permit depends on the Turkish Ministry of Education and takes time (often several weeks). International recruiting starts in winter exactly because of this. The school is tracking it; you don't need to chase it.",
+      "keywords": "visa timeline wait waiting normal weeks how long delay update ministry slow status",
+      "link": "#sec-roadmap",
+      "phase": "waiting",
+      "q_tr": "Vize ne kadar sürer? Haftalarca sürmesi normal mi?",
+      "a_tr": "Evet, normaldir. Çalışma izni Türkiye Millî Eğitim Bakanlığı'na bağlıdır ve zaman alır (genellikle birkaç hafta). Uluslararası işe alım tam da bu yüzden kışın başlar. Okul süreci takip ediyor; sizin peşine düşmenize gerek yok.",
+      "keywords_tr": "vize süre bekleme normal hafta ne kadar gecikme bakanlık yavaş durum"
+    },
+    {
+      "q": "Do I need to translate my documents into Turkish?",
+      "a": "No. You only need to apostille your documents. The school translates and notarizes them in Turkey. Email color scans to HR.",
+      "keywords": "translate translation turkish sworn translator notarize documents",
+      "link": "#sec-docs",
+      "phase": "documents",
+      "q_tr": "Belgelerimi Türkçeye çevirmem gerekiyor mu?",
+      "a_tr": "Hayır. Sadece belgelerinizi apostilletmeniz yeterli. Çeviri ve noter işlemlerini okul Türkiye'de yapar. Renkli taramaları İK'ya e-postayla gönderin.",
+      "keywords_tr": "çeviri tercüme türkçe yeminli noter belge"
+    },
+    {
+      "q": "What documents do I need to apostille?",
+      "a": "Your university diploma, transcripts, teaching certificate, and a proof-of-2-years-experience letter from your previous school (on letterhead, signed). Each gets its own apostille. A police certificate too if asked.",
+      "keywords": "apostille documents diploma transcript certificate experience letter which what",
+      "link": "#sec-docs",
+      "phase": "documents",
+      "q_tr": "Hangi belgeleri apostilletmem gerekiyor?",
+      "a_tr": "Üniversite diplomanız, transkriptleriniz, öğretmenlik sertifikanız ve önceki okulunuzdan 2 yıllık deneyiminizi gösteren bir mektup (antetli kağıtta, imzalı). Her biri ayrı apostil alır. İstenirse adli sicil belgesi de.",
+      "keywords_tr": "apostil belge diploma transkript sertifika deneyim mektup hangi adli sicil"
+    },
+    {
+      "q": "Where do I get an apostille and how much does it cost?",
+      "a": "It varies by country. In the US it's cheap via the issuing state's Secretary of State or the US Dept. of State. If your country isn't in the Hague Convention, get Ministry of Foreign Affairs approval then take it to the nearest Turkish mission. Avoid digital e-apostilles (use hard copies).",
+      "keywords": "apostille cost where price service notary24 secretary of state hague e-apostille digital",
+      "link": "#sec-docs",
+      "phase": "documents",
+      "q_tr": "Apostili nereden alırım ve ne kadar tutar?",
+      "a_tr": "Ülkeye göre değişir. ABD'de belgeyi veren eyaletin Secretary of State'i veya ABD Dışişleri üzerinden ucuzdur. Ülkeniz Lahey Sözleşmesi'nde değilse Dışişleri Bakanlığı onayı alıp en yakın Türk temsilciliğine götürün. Dijital e-apostilden kaçının (basılı kullanın).",
+      "keywords_tr": "apostil maliyet nereden fiyat noter lahey hague dijital e-apostil"
+    },
+    {
+      "q": "Where do I apply for the work visa?",
+      "a": "At the Turkish consulate/embassy in the country where you have residency or work rights, or your country of citizenship. Apply online first at konsolosluk.gov.tr, then book the appointment when HR tells you to.",
+      "keywords": "where apply visa consulate embassy country residency citizenship appointment konsolosluk",
+      "link": "#sec-visa",
+      "phase": "visa",
+      "q_tr": "Çalışma vizesine nereden başvururum?",
+      "a_tr": "İkamet ya da çalışma hakkınızın olduğu ülkedeki veya vatandaşı olduğunuz ülkedeki Türk konsolosluğunda/büyükelçiliğinde. Önce konsolosluk.gov.tr'den çevrimiçi başvurun, sonra İK söyleyince randevu alın.",
+      "keywords_tr": "nereden vize başvuru konsolosluk büyükelçilik ülke ikamet vatandaşlık randevu"
+    },
+    {
+      "q": "How do I fill in the work visa application?",
+      "a": "Open konsolosluk.gov.tr. Key fields: Type = Work Visa; Purpose = Employment / Special Employment; Single entry; Duration 90 days; Host company = OZEL ENKA OKULLARI; host email = melih.inan@enka.k12.tr; address = Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul; insurance = Yes (until 30 June 2027). Use your own email in the personal sections. Check every field before submitting. These values are for the current intake; confirm your fields with HR before you submit.",
+      "keywords": "visa application form fields how fill konsolosluk host company purpose entries 90 days",
+      "link": "#sec-visa",
+      "phase": "visa",
+      "q_tr": "Çalışma vizesi başvurusunu nasıl doldururum?",
+      "a_tr": "konsolosluk.gov.tr'yi açın. Önemli alanlar: Tür = Work Visa; Amaç = Employment / Special Employment; Tek giriş; Süre 90 gün; Ev sahibi kurum = OZEL ENKA OKULLARI; kurum e-postası = melih.inan@enka.k12.tr; adres = Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul; sigorta = Evet (30 Haziran 2027'ye kadar). Kişisel bölümlerde kendi e-postanızı kullanın. Bu değerler güncel dönem içindir; göndermeden önce alanlarınızı İK ile teyit edin.",
+      "keywords_tr": "vize başvuru form alan nasıl doldur konsolosluk ev sahibi kurum amaç giriş 90 gün"
+    },
+    {
+      "q": "When can I book my flight?",
+      "a": "Only after your work visa/permit is approved. Booking earlier risks costly changes. Book your own flight (economy), into Istanbul Airport (IST), which is closer to Sarıyer than Sabiha Gökçen.",
+      "keywords": "flight book when buy ticket airport IST sabiha airline economy travel",
+      "link": "#sec-roadmap",
+      "phase": "travel",
+      "q_tr": "Uçuşumu ne zaman alabilirim?",
+      "a_tr": "Yalnızca çalışma vizeniz/izniniz onaylandıktan sonra. Daha erken almak pahalı değişiklik riski taşır. Kendi uçuşunuzu (ekonomi), Sabiha Gökçen'e göre Sarıyer'e daha yakın olan İstanbul Havalimanı'na (IST) alın.",
+      "keywords_tr": "uçuş bilet ne zaman al havalimanı IST sabiha ekonomi seyahat"
+    },
+    {
+      "q": "Which airport should I fly into?",
+      "a": "Istanbul Airport (IST) on the European side, closer to the school in Sarıyer.",
+      "keywords": "airport which IST SAW sabiha gokcen fly into arrive",
+      "link": "#sec-roadmap",
+      "phase": "travel",
+      "q_tr": "Hangi havalimanına inmeliyim?",
+      "a_tr": "Avrupa yakasındaki İstanbul Havalimanı (IST); Sarıyer'deki okula daha yakın.",
+      "keywords_tr": "havalimanı hangi IST SAW sabiha gökçen iniş varış"
+    },
+    {
+      "q": "Can I arrive before my start date?",
+      "a": "Generally no, without a tourist-visa workaround (then exit and re-enter on the work visa at your own cost). Arrival support may also be unavailable in July. First day at school is 20 August 2026.",
+      "keywords": "arrive early before contract start july tourist visa first day august",
+      "link": "#sec-roadmap",
+      "phase": "travel",
+      "q_tr": "Başlangıç tarihimden önce gelebilir miyim?",
+      "a_tr": "Genellikle hayır; turist vizesiyle bir çözüm olmadan değil (sonra çıkıp çalışma vizesiyle kendi masrafınızla yeniden girersiniz). Temmuz'da varış desteği de olmayabilir. Okulun ilk günü 20 Ağustos 2026.",
+      "keywords_tr": "erken gel başlamadan önce temmuz turist vize ilk gün ağustos başlangıç"
+    },
+    {
+      "q": "I'm bringing a pet. What do I need?",
+      "a": "Start the rabies titer test and paperwork early; most pets fly in-cabin (large dogs are an exception). The final pet booking happens once your flight is set. Confirm the exact requirements with HR.",
+      "keywords": "pet cat dog rabies titer test in-cabin import animal",
+      "link": "#sec-daily",
+      "phase": "travel",
+      "q_tr": "Evcil hayvan getiriyorum. Neye ihtiyacım var?",
+      "a_tr": "Kuduz titre testi ve evraklarını erken başlatın; çoğu evcil hayvan kabin içinde uçar (büyük köpekler istisna). Kesin evcil hayvan rezervasyonu uçuşunuz belli olunca yapılır. Kesin şartları İK ile teyit edin.",
+      "keywords_tr": "evcil hayvan kedi köpek kuduz titre test kabin getir"
+    },
+    {
+      "q": "Which neighborhoods are good, and near the school?",
+      "a": "Walking-distance options include İstinye, Maslak and Emirgan (Sarıyer). The bus runs from 9 stops, so you can also live near any stop. Open the interactive map to filter by price and stop and to plan your commute.",
+      "keywords": "neighborhood where live area district near school istinye maslak emirgan sariyer housing",
+      "link": "map.html",
+      "phase": "housing",
+      "q_tr": "Hangi mahalleler iyi ve okula yakın?",
+      "a_tr": "Yürüme mesafesindeki seçenekler arasında İstinye, Maslak ve Emirgan (Sarıyer) var. Servis 9 duraktan kalkar, bu yüzden herhangi bir durağın yakınında da oturabilirsiniz. Fiyata ve durağa göre filtrelemek ve ulaşımınızı planlamak için etkileşimli haritayı açın.",
+      "keywords_tr": "mahalle nerede otur bölge semt okula yakın istinye maslak emirgan sarıyer konut"
+    },
+    {
+      "q": "How do I find an apartment? Which sites?",
+      "a": "Use sahibinden.com/en and hepsiemlak.com/en (many prefer Hepsiemlak). Furnished is scarce; the norm is unfurnished. Many teachers arrive, stay in an Airbnb, and view places in person before signing. The map links to a filtered rental search per neighborhood.",
+      "keywords": "apartment rent find sahibinden hepsiemlak furnished airbnb housing flat",
+      "link": "map.html",
+      "phase": "housing",
+      "q_tr": "Nasıl daire bulurum? Hangi siteler?",
+      "a_tr": "sahibinden.com/en ve hepsiemlak.com/en kullanın (çoğu Hepsiemlak'ı tercih ediyor). Eşyalı seçenek azdır; norm eşyasızdır. Çoğu öğretmen gelip Airbnb'de kalıyor ve imzalamadan önce yerinde görüyor. Harita, mahalleye göre filtrelenmiş kiralık aramasına bağlanır.",
+      "keywords_tr": "daire kiralık bul sahibinden hepsiemlak eşyalı airbnb konut ev"
+    },
+    {
+      "q": "Sahibinden won't let me message agents without a Turkish number. What do I do?",
+      "a": "Use the 'call' button to get the agent's number, then reach them on WhatsApp. Agents usually speak English; use ChatGPT to translate to Turkish when needed.",
+      "keywords": "sahibinden turkish phone number message agent call whatsapp english",
+      "link": "map.html",
+      "phase": "housing",
+      "q_tr": "Sahibinden, Türk numarası olmadan emlakçıya mesaj attırmıyor. Ne yapmalıyım?",
+      "a_tr": "Emlakçının numarasını almak için 'ara' düğmesini kullanın, sonra WhatsApp'tan ulaşın. Emlakçılar genellikle İngilizce konuşur; gerektiğinde Türkçeye çevirmek için ChatGPT kullanın.",
+      "keywords_tr": "sahibinden türk telefon numara mesaj emlakçı ara whatsapp ingilizce"
+    },
+    {
+      "q": "How do I find my nearest bus stop and commute?",
+      "a": "Open the interactive map and type your address (or use 'my location'). It shows your nearest service-bus stop and two routes: home → stop and stop → school.",
+      "keywords": "commute bus stop nearest route address map distance school service",
+      "link": "map.html",
+      "phase": "housing",
+      "q_tr": "En yakın servis durağımı ve ulaşımımı nasıl bulurum?",
+      "a_tr": "Etkileşimli haritayı açın ve adresinizi yazın (ya da 'konumumu kullan'). En yakın servis durağınızı ve iki rotayı gösterir: ev → durak ve durak → okul.",
+      "keywords_tr": "ulaşım servis durak en yakın rota adres harita mesafe okul"
+    },
+    {
+      "q": "How do I get a Turkish phone number / SIM, and what's the IMEI rule?",
+      "a": "Get a Turkish SIM in your own name (needed for e-Devlet, banking, apps). Important: this starts a 120-day clock to register your foreign phone's IMEI, or it gets blocked. The fee is high, so many people just buy a local phone instead.",
+      "keywords": "sim phone number turkish imei register 120 days blocked turkcell vodafone",
+      "link": "#sec-arrival",
+      "phase": "arrived",
+      "q_tr": "Türk telefon numarası / SIM nasıl alırım ve IMEI kuralı nedir?",
+      "a_tr": "Kendi adınıza bir Türk SIM kart alın (e-Devlet, bankacılık ve uygulamalar için gerekir). Önemli: bu, yabancı telefonunuzun IMEI'sini kaydetmek için 120 günlük süreyi başlatır, yoksa telefon engellenir. Ücret yüksek olduğu için birçok kişi yerine yerel bir telefon alıyor.",
+      "keywords_tr": "sim telefon numara türk imei kayıt 120 gün engel turkcell vodafone"
+    },
+    {
+      "q": "How do I get a tax number (vergi numarası)?",
+      "a": "It's free and online at the Interactive Tax Office (dijital.gib.gov.tr). You can get it even before you have your foreigner ID.",
+      "keywords": "tax number vergi numarasi free online how get gib",
+      "link": "#sec-arrival",
+      "phase": "arrived",
+      "q_tr": "Vergi numarasını nasıl alırım?",
+      "a_tr": "Ücretsiz ve çevrimiçidir, İnteraktif Vergi Dairesi'nden (dijital.gib.gov.tr). Yabancı kimlik numaranız olmadan bile alabilirsiniz.",
+      "keywords_tr": "vergi numarası ücretsiz çevrimiçi nasıl al gib"
+    },
+    {
+      "q": "What do I set up in my first weeks (bank, e-Devlet, transport)?",
+      "a": "Turkish SIM, tax number, an İstanbulkart for transport, your e-Devlet password (at a PTT post office), a bank account, and your address registration (adres kayıt) within the required window.",
+      "keywords": "first weeks setup bank e-devlet istanbulkart address registration ptt arrival checklist",
+      "link": "#sec-arrival",
+      "phase": "arrived",
+      "q_tr": "İlk haftalarımda neleri ayarlamalıyım (banka, e-Devlet, ulaşım)?",
+      "a_tr": "Türk SIM kart, vergi numarası, ulaşım için bir İstanbulkart, e-Devlet şifreniz (PTT'den), bir banka hesabı ve gereken süre içinde adres kaydınız (adres kayıt).",
+      "keywords_tr": "ilk hafta kurulum banka e-devlet istanbulkart adres kayıt ptt varış liste"
+    },
+    {
+      "q": "How do I contact HR?",
+      "a": "Melih İnan handles legal logistics and work visas. Email melih.inan@enka.k12.tr, or use the WhatsApp button at the top of the guide.",
+      "keywords": "contact hr melih help question who email whatsapp human support",
+      "link": "#contacts-wrap",
+      "phase": "any",
+      "q_tr": "İK ile nasıl iletişime geçerim?",
+      "a_tr": "Melih İnan yasal süreçleri ve çalışma vizelerini yürütür. melih.inan@enka.k12.tr adresine yazın ya da rehberin üstündeki WhatsApp düğmesini kullanın.",
+      "keywords_tr": "iletişim İK melih yardım soru kim e-posta whatsapp destek"
+    },
+    {
+      "q": "When is the first day of school?",
+      "a": "Thursday, 20 August 2026. The full academic calendar is set by the Ministry and announced late.",
+      "keywords": "first day school start date august 20 calendar contract",
+      "link": "#sec-school",
+      "phase": "any",
+      "q_tr": "Okulun ilk günü ne zaman?",
+      "a_tr": "20 Ağustos 2026, Perşembe. Tam akademik takvim Bakanlık tarafından belirlenir ve geç açıklanır.",
+      "keywords_tr": "ilk gün okul başlangıç tarih ağustos 20 takvim"
+    },
+    {
+      "q": "What's the school's exact address?",
+      "a": "Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul. Use this exact address if a map app shows the school somewhere else.",
+      "keywords": "address school location where map sariyer poligon istinye exact",
+      "link": "#sec-school",
+      "phase": "housing",
+      "q_tr": "Okulun tam adresi nedir?",
+      "a_tr": "Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul. Bir harita uygulaması okulu başka yerde gösterirse bu tam adresi kullanın.",
+      "keywords_tr": "adres okul konum nerede harita sarıyer poligon istinye tam"
+    },
+    {
+      "q": "Is the apartment with the pizza oven / a specific listing still available?",
+      "a": "Departing teachers list their apartments and HR shares a document with the options. Ask HR for the current list.",
+      "keywords": "apartment available listing departing teachers leaving document list",
+      "link": "#contacts-wrap",
+      "phase": "housing",
+      "q_tr": "Pizza fırınlı daire / belirli bir ilan hâlâ müsait mi?",
+      "a_tr": "Ayrılan öğretmenler dairelerini ilan eder ve İK seçenekleri içeren bir belge paylaşır. Güncel liste için İK'ya sorun.",
+      "keywords_tr": "daire müsait ilan ayrılan öğretmen liste belge"
+    },
+    {
+      "q": "Do I need a health check / doctor's letter?",
+      "a": "Yes, a simple doctor's note stating you are fit to work (a generic form is fine).",
+      "keywords": "health letter doctor medical fit to work physical check",
+      "link": "#sec-docs",
+      "phase": "documents",
+      "q_tr": "Sağlık kontrolü / doktor raporu gerekir mi?",
+      "a_tr": "Evet, çalışmaya uygun olduğunuzu belirten basit bir doktor raporu (genel bir form yeterli).",
+      "keywords_tr": "sağlık rapor doktor tıbbi çalışmaya uygun muayene kontrol"
+    }
   ]
 }

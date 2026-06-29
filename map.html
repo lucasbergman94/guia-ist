@@ -25,6 +25,8 @@
   .actrow .resetbtn{margin-top:0}
   .row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
   .label{font-size:.74rem;color:var(--mut);font-weight:600;margin-right:2px}
+  .chip.dis{opacity:.42;cursor:default;font-weight:600}
+  .stopnote{font-size:.74rem;color:var(--mut);margin:2px 0 0 2px}
   /* map + side-panel dashboard layout */
   .maplayout{display:grid;grid-template-columns:360px 1fr;gap:14px;margin-top:6px;align-items:stretch}
   @media(max-width:880px){.maplayout{grid-template-columns:1fr}.side{order:2;max-height:none!important}.mapcol{order:1}}
@@ -102,6 +104,7 @@
         <span class="label" id="lblStop"></span>
         <span class="chip" id="walkChip" data-walk="1" role="button" tabindex="0" aria-pressed="false"></span>
       </div>
+      <div class="stopnote" id="stopNote"></div>
     </div>
 
     <div class="maplayout">
@@ -123,7 +126,8 @@ var MT={
  en:{back:"← Guide",title:"Housing & commute map",intro:"The 9 service-bus stops and the neighborhoods around each. Live near a stop you can reach easily, the bus runs from there to school. Bus times: confirm with HR.",
    addrTtl:"📍 Type your home address (or a neighborhood)",addrPh:"e.g. İstinye Caddesi 100, Sarıyer",findStop:"Find nearest stop",useLoc:"Use my location",searchPh:"Search a neighborhood…",
    price:"Price",tier:{1:"€ Lower",2:"€€ Mid",3:"€€€ Higher"},walk:"🚶 Walk to school",stop:"Stop",
-   legBus:"Bus stop",legSchool:"School ★",legWalk:"🚶 = walk to school",legHome:"🏠 Your address",
+   asiaStops:"Stops 7-9 are on the Asian side; nearby neighborhoods are not listed yet.",
+   legBus:"Service-bus stop",legSchool:"School ★",legWalk:"🚶 = walk to school",legHome:"🏠 Your address",
    sideTitle:"Neighborhoods",selectPrompt:"Tap a neighborhood on the map or in the list to see details.",backList:"← Back to list",
    commute:"Your commute",toStop:"Route to your stop",stopSchool:"Stop → school",busRef:"(reference of the bus route)",
    nearby:"Explore nearby (live)",rentals:"Rentals in this area",more:"More rental sites",openGm:"Open in Google Maps",
@@ -135,7 +139,8 @@ var MT={
  tr:{back:"← Rehber",title:"Konut ve ulaşım haritası",intro:"9 servis durağı ve her birinin çevresindeki mahalleler. Kolayca ulaşabileceğiniz bir durağın yakınında oturun; servis sizi oradan okula götürür. Servis saatleri: İK ile teyit edin.",
    addrTtl:"📍 Ev adresinizi (ya da bir mahalle) yazın",addrPh:"örn. İstinye Caddesi 100, Sarıyer",findStop:"En yakın durağı bul",useLoc:"Konumumu kullan",searchPh:"Mahalle ara…",
    price:"Fiyat",tier:{1:"€ Düşük",2:"€€ Orta",3:"€€€ Yüksek"},walk:"🚶 Okula yürüme",stop:"Durak",
-   legBus:"Otobüs durağı",legSchool:"Okul ★",legWalk:"🚶 = okula yürüme",legHome:"🏠 Adresiniz",
+   asiaStops:"7-9 numaralı duraklar Asya yakasındadır; yakındaki mahalleler henüz listelenmedi.",
+   legBus:"Servis durağı",legSchool:"Okul ★",legWalk:"🚶 = okula yürüme",legHome:"🏠 Adresiniz",
    sideTitle:"Mahalleler",selectPrompt:"Detayları görmek için haritada veya listede bir mahalleye dokunun.",backList:"← Listeye dön",
    commute:"Ulaşımınız",toStop:"Durağınıza rota",stopSchool:"Durak → okul",busRef:"(servis rotası referansı)",
    nearby:"Yakını keşfedin (canlı)",rentals:"Bu bölgede kiralık",more:"Diğer kiralık siteleri",openGm:"Google Haritalar'da aç",
@@ -143,7 +148,7 @@ var MT={
    nearestStop:"En yakın durak:",km:"km",home2stop:"Ev → durak",toSchool:"Durak → okul mesafesi:",homeStop:"Ev → Durak",transitWalk:"(toplu taşıma/yürüme)",ref:"(referans)",showAll:"↺ Tüm mahalleleri göster",
    locating:"Adres bulunuyor…",locating2:"Konum bulunuyor…",noAddr:"Önce bir adres veya mahalle yazın.",notFound:"Bu adres bulunamadı. İlçeyi ekleyin (örn. \"…, Sarıyer\") ya da bir mahalle adı kullanın.",lookupFail:"Adres araması başarısız. Bağlantınızı kontrol edip tekrar deneyin.",noGeo:"Konum mevcut değil. Bunun yerine adresinizi yazın.",geoFail:"Konumunuz alınamadı",
    asiaNote:"Asya yakası durakları: okul, Asya yakasını seçmeden önce yerleşmenizi öneriyor.",routeStopSchool:"Bu duraktan okula rota ›",side:{Europe:"Avrupa",Asia:"Asya"},
-   foot:"Mahalle notları ENKA servis belgesinden alınan nesnel özetlerdir; 'yakını keşfet' ve kiralık bağlantıları canlı sonuçlar açar. Pin konumları otomatik üretilmiştir ve hafif kayabilir. Servis saatleri: İK ile teyit edin. Harita verisi © OpenStreetMap katkıda bulunanlar."}
+   foot:"Mahalle notları ENKA servis belgesinden alınan nesnel özetlerdir; 'yakını keşfet' ve kiralık bağlantıları canlı sonuçlar açar. Pin konumları otomatik üretilmiştir ve hafif kayabilir. Servis saatleri: İK ile teyit edin. Harita verisi © OpenStreetMap katılımcıları."}
 };
 var LANG="en";try{var sv=localStorage.getItem("enka-lang");if(sv==="tr"||sv==="en")LANG=sv;}catch(e){}
 function S(){return MT[LANG];}
@@ -185,7 +190,10 @@ var homeBounds=[];
 function stopPopup(st){return "<b>"+S().stop+" "+st.num+" · "+st.name+"</b><br>"+S().side[st.side]+(st.side==='Asia'?'<br><i>'+S().asiaNote+'</i>':'')+'<br><a href="'+gmDir(ll(st),ll(schoolLL),'driving')+'" target="_blank" rel="noopener">'+S().routeStopSchool+'</a>';}
 function buildStopChips(){var row=document.getElementById('stopRow');var walk=document.getElementById('walkChip');
   DATA.stops.filter(function(s){return s.side==='Europe';}).forEach(function(s){var c=document.createElement('span');
-    c.className='chip';c.setAttribute('role','button');c.tabIndex=0;c.setAttribute('aria-pressed','false');c.dataset.stop=s.num;c.textContent=s.num;c.title=s.name;row.insertBefore(c,walk);});}
+    c.className='chip';c.setAttribute('role','button');c.tabIndex=0;c.setAttribute('aria-pressed','false');c.dataset.stop=s.num;c.textContent=s.num;c.title=s.name;row.insertBefore(c,walk);});
+  /* Asian-side stops shown disabled so the count (1-9) matches the map markers */
+  DATA.stops.filter(function(s){return s.side==='Asia';}).forEach(function(s){var c=document.createElement('span');
+    c.className='chip dis';c.setAttribute('aria-disabled','true');c.textContent=s.num;c.title=s.name+' ('+S().side.Asia+')';row.insertBefore(c,walk);});}
 function buildLegend(){document.getElementById('legend').innerHTML=
   '<span><span class="stopBadge" style="background:'+SIDE.Europe+'">N</span>'+S().legBus+'</span>'+
   '<span><span class="dot" style="background:#fe5252"></span>'+S().legSchool+'</span>'+
@@ -253,6 +261,8 @@ function openDetail(n){
       '<a class="tag" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+origin+'">📍 '+S().openGm+'</a></div></div>';
   document.getElementById('backBtn').addEventListener('click',function(){selId=null;renderSide();});
   if(n.geocodeOk){map.panTo([n.lat,n.lon]);nObjs.forEach(function(o){if(o.n===n&&o.marker)o.marker.openTooltip();});}
+  /* on phones the panel sits below the map; bring the detail into view when opened from a marker */
+  if(window.innerWidth<=880){var sd=document.getElementById('side');if(sd)sd.scrollIntoView({behavior:'smooth',block:'start'});}
 }
 
 /* ---- address focus mode ---- */
@@ -317,6 +327,7 @@ function applyLang(){
   document.getElementById('q').placeholder=S().searchPh;
   document.getElementById('lblPrice').textContent=S().price;
   document.getElementById('lblStop').textContent=S().stop;
+  document.getElementById('stopNote').textContent=S().asiaStops;
   document.querySelector('.chip[data-tier="1"]').textContent=S().tier[1];
   document.querySelector('.chip[data-tier="2"]').textContent=S().tier[2];
   document.querySelector('.chip[data-tier="3"]').textContent=S().tier[3];
