@@ -5,7 +5,7 @@
   --acc:#012169;--acc-h:#0a357f;            /* ENKA brand navy */
   --ease:cubic-bezier(.22,.61,.36,1);
   --sf:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Inter,sans-serif;
-  --r-pill:980px;--r-card:24px;--r-sm:14px;
+  --r-pill:980px;--r-card:24px;--r-sm:14px;--warm:#e8943a;--warm-soft:#fbe3c0;
   --t1:#34a853;--t2:#d9a328;--t3:#e0533a;--school:#fe5252;--eu:#012169;--asia:#7c3aed;
 }
 /* ENKA brand: navy (#012169) + white. Light is white-dominant. */

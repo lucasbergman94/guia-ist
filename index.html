@@ -4,88 +4,98 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ENKA Istanbul · New Teacher Guide (2026–27)</title>
-<meta name="description" content="A central guide for new ENKA teachers moving to Istanbul: documents, work visa, housing, arrival and daily life, plus an interactive housing & commute map." />
+<meta name="description" content="A warm, step-by-step companion for new ENKA teachers moving to Istanbul: documents, work visa, housing and your commute." />
 <link rel="icon" type="image/png" href="./assets/favicon.png" />
 <link rel="stylesheet" href="./theme.css" />
 <style>
-  .hero{padding:30px 0 6px}
-  .hero h1{font-size:clamp(28px,6.5vw,48px);font-weight:600;letter-spacing:-.035em;line-height:1.03;margin-top:8px}
-  .hero .eye{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--acc)}
-  .hero p{color:var(--mut);font-size:clamp(15px,4vw,18px);margin-top:12px;max-width:620px}
-  .stack{display:flex;flex-direction:column;gap:14px;margin-top:22px}
+  /* hero */
+  .hero{position:relative;color:#fff;border-radius:0 0 28px 28px;overflow:hidden;margin-bottom:6px}
+  .hero .bg{position:absolute;inset:0;background:url('./assets/hero-istanbul.jpg') center 60%/cover no-repeat}
+  .hero .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,14,40,.30),rgba(1,18,52,.78))}
+  .hero .inner{position:relative;max-width:1200px;margin:0 auto;padding:54px 24px 40px}
+  .hero .eye{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--warm-soft)}
+  .hero h1{font-size:clamp(30px,6vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.04;margin:10px 0 0;max-width:16ch}
+  .hero p{font-size:clamp(15px,3.6vw,19px);margin-top:14px;max-width:540px;color:rgba(255,255,255,.92)}
+  .hero .chip{display:inline-flex;align-items:center;gap:7px;margin-top:18px;background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);border-radius:var(--r-pill);padding:8px 14px;font-size:.82rem;font-weight:600}
+  /* journey stepper */
+  .journey{margin-top:26px}
+  .journey h2{font-size:clamp(20px,4.5vw,26px);font-weight:600;letter-spacing:-.02em}
+  .journey .hint{color:var(--mut);font-size:.86rem;margin-top:2px}
+  .jtrack{display:flex;gap:0;margin-top:16px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+  .jtrack::-webkit-scrollbar{display:none}
+  .jstep{flex:1 0 auto;min-width:92px;background:none;border:0;cursor:pointer;font:inherit;color:var(--mut);
+    display:flex;flex-direction:column;align-items:center;gap:7px;position:relative;padding:4px 6px}
+  .jstep::before{content:"";position:absolute;top:15px;left:-50%;width:100%;height:2px;background:var(--bd);z-index:0}
+  .jstep:first-child::before{display:none}
+  .jstep .jdot{position:relative;z-index:1;width:32px;height:32px;border-radius:50%;background:var(--card);
+    border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:15px;transition:.2s}
+  .jstep .jlabel{font-size:.74rem;font-weight:600;text-align:center;line-height:1.1}
+  .jstep.past .jdot{background:var(--acc);border-color:var(--acc);color:#fff}
+  .jstep.past::before{background:var(--acc)}
+  .jstep.cur .jdot{background:var(--warm);border-color:var(--warm);color:#231400;box-shadow:0 0 0 5px color-mix(in srgb,var(--warm) 28%,transparent)}
+  .jstep.cur .jlabel{color:var(--txt)}
+  /* focused phase card */
+  .pcard{margin-top:20px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r-card);box-shadow:var(--shadow);padding:22px 22px 24px}
+  .pcard .phere{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--warm)}
+  .pcard h3{font-size:clamp(22px,5vw,30px);font-weight:600;letter-spacing:-.025em;margin:4px 0 0;display:flex;align-items:center;gap:10px}
+  .pcard .pnow{color:var(--mut);font-size:1rem;margin-top:10px;line-height:1.55;max-width:60ch}
+  .pcard .pnormal{margin:16px 0;background:color-mix(in srgb,var(--warm) 12%,transparent);border:1px solid color-mix(in srgb,var(--warm) 38%,transparent);
+    border-radius:14px;padding:13px 15px;font-size:.93rem;line-height:1.5}
+  .pcard .steps-t{font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin:18px 0 6px}
+  ul.todo{list-style:none;padding:0;margin:0}
+  ul.todo li{position:relative;padding:9px 0 9px 32px;font-size:.97rem;border-top:1px solid var(--bd)}
+  ul.todo li:first-child{border-top:0}
+  ul.todo li>span.cbx{position:absolute;left:0;top:9px;width:20px;height:20px;border:1.5px solid var(--mut);border-radius:6px;cursor:pointer;transition:.15s}
+  ul.todo li.done>span.cbx{background:var(--acc);border-color:var(--acc)}
+  ul.todo li.done>span.cbx::after{content:"✓";color:#fff;font-size:13px;position:absolute;left:4px;top:-1px}
+  ul.todo li.done{color:var(--mut);text-decoration:line-through}
+  .ptools{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .pmuted{margin-top:14px;color:var(--mut);font-size:.86rem}
+  .pmuted a{color:var(--acc);font-weight:600}
+  .pempty{margin-top:20px;background:var(--card);border:1px dashed var(--bd);border-radius:var(--r-card);padding:26px 22px;text-align:center;color:var(--mut)}
+  .pempty .big{font-size:1.6rem}
+  .pempty .t{color:var(--txt);font-weight:600;font-size:1.05rem;margin-top:6px}
+  /* quick row: board + contact */
+  .quick{display:flex;flex-direction:column;gap:14px;margin-top:24px}
+  @media(min-width:780px){.quick{display:grid;grid-template-columns:1.4fr 1fr;align-items:start}}
+  .board{padding:16px 18px;background:linear-gradient(165deg,color-mix(in srgb,var(--acc) 8%,var(--card)),var(--card))}
+  .board h2{font-size:.92rem;display:flex;align-items:center;gap:8px}
+  .msg{border-top:1px solid var(--bd);padding:10px 0}.msg:first-of-type{border-top:0;padding-top:8px}
+  .msg .mt{font-weight:600;font-size:.92rem}.msg .md{color:var(--mut);font-size:.72rem;margin-left:8px;font-weight:500}
+  .msg .mb{color:var(--mut);font-size:.88rem;margin-top:3px;line-height:1.5}
   .ccard{padding:14px 16px}
-  .ccard .nm{font-weight:600;font-size:1rem;letter-spacing:-.01em}
+  .ccard .ct{font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut)}
+  .ccard .nm{font-weight:600;font-size:1rem;margin-top:4px}
   .ccard .role{color:var(--mut);font-size:.8rem;margin:2px 0 10px}
   .ccard .btns{display:flex;gap:8px;flex-wrap:wrap}
-  .cbtn{display:inline-flex;align-items:center;gap:7px;border-radius:var(--r-pill);padding:9px 15px;font-size:.85rem;font-weight:600}
-  .cbtn.wa{background:#25d366;color:#06301a}
-  .cbtn.mail{background:var(--card2);color:var(--txt);border:1px solid var(--bd)}
-  .board{padding:16px 18px;background:linear-gradient(165deg,color-mix(in srgb,var(--acc) 9%,var(--card)),var(--card))}
-  .board h2{font-size:.95rem;display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
-  .msg{border-top:1px solid var(--bd);padding:11px 0}
-  .msg:first-of-type{border-top:0;padding-top:10px}
-  .msg .mt{font-weight:600;font-size:.95rem}
-  .msg .md{color:var(--mut);font-size:.72rem;margin-left:8px;font-weight:500}
-  .msg .mb{color:var(--mut);font-size:.9rem;margin-top:3px;line-height:1.5}
-  .maphero{display:flex;gap:14px;align-items:center;justify-content:space-between;padding:18px 18px}
-  .maphero .t{font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
-  .maphero .d{color:var(--mut);font-size:.85rem;margin-top:3px;max-width:440px}
-  /* phase selector */
-  .phasenav{margin-top:30px}
-  .phasenav .eye{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
-  .phasenav h2{font-size:clamp(20px,4.5vw,26px);font-weight:600;letter-spacing:-.02em;margin:4px 0 12px}
-  .phasebtns{display:flex;gap:8px;flex-wrap:wrap}
-  .phasebtn{background:var(--card);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);
-    padding:10px 15px;font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;box-shadow:var(--shadow);transition:.2s}
-  .phasebtn:hover{border-color:var(--acc)}
-  .phasebtn.active{background:var(--acc);color:#fff;border-color:transparent}
-  .phasepanel{margin-top:14px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r-card);
-    box-shadow:var(--shadow);padding:18px 18px;display:none}
-  .phasepanel.show{display:block}
-  .phasepanel .now{font-weight:600;font-size:1.02rem;letter-spacing:-.01em}
-  .phasepanel .nrm{margin:10px 0;background:color-mix(in srgb,var(--acc) 8%,transparent);border:1px solid color-mix(in srgb,var(--acc) 25%,transparent);
-    border-radius:12px;padding:10px 12px;font-size:.88rem}
-  .phasepanel ul.todo{list-style:none;padding:0;margin:8px 0 0}
-  .phasepanel ul.todo li{position:relative;padding-left:26px;margin:7px 0;font-size:.92rem}
-  .phasepanel ul.todo li>span.cbx{position:absolute;left:0;top:1px;width:17px;height:17px;border:1.5px solid var(--mut);border-radius:5px;cursor:pointer}
-  .phasepanel ul.todo li.done>span.cbx{background:var(--acc);border-color:var(--acc)}
-  .phasepanel ul.todo li.done>span.cbx::after{content:"✓";color:#fff;font-size:11px;position:absolute;left:3px;top:-1px}
-  .phasepanel ul.todo li.done{color:var(--mut);text-decoration:line-through}
-  .phasepanel .golink{display:inline-block;margin-top:12px;color:var(--acc);font-weight:600;font-size:.9rem}
-  /* accordion */
-  .secs{margin-top:30px}
-  .secs>.eye{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);padding-left:4px}
-  details.section{background:var(--card);border:1px solid var(--bd);border-radius:16px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow);scroll-margin-top:70px}
-  details.section>summary{cursor:pointer;list-style:none;padding:15px 17px;font-weight:600;font-size:1rem;letter-spacing:-.01em;display:flex;align-items:center;justify-content:space-between;gap:10px}
-  details.section>summary::-webkit-details-marker{display:none}
-  details.section>summary .chev{color:var(--mut);transition:transform .25s var(--ease);font-size:1.1rem}
-  details.section[open]>summary .chev{transform:rotate(90deg)}
-  details.section[open]>summary{border-bottom:1px solid var(--bd)}
-  .body{padding:8px 18px 16px;font-size:.94rem;color:var(--txt)}
-  .body h4{margin:14px 0 4px;font-size:.92rem;font-weight:600}
-  .body p{color:var(--mut);margin:6px 0}
-  .body ul{margin:6px 0;padding-left:20px;color:var(--mut)}
-  .body li{margin:4px 0}
-  .body a{color:var(--acc)}
-  .body .todo{list-style:none;padding-left:0}
-  .body .todo li{position:relative;padding-left:25px}
-  .body .todo li::before{content:"";position:absolute;left:0;top:3px;width:15px;height:15px;border:1.5px solid var(--mut);border-radius:5px}
-  table.kv{width:100%;border-collapse:collapse;font-size:.88rem;margin:6px 0}
-  table.kv td{border-top:1px solid var(--bd);padding:7px 4px;vertical-align:top;color:var(--txt)}
-  table.kv tr:first-child td{border-top:0}
-  table.kv td:first-child{color:var(--mut);width:42%}
-  /* wide-screen layout: use the horizontal space */
-  .hero p{max-width:680px}
-  .phasepanel ul.todo{columns:2;column-gap:24px}
-  @media(max-width:760px){.phasepanel ul.todo{columns:1}}
-  @media(min-width:860px){
-    .stack{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
-    .stack>.board{grid-column:1/-1}
-  }
+  .cbtn{display:inline-flex;align-items:center;gap:7px;border-radius:var(--r-pill);padding:9px 14px;font-size:.84rem;font-weight:600}
+  .cbtn.wa{background:#25d366;color:#06301a}.cbtn.mail{background:var(--card2);color:var(--txt);border:1px solid var(--bd)}
+  /* browse everything */
+  .browseall{margin-top:24px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r-card);box-shadow:var(--shadow);overflow:hidden}
+  .browseall>summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:600;font-size:1rem;display:flex;align-items:center;justify-content:space-between}
+  .browseall>summary::-webkit-details-marker{display:none}
+  .browseall>summary .chev{color:var(--mut);transition:transform .25s var(--ease)}
+  .browseall[open]>summary .chev{transform:rotate(90deg)}
+  .browseall[open]>summary{border-bottom:1px solid var(--bd)}
+  .browsebody{padding:14px 16px}
   .seccols{display:flex;gap:14px;align-items:flex-start}
   .seccol{flex:1;min-width:0;display:flex;flex-direction:column}
-  .seccol details.section{margin:0 0 14px}
-  @media(max-width:860px){.seccols{flex-direction:column;gap:0}.seccol details.section{margin:10px 0}}
+  @media(max-width:820px){.seccols{flex-direction:column;gap:0}}
+  details.section{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;margin:0 0 12px;overflow:hidden;scroll-margin-top:70px}
+  details.section>summary{cursor:pointer;list-style:none;padding:13px 15px;font-weight:600;font-size:.95rem;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  details.section>summary::-webkit-details-marker{display:none}
+  details.section>summary .chev{color:var(--mut);transition:transform .25s var(--ease)}
+  details.section[open]>summary .chev{transform:rotate(90deg)}
+  details.section[open]>summary{border-bottom:1px solid var(--bd)}
+  .body{padding:8px 16px 14px;font-size:.92rem}
+  .body h4{margin:12px 0 4px;font-size:.9rem;font-weight:600}
+  .body p{color:var(--mut);margin:6px 0}.body ul{margin:6px 0;padding-left:20px;color:var(--mut)}.body li{margin:4px 0}.body a{color:var(--acc)}
+  .body .todo2{list-style:none;padding-left:0}.body .todo2 li{position:relative;padding-left:24px;border:0}
+  .body .todo2 li::before{content:"";position:absolute;left:0;top:3px;width:15px;height:15px;border:1.5px solid var(--mut);border-radius:5px}
+  table.kv{width:100%;border-collapse:collapse;font-size:.87rem;margin:6px 0}
+  table.kv td{border-top:1px solid var(--bd);padding:7px 4px;vertical-align:top}
+  table.kv tr:first-child td{border-top:0}table.kv td:first-child{color:var(--mut);width:42%}
 </style>
 </head>
 <body>
@@ -96,324 +106,261 @@
     <button class="switch" aria-label="Toggle dark mode"><span class="s-ic sun">☀️</span><span class="s-ic moon">🌙</span><span class="knob"></span></button>
   </div>
 
-  <main class="wrap">
-    <section class="hero">
+  <header class="hero">
+    <div class="bg"></div>
+    <div class="inner">
       <div class="eye">New teacher guide · 2026–27</div>
-      <h1>Your move to Istanbul, in one place.</h1>
-      <p>Documents, the work-visa steps, housing and your commute — for new ENKA teachers. First day of school: 20 August 2026. Confirm specifics with HR.</p>
-    </section>
-
-    <!-- PHASE SELECTOR (council's #1 recommendation) -->
-    <section class="phasenav">
-      <div class="eye">Start here</div>
-      <h2>Where are you right now?</h2>
-      <div class="phasebtns" id="phasebtns"></div>
-      <div class="phasepanel" id="phasepanel"></div>
-    </section>
-
-    <div class="stack">
-      <section class="card board" id="board"></section>
-      <section class="card" id="contacts-wrap" style="padding:0"><div id="contacts"></div></section>
-      <a class="card maphero" href="./map.html">
-        <div>
-          <div class="t">🗺️ Interactive housing & commute map</div>
-          <div class="d">Find a neighborhood, type your address, and get live routes to your bus stop and to school.</div>
-        </div>
-        <span class="btn">Open map →</span>
-      </a>
+      <h1>Welcome 👋 Your move to Istanbul, one step at a time.</h1>
+      <p>You don't need to figure it all out today. Tell us where you are and we'll show you exactly what to do next.</p>
+      <span class="chip">🗓️ First day of school · 20 August 2026</span>
     </div>
+  </header>
 
-    <section class="secs">
-      <div class="eye">Browse all topics</div>
-      <div class="seccols">
-      <div class="seccol">
-      <details class="section" id="sec-start" open><summary><span>🚦 Start here</span><span class="chev">›</span></summary>
-        <div class="body">
-          <h4>Key dates</h4>
-          <ul><li>Contract start: 1 August 2026.</li><li>First day at school: <b>Thursday, 20 August 2026</b>.</li><li>Recruiting and permits run from winter through summer; the work-permit wait is long, and that is normal.</li></ul>
-          <h4>Three things to know first</h4>
-          <ul>
-            <li>You only need to <b>apostille</b> your documents. The school handles the Turkish translation and notarization.</li>
-            <li><b>Do not book flights</b> until your work visa/permit is approved.</li>
-            <li>Most steps wait on the <b>Turkish Ministry of Education</b>. Slow does not mean wrong.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-roadmap"><summary><span>🧭 The relocation roadmap</span><span class="chev">›</span></summary>
-        <div class="body">
-          <h4>Phase 1 — Documents (start now)</h4>
-          <p>Apostille these, each one individually:</p>
-          <ul class="todo">
-            <li>University diploma</li>
-            <li>University transcripts (a registrar's letter stating the transcript is official helps)</li>
-            <li>Teaching certification / license</li>
-            <li>Proof of 2 years' experience in your subject: a letter from your previous school, on letterhead, signed. It does not need to come from your country's Ministry of Education.</li>
-            <li>Police / background certificate (where required)</li>
-          </ul>
-          <h4>Phase 2 — Ministry of Education pre-approval (Ön İzin)</h4>
-          <ul><li>A teacher-specific first step: the Ministry must pre-approve your assignment before a work permit can proceed.</li><li>HR submits your translated, notarized documents. Without this approval, the work visa cannot move forward.</li><li>It is the slowest part and depends on government timelines.</li></ul>
-          <h4>Phase 3 — Work visa application</h4>
-          <ul class="todo"><li>Apply online and book an appointment at the Turkish mission in the country where you reside (have residency/work rights) or hold citizenship.</li><li>Have HR review your form before you submit.</li><li>Do not book the appointment until HR tells you to.</li></ul>
-          <h4>Phase 4 — Flights & arrival</h4>
-          <ul class="todo"><li>Wait for visa/permit approval before buying flights.</li><li>Book your own flight (economy), into Istanbul Airport (IST).</li><li>You generally cannot arrive before the contract start without a tourist-visa workaround. Arrival support may be unavailable in July.</li><li>Bringing a pet? Start the rabies titer test and paperwork early; most pets fly in-cabin.</li></ul>
-          <h4>Phase 5 — First weeks in Istanbul</h4>
-          <ul class="todo"><li>Get a Turkish SIM in your own name. This starts the 120-day clock to register your foreign phone's IMEI.</li><li>Get your tax number (vergi numarası): free, online.</li><li>Buy and load an İstanbulkart.</li><li>Set up your e-Devlet password at a PTT (post office).</li><li>Open a bank account.</li><li>Register your address (adres kayıt) within the required window.</li></ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-docs"><summary><span>📄 Documents & apostille</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul>
-            <li>What to apostille: diploma, transcripts, teaching certificate, proof-of-experience letter (plus a police certificate if asked). Each gets its own apostille.</li>
-            <li>Proof-of-experience letter: from your previous school, on letterhead, signed.</li>
-            <li><b>US:</b> apostille via the issuing state's Secretary of State, or the US Dept. of State. Usually low cost per document.</li>
-            <li><b>Non-Hague country</b> (for example Thailand): get Ministry of Foreign Affairs approval, then take it to the nearest Turkish mission.</li>
-            <li>Email color scans to HR; no physical originals; no Turkish translation needed (the school does it).</li>
-            <li>Use a regular hard-copy apostille; digital e-apostilles have been refused.</li>
-            <li>A simple doctor's note stating you are fit to work may also be requested.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-visa"><summary><span>🛂 The work visa application (step by step)</span><span class="chev">›</span></summary>
-        <div class="body">
-          <p>Apply at <a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">konsolosluk.gov.tr</a> and select your country and the Turkish mission.</p>
-          <table class="kv">
-            <tr><td>Name</td><td>First + middle name, exactly as in your passport</td></tr>
-            <tr><td>Type of visa</td><td>Work Visa</td></tr>
-            <tr><td>Purpose of Trip</td><td>Employment Purpose / Special Employment Purpose</td></tr>
-            <tr><td>Number of Entries</td><td>Single</td></tr>
-            <tr><td>Date of Entry</td><td>1 August 2026 (or later)</td></tr>
-            <tr><td>Duration of stay</td><td>90 days (the permit is completed after you arrive; then multiple entries, 1-year validity)</td></tr>
-            <tr><td>Means of transport</td><td>Air</td></tr>
-            <tr><td>Guarantor</td><td>No</td></tr>
-            <tr><td>Who covers travel costs</td><td>Host company</td></tr>
-            <tr><td>Host company</td><td>OZEL ENKA OKULLARI (never a person's name)</td></tr>
-            <tr><td>Host company email</td><td>melih.inan@enka.k12.tr</td></tr>
-            <tr><td>Address</td><td>Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul</td></tr>
-            <tr><td>Phone</td><td>02127056500</td></tr>
-            <tr><td>Travel/health insurance</td><td>Yes, valid until 30 June 2027</td></tr>
-            <tr><td>Where will you stay</td><td>If no address yet, use the school address</td></tr>
-          </table>
-          <ul>
-            <li>Use your own email in the personal sections (the school email is only the host-company field). Apply for yourself.</li>
-            <li>Download the PDF and check every field before submitting; typos cause delays.</li>
-            <li>After submitting, you see appointment dates. Report the earliest to HR and do not book until they confirm.</li>
-            <li>Port of entry: Istanbul Airport (IST).</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-housing"><summary><span>🏠 Housing & commute</span><span class="chev">›</span></summary>
-        <div class="body">
-          <p><a href="./map.html">Open the interactive map →</a> The school bus runs from 9 stops to school, so pick a neighborhood you can reach a stop from easily.</p>
-          <ul>
-            <li>School area: Sarıyer / İstinye. Walking-distance options include İstinye, Maslak, Emirgan.</li>
-            <li>Search sites: <a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">sahibinden.com/en</a> and <a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">hepsiemlak.com/en</a> (the map links to per-neighborhood searches).</li>
-            <li>Sahibinden needs a Turkish phone number to message agents: use the "call" button to get the number, then reach them on WhatsApp.</li>
-            <li>Switch the Sahibinden app to English: "bana özel" (bottom) → gear (uygulama ayarları) → dil tercihleri.</li>
-            <li>Furnished is scarce; the norm is unfurnished. There is an IKEA run with the school bus after arrival.</li>
-            <li>Do not pay a year upfront for a place you have not seen. If a landlord only rents on those terms, pass.</li>
-            <li>Common approach: arrive, stay in an Airbnb, and view places in person before signing.</li>
-            <li>Departing teachers list their apartments (HR shares a document).</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-arrival"><summary><span>🧰 Arrival setup</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul>
-            <li><b>Tax number (vergi numarası):</b> free, online at the Interactive Tax Office.</li>
-            <li><b>e-Devlet:</b> government services portal; get your password at a PTT.</li>
-            <li><b>Bank account:</b> passport, tax number, proof of address, contract.</li>
-            <li><b>SIM / phone:</b> Turkish SIM in your name; register your IMEI within 120 days or buy a local phone.</li>
-            <li><b>İstanbulkart:</b> buy at the airport or metro; personalize it with your ID number.</li>
-            <li><b>Address registration (adres kayıt):</b> within the required window after arrival.</li>
-          </ul>
-        </div>
-      </details>
-      </div>
-      <div class="seccol">
-      <details class="section" id="sec-daily"><summary><span>🌆 Daily life in Istanbul</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul>
-            <li><b>Transport:</b> metro, metrobüs and ferries with İstanbulkart, plus the school service bus.</li>
-            <li><b>Apps:</b> Moovit/Citymapper, BiTaksi (taxi), Yemeksepeti/Getir (delivery), Google Translate (offline Turkish).</li>
-            <li><b>Pets:</b> rabies titer test to enter; most fly in-cabin.</li>
-            <li><b>Sport:</b> teacher discount at the ENKA sports center.</li>
-            <li><b>Emergency:</b> 112. Locate your nearest hospital and a nöbetçi eczane (on-duty pharmacy).</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-school"><summary><span>🏫 The school (ENKA)</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul>
-            <li><b>Address:</b> Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul. Use this exact address when a map app shows the school elsewhere.</li>
-            <li><b>First day:</b> Thursday, 20 August 2026.</li>
-            <li><b>Onboarding:</b> monthly newsletter, asynchronous mandatory trainings, and optional online meetups.</li>
-            <li>The academic calendar is set by the Ministry and announced late.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-faq"><summary><span>❓ FAQ</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul>
-            <li><b>When will my visa be approved?</b> It takes time (often weeks) and depends on the Ministry. The school tracks it.</li>
-            <li><b>Where do I apply?</b> In the country where you have residency/work rights, or your country of citizenship.</li>
-            <li><b>Do I need to translate my documents?</b> No. The school translates them in Turkey. You only apostille.</li>
-            <li><b>Physical documents or scans?</b> Color scans by email; do not mail your diploma.</li>
-            <li><b>Is an e-apostille okay?</b> Use a regular apostille; digital ones have been refused.</li>
-            <li><b>When can I book my flight?</b> After your visa/permit is approved. Book your own, into IST.</li>
-            <li><b>Can I arrive early?</b> Generally no, without a tourist-visa workaround.</li>
-            <li><b>Sahibinden without a Turkish number?</b> Use "call" to get the number, then WhatsApp.</li>
-            <li><b>Furnished apartments?</b> Rare; plan to furnish (an IKEA run is available).</li>
-            <li><b>Bringing a pet?</b> Start the rabies titer test early; finalize after the flight is booked.</li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-glossary"><summary><span>📖 Glossary</span><span class="chev">›</span></summary>
-        <div class="body">
-          <table class="kv">
-            <tr><td>Apostille</td><td>International certification of a public document (Hague Convention)</td></tr>
-            <tr><td>Ön İzin</td><td>Pre-approval from the Ministry of Education for a foreign teacher</td></tr>
-            <tr><td>Çalışma izni</td><td>Work permit</td></tr>
-            <tr><td>İkamet</td><td>Residence permit (the work permit covers residence)</td></tr>
-            <tr><td>Vergi numarası</td><td>Tax number</td></tr>
-            <tr><td>e-Devlet</td><td>Government online services portal</td></tr>
-            <tr><td>Adres kayıt</td><td>Address registration</td></tr>
-            <tr><td>İstanbulkart</td><td>Rechargeable public-transport card</td></tr>
-            <tr><td>Nöbetçi eczane</td><td>On-duty (night) pharmacy</td></tr>
-            <tr><td>Emlakçı</td><td>Real-estate agent</td></tr>
-            <tr><td>Yeminli tercüman</td><td>Sworn translator (the school handles this)</td></tr>
-          </table>
-        </div>
-      </details>
-
-      <details class="section" id="sec-links"><summary><span>🔗 Useful links</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul>
-            <li><a href="./map.html">Interactive housing & commute map</a></li>
-            <li><a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">Work visa application (konsolosluk.gov.tr)</a></li>
-            <li><a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">Hepsiemlak</a> · <a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">Sahibinden</a></li>
-            <li><a href="https://www.turkiye.gov.tr/" target="_blank" rel="noopener">e-Devlet</a></li>
-            <li><a href="https://dijital.gib.gov.tr/" target="_blank" rel="noopener">Interactive Tax Office</a></li>
-          </ul>
-        </div>
-      </details>
-
-      <details class="section" id="sec-hr"><summary><span>🙋 What we still need from HR</span><span class="chev">›</span></summary>
-        <div class="body">
-          <ul class="todo">
-            <li>Who pays the real-estate agent's commission, and how much?</li>
-            <li>Driving: can we use a foreign license? Is an international permit needed? How do we get a Turkish license?</li>
-            <li>Exact pet-import requirements (titer timing, in-cabin rules).</li>
-            <li>The service-bus schedule and pickup times.</li>
-          </ul>
-        </div>
-      </details>
-      </div>
-      </div>
+  <main class="wrap">
+    <section class="journey">
+      <h2>Where are you right now?</h2>
+      <div class="hint">Tap your stage to see your next steps. Your progress is saved on this device.</div>
+      <div class="jtrack" id="jtrack"></div>
+      <div id="phaseview"></div>
     </section>
+
+    <section class="quick">
+      <div class="card board" id="board"></div>
+      <div class="card" id="contacts-wrap" style="padding:0"><div id="contacts"></div></div>
+    </section>
+
+    <details class="browseall" id="browseall">
+      <summary><span>📚 Browse all topics</span><span class="chev">›</span></summary>
+      <div class="browsebody">
+        <div class="seccols">
+          <div class="seccol">
+            <details class="section" id="sec-roadmap"><summary><span>🧭 The relocation roadmap</span><span class="chev">›</span></summary>
+              <div class="body">
+                <h4>Phase 1 — Documents</h4>
+                <ul class="todo2"><li>Apostille diploma, transcripts, teaching cert and a 2-years-experience letter (each separately).</li><li>Email color scans to HR — no Turkish translation needed.</li></ul>
+                <h4>Phase 2 — Ministry pre-approval (Ön İzin)</h4>
+                <ul><li>The Ministry pre-approves your assignment before the work permit. HR submits; it's the slowest part.</li></ul>
+                <h4>Phase 3 — Work visa</h4>
+                <ul><li>Apply online; book at the Turkish mission where you reside or hold citizenship; HR checks your form first.</li></ul>
+                <h4>Phase 4 — Flights & arrival</h4>
+                <ul><li>Book your own flight (economy) into IST only after approval. Pets: start the rabies titer test early.</li></ul>
+                <h4>Phase 5 — First weeks</h4>
+                <ul><li>Turkish SIM (starts the 120-day IMEI clock), tax number, İstanbulkart, e-Devlet, bank, address registration.</li></ul>
+              </div>
+            </details>
+            <details class="section" id="sec-docs"><summary><span>📄 Documents & apostille</span><span class="chev">›</span></summary>
+              <div class="body"><ul>
+                <li>Apostille (each separately): diploma, transcripts, teaching certificate, experience letter, police certificate if asked.</li>
+                <li>Experience letter: from your previous school, on letterhead, signed.</li>
+                <li><b>US:</b> via the issuing state's Secretary of State or the US Dept. of State (cheap).</li>
+                <li><b>Non-Hague country:</b> Ministry of Foreign Affairs, then the nearest Turkish mission.</li>
+                <li>Email color scans to HR; no physical originals; no Turkish translation (the school does it); use a hard-copy apostille, not digital.</li>
+                <li>A simple doctor's "fit to work" note may also be requested.</li>
+              </ul></div>
+            </details>
+            <details class="section" id="sec-visa"><summary><span>🛂 The work visa (step by step)</span><span class="chev">›</span></summary>
+              <div class="body">
+                <p>Apply at <a href="https://www.konsolosluk.gov.tr/" target="_blank" rel="noopener">konsolosluk.gov.tr</a>.</p>
+                <table class="kv">
+                  <tr><td>Type of visa</td><td>Work Visa</td></tr>
+                  <tr><td>Purpose</td><td>Employment / Special Employment Purpose</td></tr>
+                  <tr><td>Entries / stay</td><td>Single · 90 days</td></tr>
+                  <tr><td>Travel costs</td><td>Host company</td></tr>
+                  <tr><td>Host company</td><td>OZEL ENKA OKULLARI</td></tr>
+                  <tr><td>Host email</td><td>melih.inan@enka.k12.tr</td></tr>
+                  <tr><td>Address</td><td>Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer İstanbul</td></tr>
+                  <tr><td>Insurance</td><td>Yes, until 30 June 2027</td></tr>
+                  <tr><td>Port of entry</td><td>Istanbul Airport (IST)</td></tr>
+                </table>
+                <ul><li>Use your own email in personal sections. Check every field before submitting. Report the earliest appointment to HR; don't book until told.</li></ul>
+              </div>
+            </details>
+            <details class="section" id="sec-housing"><summary><span>🏠 Housing & commute</span><span class="chev">›</span></summary>
+              <div class="body"><p><a href="./map.html">Open the interactive map →</a></p><ul>
+                <li>Walking-distance: İstinye, Maslak, Emirgan (Sarıyer). The bus runs from 9 stops.</li>
+                <li><a href="https://www.sahibinden.com/en" target="_blank" rel="noopener">sahibinden.com/en</a> · <a href="https://www.hepsiemlak.com/en" target="_blank" rel="noopener">hepsiemlak.com/en</a>. Sahibinden needs a Turkish number to message agents — use "call" then WhatsApp.</li>
+                <li>Furnished is scarce; don't pay a year upfront for an unseen place; many use an Airbnb first and view in person.</li>
+              </ul></div>
+            </details>
+          </div>
+          <div class="seccol">
+            <details class="section" id="sec-arrival"><summary><span>🧰 Arrival setup</span><span class="chev">›</span></summary>
+              <div class="body"><ul>
+                <li><b>Tax number (vergi numarası):</b> free, online.</li>
+                <li><b>e-Devlet:</b> get the password at a PTT.</li>
+                <li><b>Bank:</b> passport, tax number, address, contract.</li>
+                <li><b>SIM:</b> register your IMEI within 120 days or buy a local phone.</li>
+                <li><b>İstanbulkart</b> + <b>address registration (adres kayıt)</b>.</li>
+              </ul></div>
+            </details>
+            <details class="section" id="sec-daily"><summary><span>🌆 Daily life in Istanbul</span><span class="chev">›</span></summary>
+              <div class="body"><ul>
+                <li>Transport: metro, metrobüs, ferries (İstanbulkart) + the school bus.</li>
+                <li>Apps: Moovit, BiTaksi, Yemeksepeti/Getir, Google Translate (offline Turkish).</li>
+                <li>Pets: rabies titer test to enter. Sport: ENKA teacher discount. Emergency: 112.</li>
+              </ul></div>
+            </details>
+            <details class="section" id="sec-school"><summary><span>🏫 The school (ENKA)</span><span class="chev">›</span></summary>
+              <div class="body"><ul>
+                <li><b>Address:</b> Poligon Mah. Sarıyer Cad. No:121/1, 34460 Sarıyer, İstanbul.</li>
+                <li><b>First day:</b> Thursday, 20 August 2026.</li>
+                <li>Onboarding: monthly newsletter, async trainings, optional online meetups.</li>
+              </ul></div>
+            </details>
+            <details class="section" id="sec-faq"><summary><span>❓ FAQ</span><span class="chev">›</span></summary>
+              <div class="body"><ul>
+                <li><b>Visa wait normal?</b> Yes, often weeks; the Ministry controls it. The school tracks it.</li>
+                <li><b>Translate documents?</b> No — the school does it. You only apostille.</li>
+                <li><b>Book flights when?</b> After approval. Into IST.</li>
+                <li><b>Furnished?</b> Rare; plan to furnish (IKEA run available).</li>
+              </ul></div>
+            </details>
+            <details class="section" id="sec-glossary"><summary><span>📖 Glossary</span><span class="chev">›</span></summary>
+              <div class="body"><table class="kv">
+                <tr><td>Apostille</td><td>International certification of a public document</td></tr>
+                <tr><td>Ön İzin</td><td>Ministry of Education pre-approval for a foreign teacher</td></tr>
+                <tr><td>Çalışma izni / İkamet</td><td>Work permit / residence permit (the permit covers residence)</td></tr>
+                <tr><td>Vergi numarası</td><td>Tax number</td></tr>
+                <tr><td>e-Devlet · Adres kayıt</td><td>Gov portal · address registration</td></tr>
+                <tr><td>İstanbulkart · Eczane</td><td>Transit card · pharmacy</td></tr>
+              </table></div>
+            </details>
+            <details class="section" id="sec-hr"><summary><span>🙋 What we still need from HR</span><span class="chev">›</span></summary>
+              <div class="body"><ul class="todo2">
+                <li>Who pays the real-estate agent's commission, and how much?</li>
+                <li>Driving: foreign license / international permit / Turkish license?</li>
+                <li>Exact pet-import requirements (titer timing, in-cabin).</li>
+                <li>The service-bus schedule and pickup times.</li>
+              </ul></div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </details>
   </main>
 
   <footer class="foot">
-    Community guide for new ENKA teachers. Factual summaries from the school's documents and shared
-    experiences; confirm specifics with HR. Last updated 28 June 2026.
+    A community guide for new ENKA teachers · confirm specifics with HR · last updated 28 June 2026.<br>
+    Hero photo: Tarık Kaan Muslu / Wikimedia Commons (CC).
   </footer>
 
 <script>
-/* phase selector — the council's #1 recommendation */
 var PHASES=[
-  {id:"just-hired",label:"Just hired",now:"Welcome! The whole move has about 7 stages. Get oriented and start the paperwork.",
-   normal:"The full process runs winter → summer. The visa step is the long pole, so starting documents early helps.",
-   todo:["Read the relocation roadmap","Start gathering your documents"],link:{label:"See the roadmap",href:"#sec-roadmap"}},
-  {id:"documents",label:"Gathering documents",now:"You're collecting and apostilling your documents.",
-   normal:"Tip: do the police/background certificate last — it can expire before you travel.",
-   todo:["Apostille diploma, transcripts, teaching cert and the experience letter (each separately)","Email color scans to HR — no Turkish translation needed","Use a hard-copy apostille (not a digital e-apostille)"],link:{label:"Documents & apostille",href:"#sec-docs"}},
-  {id:"waiting",label:"Waiting on the visa",now:"Your file is with the Turkish Ministry of Education (Ön İzin), then the work permit.",
-   normal:"⏳ This wait is normal — it often takes several weeks and depends on the Ministry. Slow does not mean wrong; HR is tracking it, so there's nothing for you to chase.",
-   todo:["Meanwhile, research neighborhoods and your commute on the map","Get your home documents fully ready so you can move fast when cleared"],link:{label:"Why it takes time",href:"#sec-roadmap"}},
-  {id:"visa",label:"Applying for the visa",now:"HR has cleared you to apply for the work visa.",
-   normal:"",
-   todo:["Apply online at konsolosluk.gov.tr (see the field-by-field guide)","Have HR check your form before you submit","Report the earliest appointment to HR — don't book until they confirm"],link:{label:"Visa step-by-step",href:"#sec-visa"}},
-  {id:"housing",label:"Finding a home",now:"Time to find a place you can reach a bus stop from easily.",
-   normal:"",
-   todo:["Open the map and type your address for live routes","Search Hepsiemlak / Sahibinden (the map links per neighborhood)","View in person — many arrive and use an Airbnb first"],link:{label:"Open the map",href:"map.html"}},
-  {id:"travel",label:"About to travel",now:"Visa approved — plan your arrival.",
-   normal:"First day at school: 20 August 2026. You generally can't arrive before the contract start.",
-   todo:["Book your own flight (economy) into Istanbul Airport (IST)","Bringing a pet? Start the rabies titer test early","Pack with the apostilled originals you'll need"],link:{label:"Flights & arrival",href:"#sec-roadmap"}},
-  {id:"arrived",label:"Just arrived",now:"Welcome to Istanbul! Set up the essentials.",
-   normal:"Heads up: a Turkish SIM starts a 120-day clock to register your foreign phone's IMEI (or buy a local phone).",
-   todo:["Get a Turkish SIM, tax number (vergi numarası) and an İstanbulkart","Set up e-Devlet (at a PTT) and open a bank account","Register your address (adres kayıt)"],link:{label:"Arrival setup",href:"#sec-arrival"}}
+  {id:"just-hired",icon:"🎒",label:"Hired",title:"Just hired",
+   now:"Welcome aboard! The whole move has about 7 stages. You don't have to rush — get oriented and start the paperwork.",
+   normal:"The full process runs winter → summer, and the visa step is the long pole. Starting your documents early is the best thing you can do now.",
+   todo:["Skim the relocation roadmap so you know what's coming","Start gathering your documents"],
+   tools:[{label:"See the full roadmap",href:"#sec-roadmap"}]},
+  {id:"documents",icon:"📄",label:"Documents",title:"Gathering documents",
+   now:"You're collecting and apostilling your documents to send to HR.",
+   normal:"Tip: do the police/background certificate last — it can expire before you travel. You only apostille; the school handles the Turkish translation.",
+   todo:["Apostille diploma, transcripts, teaching cert + experience letter (each separately)","Email color scans to HR","Use a hard-copy apostille (not a digital e-apostille)"],
+   tools:[{label:"Documents & apostille",href:"#sec-docs"}]},
+  {id:"waiting",icon:"⏳",label:"Waiting",title:"Waiting on the visa",
+   now:"Your file is with the Turkish Ministry of Education (Ön İzin), then the work permit.",
+   normal:"⏳ This wait is normal — it often takes several weeks and depends on the Ministry. Slow does not mean wrong, and HR is tracking it, so there's nothing for you to chase.",
+   todo:["Breathe — there's nothing to chase right now","Explore neighborhoods and your commute on the map","Get your home set-up documents ready so you can move fast when cleared"],
+   tools:[{label:"Explore the map while you wait",href:"map.html"},{label:"Why it takes time",href:"#sec-roadmap"}]},
+  {id:"visa",icon:"🛂",label:"Visa",title:"Applying for the visa",
+   now:"HR has cleared you to apply for the work visa at the Turkish mission.",
+   normal:"Have HR review your form before you submit — small typos cause real delays.",
+   todo:["Apply online at konsolosluk.gov.tr (follow the field-by-field guide)","Send your form to HR to check","Report the earliest appointment to HR — don't book until they confirm"],
+   tools:[{label:"Visa step-by-step",href:"#sec-visa"}]},
+  {id:"housing",icon:"🏠",label:"Housing",title:"Finding a home",
+   now:"Time to find a place you can reach a bus stop from easily.",
+   normal:"The bus runs from 9 stops to school, so optimize for reaching a stop — not for being right next to the school.",
+   todo:["Open the map and type your address for live routes","Browse Hepsiemlak / Sahibinden per neighborhood","View in person — many arrive and use an Airbnb first"],
+   tools:[{label:"Open the housing map",href:"map.html"},{label:"Housing tips",href:"#sec-housing"}]},
+  {id:"travel",icon:"✈️",label:"Travel",title:"About to travel",
+   now:"Visa approved — time to plan your arrival.",
+   normal:"First day at school is 20 August 2026. You generally can't arrive before the contract start without a tourist-visa workaround.",
+   todo:["Book your own flight (economy) into Istanbul Airport (IST)","Bringing a pet? Confirm the rabies titer timing","Pack the apostilled originals you'll need"],
+   tools:[{label:"Flights & arrival",href:"#sec-roadmap"}]},
+  {id:"arrived",icon:"🎉",label:"Arrived",title:"Just arrived",
+   now:"Welcome to Istanbul! Let's set up the essentials, one by one.",
+   normal:"Heads up: a Turkish SIM starts a 120-day clock to register your foreign phone's IMEI (or just buy a local phone).",
+   todo:["Get a Turkish SIM + tax number (vergi numarası) + İstanbulkart","Set up e-Devlet (at a PTT) and open a bank account","Register your address (adres kayıt)"],
+   tools:[{label:"Arrival setup checklist",href:"#sec-arrival"}]}
 ];
-var savedPhase=null; try{savedPhase=localStorage.getItem("enka-phase");}catch(e){}
+var idxOf=function(id){for(var i=0;i<PHASES.length;i++)if(PHASES[i].id===id)return i;return -1;};
+var savedPhase=null;try{savedPhase=localStorage.getItem("enka-phase");}catch(e){}
 window.ENKA_PHASE=savedPhase||null;
-
 function doneKey(pid,i){return "enka-todo-"+pid+"-"+i;}
-function renderPhase(p){
-  var panel=document.getElementById("phasepanel");
-  var href=p.link.href;
-  panel.innerHTML='<div class="now">'+p.now+'</div>'+
-    (p.normal?'<div class="nrm">'+p.normal+'</div>':'')+
-    '<ul class="todo">'+p.todo.map(function(t,i){
-      var done=false;try{done=localStorage.getItem(doneKey(p.id,i))==="1";}catch(e){}
-      return '<li data-i="'+i+'"'+(done?' class="done"':'')+'><span class="cbx"></span>'+t+'</li>';
-    }).join('')+'</ul>'+
-    '<a class="golink" href="'+href+'">'+p.link.label+' ›</a>';
-  panel.classList.add("show");
-  panel.querySelectorAll("li").forEach(function(li){
-    li.querySelector(".cbx").addEventListener("click",function(){
-      var i=li.getAttribute("data-i");li.classList.toggle("done");
-      try{localStorage.setItem(doneKey(p.id,i),li.classList.contains("done")?"1":"0");}catch(e){}
-    });
+function isInternal(h){return h.charAt(0)==="#";}
+
+function renderStepper(sel){
+  document.querySelectorAll(".jstep").forEach(function(b,i){
+    b.classList.toggle("cur",i===sel);
+    b.classList.toggle("past",sel>-1&&i<sel);
   });
 }
-function selectPhase(id){
-  var p=PHASES.filter(function(x){return x.id===id;})[0];if(!p)return;
-  document.querySelectorAll(".phasebtn").forEach(function(b){b.classList.toggle("active",b.dataset.phase===id);});
+function renderPhase(p){
+  var v=document.getElementById("phaseview");
+  v.innerHTML='<div class="pcard">'+
+    '<div class="phere">You are here</div>'+
+    '<h3>'+p.icon+' '+p.title+'</h3>'+
+    '<div class="pnow">'+p.now+'</div>'+
+    (p.normal?'<div class="pnormal">'+p.normal+'</div>':'')+
+    '<div class="steps-t">Your next steps</div>'+
+    '<ul class="todo">'+p.todo.map(function(t,i){
+      var done=false;try{done=localStorage.getItem(doneKey(p.id,i))==="1";}catch(e){}
+      return '<li data-i="'+i+'"'+(done?' class="done"':'')+'><span class="cbx"></span>'+t+'</li>';}).join('')+'</ul>'+
+    '<div class="ptools">'+p.tools.map(function(t){
+      return '<a class="btn'+(isInternal(t.href)?' ghost':'')+'" href="'+t.href+'">'+t.label+(isInternal(t.href)?' ›':' →')+'</a>';}).join('')+'</div>'+
+    '<div class="pmuted">Stuck on something else? <a href="#" id="askopen">Ask the guide</a> or message HR below.</div>'+
+    '</div>';
+  v.querySelectorAll("li").forEach(function(li){
+    li.querySelector(".cbx").addEventListener("click",function(){
+      var i=li.getAttribute("data-i");li.classList.toggle("done");
+      try{localStorage.setItem(doneKey(p.id,i),li.classList.contains("done")?"1":"0");}catch(e){}});
+  });
+  var ao=document.getElementById("askopen");
+  if(ao)ao.addEventListener("click",function(e){e.preventDefault();var f=document.querySelector(".ask-fab");if(f)f.click();});
+}
+function showEmpty(){
+  document.getElementById("phaseview").innerHTML=
+    '<div class="pempty"><div class="big">🧭</div><div class="t">Pick your stage above</div>'+
+    '<div>Tap where you are and we\'ll show exactly what to do now — nothing more, nothing less.</div></div>';
+}
+function selectPhase(id,scroll){
+  var i=idxOf(id);if(i<0)return;
+  renderStepper(i);renderPhase(PHASES[i]);
   try{localStorage.setItem("enka-phase",id);}catch(e){}
   window.ENKA_PHASE=id;
-  renderPhase(p);
+  if(scroll)document.getElementById("phaseview").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 (function(){
-  var box=document.getElementById("phasebtns");
-  box.innerHTML=PHASES.map(function(p){return '<button class="phasebtn" type="button" data-phase="'+p.id+'">'+p.label+'</button>';}).join('');
-  box.querySelectorAll(".phasebtn").forEach(function(b){b.addEventListener("click",function(){selectPhase(b.dataset.phase);});});
-  if(savedPhase)selectPhase(savedPhase);
+  var t=document.getElementById("jtrack");
+  t.innerHTML=PHASES.map(function(p){
+    return '<button class="jstep" type="button" data-phase="'+p.id+'"><span class="jdot">'+p.icon+'</span><span class="jlabel">'+p.label+'</span></button>';
+  }).join('');
+  t.querySelectorAll(".jstep").forEach(function(b){b.addEventListener("click",function(){selectPhase(b.dataset.phase,true);});});
+  if(savedPhase&&idxOf(savedPhase)>-1)selectPhase(savedPhase,false);else showEmpty();
 })();
 
-/* open the targeted accordion section when linked via hash */
 function openHashTarget(){
-  var h=location.hash;if(!h||h.indexOf("#sec-")!==0)return;
-  var el=document.querySelector(h);if(el&&el.tagName==="DETAILS"){el.open=true;el.scrollIntoView({behavior:"smooth",block:"start"});}
+  var h=location.hash;if(!h)return;
+  var el;try{el=document.querySelector(h);}catch(e){return;}
+  if(!el)return;var p=el;while(p){if(p.tagName==="DETAILS")p.open=true;p=p.parentElement;}
+  el.scrollIntoView({behavior:"smooth",block:"start"});
 }
 window.addEventListener("hashchange",openHashTarget);
 window.addEventListener("DOMContentLoaded",openHashTarget);
 </script>
 <script src="./theme.js"></script>
 <script>
-const wa=n=>`https://wa.me/${n}`;
-fetch('./contacts.json').then(r=>r.json()).then(d=>{
-  document.getElementById('contacts').innerHTML=(d.contacts||[]).map(c=>`
-    <div class="ccard">
-      <div class="nm">${c.name}</div>
-      <div class="role">${c.role||''}</div>
-      <div class="btns">
-        ${c.whatsapp?`<a class="cbtn wa" target="_blank" rel="noopener" href="${wa(c.whatsapp)}">💬 WhatsApp</a>`:''}
-        ${c.email?`<a class="cbtn mail" href="mailto:${c.email}">✉️ ${c.email}</a>`:''}
-      </div>
-    </div>`).join('');
-}).catch(()=>{document.getElementById('contacts-wrap').style.display='none';});
-fetch('./messages.json').then(r=>r.json()).then(d=>{
-  const msgs=(d.messages||[]).sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
-  document.getElementById('board').innerHTML='<h2>📌 Message board</h2>'+
-    (msgs.length?msgs.map(m=>`<div class="msg"><span class="mt">${m.pinned?'📌 ':''}${m.title||''}</span><span class="md">${m.date||''}</span><div class="mb">${m.body||''}</div></div>`).join('')
-    :'<div class="msg"><div class="mb">No announcements yet.</div></div>');
-}).catch(()=>{document.getElementById('board').innerHTML='<h2>📌 Message board</h2><div class="msg"><div class="mb">No announcements yet.</div></div>';});
+var wa=function(n){return "https://wa.me/"+n;};
+fetch('./contacts.json').then(function(r){return r.json();}).then(function(d){
+  document.getElementById('contacts').innerHTML=(d.contacts||[]).map(function(c){return '<div class="ccard">'+
+    '<div class="ct">Your HR contact</div><div class="nm">'+c.name+'</div><div class="role">'+(c.role||'')+'</div>'+
+    '<div class="btns">'+(c.whatsapp?'<a class="cbtn wa" target="_blank" rel="noopener" href="'+wa(c.whatsapp)+'">💬 WhatsApp</a>':'')+
+    (c.email?'<a class="cbtn mail" href="mailto:'+c.email+'">✉️ '+c.email+'</a>':'')+'</div></div>';}).join('');
+}).catch(function(){document.getElementById('contacts-wrap').style.display='none';});
+fetch('./messages.json').then(function(r){return r.json();}).then(function(d){
+  var msgs=(d.messages||[]).sort(function(a,b){return (b.pinned?1:0)-(a.pinned?1:0);});
+  document.getElementById('board').innerHTML='<h2>📌 Message board</h2>'+(msgs.length?msgs.map(function(m){
+    return '<div class="msg"><span class="mt">'+(m.pinned?'📌 ':'')+(m.title||'')+'</span><span class="md">'+(m.date||'')+'</span><div class="mb">'+(m.body||'')+'</div></div>';}).join(''):'<div class="msg"><div class="mb">No announcements yet.</div></div>');
+}).catch(function(){document.getElementById('board').innerHTML='<h2>📌 Message board</h2><div class="msg"><div class="mb">No announcements yet.</div></div>';});
 </script>
 <script src="./assistant.js"></script>
 </body>
