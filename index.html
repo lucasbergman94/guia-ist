@@ -18,7 +18,7 @@
   .hero h1{font-weight:700;letter-spacing:-.035em;line-height:1.03;margin:10px 0 0}
   .hero h1 .l1{display:block;font-size:clamp(34px,7vw,60px)}
   .hero h1 .l2{display:block;font-size:clamp(26px,5vw,46px);font-weight:600;color:rgba(255,255,255,.96);margin-top:2px}
-  .hero p{font-size:clamp(15px,3.6vw,19px);margin-top:14px;max-width:560px;color:rgba(255,255,255,.92)}
+  .hero p{font-size:clamp(15px,3.6vw,19px);margin-top:14px;max-width:540px;color:rgba(255,255,255,.92);text-wrap:balance}
   .hero .chip{display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:#fff;background:rgba(1,20,52,.5);
     border:1px solid rgba(255,255,255,.38);backdrop-filter:blur(8px);border-radius:var(--r-pill);padding:8px 14px;font-size:.84rem;font-weight:600}
   /* journey */
@@ -137,13 +137,13 @@
 var T={
  en:{map:"Map",whereTitle:"Where are you right now?",whereHint:"Tap your stage to see your next steps. Your progress is saved on this device.",
    heroEye:"New teacher guide · 2026–27",heroL1:"Welcome 👋",heroL2:"Your move to Istanbul, one step at a time.",
-   heroP:"Tell us where you are and we'll show you exactly what to do next.",heroChip:"🗓️ First day of school · 20 August 2026",
+   heroP:"Tell us where you are, and we'll show your next steps.",heroChip:"🗓️ First day of school · 20 August 2026",
    youAreHere:"You are here",nextSteps:"Your next steps",stuck:'Stuck on something else? <a href="#" class="askopen">Ask the guide</a> or message HR below.',
    board:"📌 Message board",hrContact:"Your HR contact",hrRole:"Legal logistics and work visas (HR)",browse:"📚 Browse all topics",
    foot:'A community guide for new ENKA teachers. Confirm specifics with HR. Last updated 28 June 2026.<br>Hero photo: Tarık Kaan Muslu / Wikimedia Commons (CC).'},
  tr:{map:"Harita",whereTitle:"Şu anda neredesiniz?",whereHint:"Aşamanıza dokunarak sonraki adımlarınızı görün. İlerlemeniz bu cihazda kaydedilir.",
    heroEye:"Yeni öğretmen rehberi · 2026–27",heroL1:"Hoş geldiniz 👋",heroL2:"İstanbul'a taşınmanız, adım adım.",
-   heroP:"Bize hangi aşamada olduğunuzu söyleyin, sırada tam olarak ne yapmanız gerektiğini gösterelim.",heroChip:"🗓️ Okulun ilk günü · 20 Ağustos 2026",
+   heroP:"Hangi aşamada olduğunuzu söyleyin, sonraki adımlarınızı gösterelim.",heroChip:"🗓️ Okulun ilk günü · 20 Ağustos 2026",
    youAreHere:"Buradasınız",nextSteps:"Sonraki adımlarınız",stuck:'Başka bir konuda mı takıldınız? <a href="#" class="askopen">Rehbere sorun</a> ya da aşağıdan İK ile iletişime geçin.',
    board:"📌 Duyuru panosu",hrContact:"İK iletişiminiz",hrRole:"Yasal süreçler ve çalışma vizeleri (İK)",browse:"📚 Tüm konulara göz atın",
    foot:'Yeni ENKA öğretmenleri için topluluk rehberi. Ayrıntıları İK ile teyit edin. Son güncelleme: 28 Haziran 2026.<br>Hero fotoğrafı: Tarık Kaan Muslu / Wikimedia Commons (CC).'}
@@ -285,7 +285,10 @@ function setLang(l){LANG=l;try{localStorage.setItem("enka-lang",l);}catch(e){}re
 function setStepLabels(){document.querySelectorAll(".jlabel").forEach(function(s){var id=s.getAttribute("data-lab");var p=PHASES[idxOf(id)];s.textContent=p.label[LANG];});}
 var _renderAll=renderAll;renderAll=function(){_renderAll();setStepLabels();};
 
-function openHashTarget(){var h=location.hash;if(!h)return;var el;try{el=document.querySelector(h);}catch(e){return;}if(!el)return;var p=el;while(p){if(p.tagName==="DETAILS")p.open=true;p=p.parentElement;}el.scrollIntoView({behavior:"smooth",block:"start"});}
+function openHashTarget(){var h=location.hash;if(!h)return;var el;try{el=document.querySelector(h);}catch(e){return;}if(!el)return;
+  /* auto-navigation: close sibling sections so only the linked one is open */
+  document.querySelectorAll('details.section[open]').forEach(function(d){if(d!==el)d.open=false;});
+  var p=el;while(p){if(p.tagName==="DETAILS")p.open=true;p=p.parentElement;}el.scrollIntoView({behavior:"smooth",block:"start"});}
 window.addEventListener("hashchange",openHashTarget);
 
 fetch('./contacts.json').then(function(r){return r.json();}).then(function(d){contactsData=d.contacts||[];renderContacts();}).catch(function(){var w=document.getElementById("contacts-wrap");if(w)w.style.display="none";});

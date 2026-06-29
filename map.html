@@ -10,39 +10,50 @@
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 <link rel="stylesheet" href="./theme.css" />
 <style>
-  .wrap{max-width:1200px}
-  .intro{padding:18px 0 4px}
+  .wrap{max-width:1280px}
+  .intro{padding:16px 0 4px}
   .intro h1{font-size:clamp(24px,5vw,34px);font-weight:600;letter-spacing:-.03em}
-  .intro p{color:var(--mut);font-size:.92rem;margin-top:6px;max-width:720px}
+  .intro p{color:var(--mut);font-size:.92rem;margin-top:6px;max-width:760px;text-wrap:pretty}
   .controls{display:flex;flex-direction:column;gap:10px;margin:14px 0}
   .addr{padding:14px 16px}
   .addr .ttl{font-size:.9rem;font-weight:600;margin-bottom:8px}
   .addr .row{display:flex;gap:8px;flex-wrap:wrap}
   .addr .out{font-size:.88rem;margin-top:10px}
+  .resetbtn{display:inline-block;margin-top:10px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:7px 13px;font-size:.8rem;font-weight:600;cursor:pointer}
   .row{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
   .label{font-size:.74rem;color:var(--mut);font-weight:600;margin-right:2px}
-  #map{height:56vh;min-height:330px;width:100%;background:var(--mapbg);border-radius:var(--r-card);border:1px solid var(--bd);overflow:hidden}
-  .legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 4px;font-size:.74rem;color:var(--mut)}
+  /* map + side-panel dashboard layout */
+  .maplayout{display:grid;grid-template-columns:360px 1fr;gap:14px;margin-top:6px;align-items:stretch}
+  @media(max-width:880px){.maplayout{grid-template-columns:1fr}.side{order:2;max-height:none!important}.mapcol{order:1}}
+  .mapcol{display:flex;flex-direction:column;gap:8px}
+  #map{height:72vh;min-height:360px;width:100%;background:var(--mapbg);border-radius:var(--r-card);border:1px solid var(--bd);overflow:hidden}
+  @media(max-width:880px){#map{height:50vh}}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;padding:2px 4px;font-size:.74rem;color:var(--mut)}
   .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:middle;border:1px solid rgba(0,0,0,.25)}
   .stopBadge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;color:#fff;font-size:.62rem;font-weight:700;margin-right:4px;vertical-align:middle}
-  .list{padding:4px 0 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:10px;align-items:start}
-  .stopGroup{grid-column:1/-1;margin:16px 0 2px;font-size:.82rem;color:var(--mut);font-weight:600;border-top:1px solid var(--bd);padding-top:12px}
-  .ncard{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px 14px;margin:0;cursor:pointer;box-shadow:var(--shadow);transition:transform .2s var(--ease)}
-  .ncard:hover{transform:translateY(-2px)}
+  .side{background:var(--card);border:1px solid var(--bd);border-radius:var(--r-card);box-shadow:var(--shadow);max-height:72vh;overflow:auto;padding:12px 14px}
+  .side .stt{font-size:.74rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+  .stopGroup{margin:14px 0 2px;font-size:.8rem;color:var(--mut);font-weight:600;border-top:1px solid var(--bd);padding-top:10px}
+  .stopGroup:first-of-type{border-top:0;margin-top:2px}
+  .ncard{background:var(--bg2);border:1px solid var(--bd);border-radius:12px;padding:11px 12px;margin:8px 0;cursor:pointer;transition:transform .15s var(--ease),border-color .15s}
+  .ncard:hover{border-color:var(--acc)}
+  .ncard.sel{border-color:var(--acc);box-shadow:0 0 0 2px color-mix(in srgb,var(--acc) 25%,transparent)}
   .ncard .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-  .ncard .nm{font-weight:600;font-size:.96rem;letter-spacing:-.01em}
-  .ncard .ol{color:var(--mut);font-size:.82rem;margin-top:2px}
-  .sheet h2{margin:0 34px 0 0;font-size:1.2rem;font-weight:600;letter-spacing:-.02em}
-  .sheet .meta{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
-  .sheet .desc{font-size:.92rem;color:var(--txt);margin:8px 0}
-  .sheet .cav{font-size:.84rem;color:#b07400;background:color-mix(in srgb,var(--t2) 14%,transparent);border:1px solid color-mix(in srgb,var(--t2) 40%,transparent);border-radius:10px;padding:8px 10px;margin:8px 0}
-  html[data-theme="dark"] .sheet .cav{color:#f0c265}
+  .ncard .nm{font-weight:600;font-size:.94rem;letter-spacing:-.01em}
+  .ncard .ol{color:var(--mut);font-size:.8rem;margin-top:2px}
+  /* detail in side panel */
+  .back{background:none;border:0;color:var(--acc);font:inherit;font-weight:600;font-size:.85rem;cursor:pointer;padding:2px 0;margin-bottom:8px}
+  .dh2{font-size:1.25rem;font-weight:600;letter-spacing:-.02em}
+  .meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+  .desc{font-size:.92rem;color:var(--txt);margin:8px 0;line-height:1.55}
+  .cav{font-size:.84rem;color:#b07400;background:color-mix(in srgb,var(--t2) 14%,transparent);border:1px solid color-mix(in srgb,var(--t2) 40%,transparent);border-radius:10px;padding:8px 10px;margin:8px 0}
+  html[data-theme="dark"] .cav{color:#f0c265}
   .grp{margin-top:14px}
   .grp h3{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:0 0 7px}
   .chips{display:flex;gap:7px;flex-wrap:wrap}
-  a.tag{display:inline-flex;align-items:center;gap:5px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:8px 12px;font-size:.82rem;font-weight:500}
+  a.tag{display:inline-flex;align-items:center;gap:5px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:var(--r-pill);padding:8px 11px;font-size:.8rem;font-weight:500}
   a.tag:hover{border-color:var(--acc)}
-  a.route{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:14px;padding:12px 13px;font-size:.88rem;font-weight:600;margin-top:8px}
+  a.route{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:12px;padding:11px 12px;font-size:.86rem;font-weight:600;margin-top:8px}
   a.route .mini{font-size:.72rem;color:var(--mut);font-weight:400}
   .leaflet-popup-content a{color:var(--acc);font-weight:600}
   @media(max-width:420px){.topbar{gap:8px;padding-left:12px;padding-right:12px}.brand .logo{height:26px}.langtog button{padding:5px 9px}}
@@ -79,44 +90,50 @@
         <span class="chip t1" data-tier="1" role="button" tabindex="0" aria-pressed="false"></span>
         <span class="chip t2" data-tier="2" role="button" tabindex="0" aria-pressed="false"></span>
         <span class="chip t3" data-tier="3" role="button" tabindex="0" aria-pressed="false"></span>
-        <span class="chip" data-walk="1" role="button" tabindex="0" aria-pressed="false"></span>
       </div>
-      <div class="row" id="stopChips"><span class="label" id="lblStop"></span></div>
+      <div class="row" id="stopRow">
+        <span class="label" id="lblStop"></span>
+        <span class="chip" id="walkChip" data-walk="1" role="button" tabindex="0" aria-pressed="false"></span>
+      </div>
     </div>
 
-    <div id="map"></div>
-    <div class="legend" id="legend"></div>
-    <div class="list" id="list"></div>
+    <div class="maplayout">
+      <aside class="side" id="side"></aside>
+      <div class="mapcol">
+        <div id="map"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+    </div>
   </main>
 
   <footer class="foot" id="mapfoot"></footer>
-
-  <div class="modal" id="modal"><div class="ov" id="ov"></div><div class="sheet" id="sheet"></div></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="./theme.js"></script>
 <script>
 var MT={
- en:{back:"← Guide",title:"Housing & commute map",intro:"The 9 service-bus stops, neighborhoods near each, and live routes. The bus runs from a stop to school, so live where you can reach a stop easily. Bus times: confirm with HR.",
+ en:{back:"← Guide",title:"Housing & commute map",intro:"The 9 service-bus stops and the neighborhoods around each. Live near a stop you can reach easily, the bus runs from there to school. Bus times: confirm with HR.",
    addrTtl:"📍 Type your home address (or a neighborhood)",addrPh:"e.g. İstinye Caddesi 100, Sarıyer",findStop:"Find nearest stop",useLoc:"Use my location",searchPh:"Search a neighborhood…",
    price:"Price",tier:{1:"€ Lower",2:"€€ Mid",3:"€€€ Higher"},walk:"🚶 Walk to school",stop:"Stop",
-   legBus:"Bus stop",legSchool:"School ★",legWalk:"🚶 = walk to school",
+   legBus:"Bus stop",legSchool:"School ★",legWalk:"🚶 = walk to school",legHome:"🏠 Your address",
+   sideTitle:"Neighborhoods",selectPrompt:"Tap a neighborhood on the map or in the list to see details.",backList:"← Back to list",
    commute:"Your commute",toStop:"Route to your stop",stopSchool:"Stop → school",busRef:"(reference of the bus route)",
    nearby:"Explore nearby (live)",rentals:"Rentals in this area",more:"More rental sites",openGm:"Open in Google Maps",
    near:[["🚇 Metro & transit","metro istasyonu"],["🛒 Supermarkets","süpermarket"],["🍽️ Restaurants","restaurants"],["🍺 Bars","bars"],["💊 Pharmacies","eczane"],["🏋️ Gyms","gym"]],
-   nearestStop:"Nearest stop:",km:"km straight-line",homeStop:"Home → Stop",transitWalk:"(transit/walking)",ref:"(reference)",
+   nearestStop:"Nearest pickup point:",km:"km",home2stop:"Home → stop",toSchool:"Stop → school distance:",homeStop:"Home → Stop",transitWalk:"(transit/walking)",ref:"(reference)",showAll:"↺ Show all neighborhoods",
    locating:"Locating address…",locating2:"Locating…",noAddr:"Type an address or neighborhood first.",notFound:"Could not find that address. Add the district (e.g. \"…, Sarıyer\"), or use a neighborhood name.",lookupFail:"Address lookup failed. Check your connection and try again.",noGeo:"Geolocation not available. Type your address instead.",geoFail:"Could not get your location",
    asiaNote:"Asian-side stops: the school suggests settling in before choosing the Asian side.",routeStopSchool:"Route this stop → school ›",side:{Europe:"Europe",Asia:"Asia"},
    foot:"Neighborhood notes are factual summaries from the ENKA service-bus document; 'explore nearby' and rental links open live results on Google Maps and rental sites. Pin locations are auto-geocoded and may be slightly off. Bus schedule and times: confirm with HR. Map data © OpenStreetMap contributors."},
- tr:{back:"← Rehber",title:"Konut ve ulaşım haritası",intro:"9 servis durağı, her birinin yakınındaki mahalleler ve canlı rotalar. Servis bir duraktan okula gider, bu yüzden bir durağa kolayca ulaşabileceğiniz yerde oturun. Servis saatleri: İK ile teyit edin.",
+ tr:{back:"← Rehber",title:"Konut ve ulaşım haritası",intro:"9 servis durağı ve her birinin çevresindeki mahalleler. Kolayca ulaşabileceğiniz bir durağın yakınında oturun; servis sizi oradan okula götürür. Servis saatleri: İK ile teyit edin.",
    addrTtl:"📍 Ev adresinizi (ya da bir mahalle) yazın",addrPh:"örn. İstinye Caddesi 100, Sarıyer",findStop:"En yakın durağı bul",useLoc:"Konumumu kullan",searchPh:"Mahalle ara…",
    price:"Fiyat",tier:{1:"€ Düşük",2:"€€ Orta",3:"€€€ Yüksek"},walk:"🚶 Okula yürüme",stop:"Durak",
-   legBus:"Otobüs durağı",legSchool:"Okul ★",legWalk:"🚶 = okula yürüme",
+   legBus:"Otobüs durağı",legSchool:"Okul ★",legWalk:"🚶 = okula yürüme",legHome:"🏠 Adresiniz",
+   sideTitle:"Mahalleler",selectPrompt:"Detayları görmek için haritada veya listede bir mahalleye dokunun.",backList:"← Listeye dön",
    commute:"Ulaşımınız",toStop:"Durağınıza rota",stopSchool:"Durak → okul",busRef:"(servis rotası referansı)",
    nearby:"Yakını keşfedin (canlı)",rentals:"Bu bölgede kiralık",more:"Diğer kiralık siteleri",openGm:"Google Haritalar'da aç",
    near:[["🚇 Metro ve ulaşım","metro istasyonu"],["🛒 Süpermarketler","süpermarket"],["🍽️ Restoranlar","restoran"],["🍺 Barlar","bar"],["💊 Eczaneler","eczane"],["🏋️ Spor salonları","spor salonu"]],
-   nearestStop:"En yakın durak:",km:"km kuş uçuşu",homeStop:"Ev → Durak",transitWalk:"(toplu taşıma/yürüme)",ref:"(referans)",
+   nearestStop:"En yakın durak:",km:"km",home2stop:"Ev → durak",toSchool:"Durak → okul mesafesi:",homeStop:"Ev → Durak",transitWalk:"(toplu taşıma/yürüme)",ref:"(referans)",showAll:"↺ Tüm mahalleleri göster",
    locating:"Adres bulunuyor…",locating2:"Konum bulunuyor…",noAddr:"Önce bir adres veya mahalle yazın.",notFound:"Bu adres bulunamadı. İlçeyi ekleyin (örn. \"…, Sarıyer\") ya da bir mahalle adı kullanın.",lookupFail:"Adres araması başarısız. Bağlantınızı kontrol edip tekrar deneyin.",noGeo:"Konum mevcut değil. Bunun yerine adresinizi yazın.",geoFail:"Konumunuz alınamadı",
    asiaNote:"Asya yakası durakları: okul, Asya yakasını seçmeden önce yerleşmenizi öneriyor.",routeStopSchool:"Bu duraktan okula rota ›",side:{Europe:"Avrupa",Asia:"Asya"},
    foot:"Mahalle notları ENKA servis belgesinden alınan nesnel özetlerdir; 'yakını keşfet' ve kiralık bağlantıları canlı sonuçlar açar. Pin konumları otomatik üretilmiştir ve hafif kayabilir. Servis saatleri: İK ile teyit edin. Harita verisi © OpenStreetMap katkıda bulunanlar."}
@@ -127,7 +144,8 @@ function nz(n,f){return (LANG==="tr"&&n[f+"_tr"])?n[f+"_tr"]:n[f];}
 var TIERC={1:"#34a853",2:"#d9a328",3:"#e0533a"};
 var SIDE={Europe:"#012169",Asia:"#7c3aed"};
 var state={tiers:new Set(),stops:new Set(),walk:false,q:""};
-var DATA,map,schoolLL,stopById={},nObjs=[],addrMarker=null;
+var DATA,map,schoolLL,stopById={},nObjs=[],selId=null;
+var homeMarker=null,focusLines=[],focused=false;
 var enc=encodeURIComponent;
 var gmDir=function(o,d,m){return "https://www.google.com/maps/dir/?api=1&origin="+o+"&destination="+d+"&travelmode="+m;};
 var gmSearch=function(q){return "https://www.google.com/maps/search/?api=1&query="+enc(q);};
@@ -136,7 +154,7 @@ function haversine(a,b){var R=6371,r=Math.PI/180,dLat=(b.lat-a.lat)*r,dLon=(b.lo
 function nearestStop(p){var best=null;DATA.stops.filter(function(s){return s.geocodeOk;}).forEach(function(s){var d=haversine(p,s);if(!best||d<best.d)best={s:s,d:d};});return best;}
 
 fetch('./data.json?v=2').then(function(r){return r.json();}).then(function(d){DATA=d;init();})
-  .catch(function(e){document.getElementById('list').innerHTML='<p style="color:var(--t3)">Could not load map data.</p>';});
+  .catch(function(e){document.getElementById('side').innerHTML='<p style="color:var(--t3)">Could not load map data.</p>';});
 
 function init(){
   map=L.map('map',{zoomControl:true}).setView([41.09,29.01],12);
@@ -149,28 +167,29 @@ function init(){
     st._mk=mk;if(st.side==='Europe')bounds.push([st.lat,st.lon]);});
   DATA.neighborhoods.forEach(function(n){var marker=null;
     if(n.geocodeOk){marker=L.circleMarker([n.lat,n.lon],{radius:8,color:'#fff',weight:1.5,fillColor:TIERC[n.tier],fillOpacity:.95}).addTo(map).bindTooltip(n.name,{direction:'top'});
-      marker.on('click',function(){openModal(n);});bounds.push([n.lat,n.lon]);}
+      marker.on('click',function(){openDetail(n);});bounds.push([n.lat,n.lon]);}
     nObjs.push({n:n,marker:marker});});
   if(bounds.length)map.fitBounds(bounds,{padding:[30,30]});
+  homeBounds=bounds;
   buildStopChips();wireControls();applyLang();
 }
+var homeBounds=[];
 function stopPopup(st){return "<b>"+S().stop+" "+st.num+" · "+st.name+"</b><br>"+S().side[st.side]+(st.side==='Asia'?'<br><i>'+S().asiaNote+'</i>':'')+'<br><a href="'+gmDir(ll(st),ll(schoolLL),'driving')+'" target="_blank" rel="noopener">'+S().routeStopSchool+'</a>';}
-function buildStopChips(){var box=document.getElementById('stopChips');
+function buildStopChips(){var row=document.getElementById('stopRow');var walk=document.getElementById('walkChip');
   DATA.stops.filter(function(s){return s.side==='Europe';}).forEach(function(s){var c=document.createElement('span');
-    c.className='chip';c.setAttribute('role','button');c.tabIndex=0;c.setAttribute('aria-pressed','false');c.dataset.stop=s.num;c.textContent=s.num;c.title=s.name;box.appendChild(c);});}
+    c.className='chip';c.setAttribute('role','button');c.tabIndex=0;c.setAttribute('aria-pressed','false');c.dataset.stop=s.num;c.textContent=s.num;c.title=s.name;row.insertBefore(c,walk);});}
 function buildLegend(){document.getElementById('legend').innerHTML=
   '<span><span class="stopBadge" style="background:'+SIDE.Europe+'">N</span>'+S().legBus+'</span>'+
   '<span><span class="dot" style="background:#fe5252"></span>'+S().legSchool+'</span>'+
   [1,2,3].map(function(k){return '<span><span class="dot" style="background:'+TIERC[k]+'"></span>'+S().tier[k]+'</span>';}).join('')+
   '<span>'+S().legWalk+'</span>';}
 function wireControls(){
-  document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value.toLowerCase();render();});
+  document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value.toLowerCase();clearFocus(true);renderSide();applyMarkers();});
   document.querySelectorAll('.chip[data-tier]').forEach(function(c){var tn=+c.dataset.tier;
-    var tog=function(){state.tiers.has(tn)?state.tiers.delete(tn):state.tiers.add(tn);c.setAttribute('aria-pressed',state.tiers.has(tn));render();};
+    var tog=function(){state.tiers.has(tn)?state.tiers.delete(tn):state.tiers.add(tn);c.setAttribute('aria-pressed',state.tiers.has(tn));clearFocus(true);renderSide();applyMarkers();};
     c.addEventListener('click',tog);c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});});
-  var wc=document.querySelector('.chip[data-walk]');wc.addEventListener('click',function(){state.walk=!state.walk;wc.setAttribute('aria-pressed',state.walk);render();});
-  document.getElementById('stopChips').addEventListener('click',function(e){var c=e.target.closest('[data-stop]');if(!c)return;var sn=+c.dataset.stop;state.stops.has(sn)?state.stops.delete(sn):state.stops.add(sn);c.setAttribute('aria-pressed',state.stops.has(sn));render();});
-  document.getElementById('ov').addEventListener('click',closeModal);
+  var wc=document.getElementById('walkChip');wc.addEventListener('click',function(){state.walk=!state.walk;wc.setAttribute('aria-pressed',state.walk);clearFocus(true);renderSide();applyMarkers();});
+  document.getElementById('stopRow').addEventListener('click',function(e){var c=e.target.closest('[data-stop]');if(!c)return;var sn=+c.dataset.stop;state.stops.has(sn)?state.stops.delete(sn):state.stops.add(sn);c.setAttribute('aria-pressed',state.stops.has(sn));clearFocus(true);renderSide();applyMarkers();});
   document.getElementById('locate').addEventListener('click',planFromLocation);
   document.getElementById('addrGo').addEventListener('click',planFromAddress);
   document.getElementById('addr').addEventListener('keydown',function(e){if(e.key==='Enter')planFromAddress();});
@@ -183,20 +202,25 @@ function match(n){
   if(state.q&&!(n.name.toLowerCase().indexOf(state.q)>-1||(nz(n,'oneLiner')||'').toLowerCase().indexOf(state.q)>-1||(n.district||'').toLowerCase().indexOf(state.q)>-1))return false;
   return true;
 }
-function render(){
+function applyMarkers(){ /* show/hide neighborhood markers per filters (skipped while focused) */
+  if(focused)return;
   nObjs.forEach(function(o){if(!o.marker)return;if(match(o.n)){if(!map.hasLayer(o.marker))o.marker.addTo(map);}else{if(map.hasLayer(o.marker))map.removeLayer(o.marker);}});
-  var list=document.getElementById('list');list.innerHTML='';
+}
+function renderSide(){
+  var side=document.getElementById('side');
   var filtered=DATA.neighborhoods.filter(match);
-  if(!filtered.length){list.innerHTML='<p style="color:var(--mut)">'+(LANG==="tr"?"Bu filtrelerle eşleşen mahalle yok.":"No neighborhoods match these filters.")+'</p>';return;}
+  var html='<div class="stt">'+S().sideTitle+' · '+filtered.length+'</div>';
+  if(!filtered.length){side.innerHTML=html+'<p style="color:var(--mut);font-size:.88rem">'+(LANG==="tr"?"Bu filtrelerle eşleşen mahalle yok.":"No neighborhoods match these filters.")+'</p>';return;}
   var byStop={};filtered.forEach(function(n){(byStop[n.stop]=byStop[n.stop]||[]).push(n);});
   Object.keys(byStop).map(Number).sort(function(a,b){return a-b;}).forEach(function(sn){var st=stopById[sn];
-    var h=document.createElement('div');h.className='stopGroup';h.innerHTML='<span class="stopBadge" style="background:'+(SIDE[st.side]||'#555')+'">'+sn+'</span> '+S().stop+' '+sn+' · '+st.name;list.appendChild(h);
+    html+='<div class="stopGroup"><span class="stopBadge" style="background:'+(SIDE[st.side]||'#555')+'">'+sn+'</span> '+S().stop+' '+sn+' · '+st.name+'</div>';
     byStop[sn].sort(function(a,b){return a.tier-b.tier||a.name.localeCompare(b.name);}).forEach(function(n){
-      var card=document.createElement('div');card.className='ncard';
-      card.innerHTML='<div class="top"><span class="nm">'+n.name+'</span><span style="display:flex;gap:6px">'+(n.walkToSchool?'<span class="pill walk">🚶</span>':'')+'<span class="pill t'+n.tier+'">'+['','€','€€','€€€'][n.tier]+'</span></span></div><div class="ol">'+(nz(n,'oneLiner')||'')+' · '+n.district+'</div>';
-      card.addEventListener('click',function(){openModal(n);});list.appendChild(card);});});
+      html+='<div class="ncard'+(selId===n.name?' sel':'')+'" data-n="'+enc(n.name)+'"><div class="top"><span class="nm">'+n.name+'</span><span style="display:flex;gap:6px">'+(n.walkToSchool?'<span class="pill walk">🚶</span>':'')+'<span class="pill t'+n.tier+'">'+['','€','€€','€€€'][n.tier]+'</span></span></div><div class="ol">'+(nz(n,'oneLiner')||'')+' · '+n.district+'</div></div>';});});
+  side.innerHTML=html;
+  side.querySelectorAll('.ncard').forEach(function(c){c.addEventListener('click',function(){var nm=decodeURIComponent(c.dataset.n);var n=DATA.neighborhoods.filter(function(x){return x.name===nm;})[0];if(n)openDetail(n);});});
 }
-function openModal(n){
+function openDetail(n){
+  selId=n.name;
   var st=stopById[n.stop];
   var origin=n.geocodeOk?ll(n):enc(n.name+', İstanbul, Türkiye');
   var stopLL=st&&st.geocodeOk?ll(st):enc(st.name+', İstanbul');
@@ -204,8 +228,8 @@ function openModal(n){
   var near=S().near.map(function(x){return '<a class="tag" target="_blank" rel="noopener" href="'+gmSearch(x[1]+' '+n.name+' İstanbul')+'">'+x[0]+'</a>';}).join('');
   var hep="https://www.hepsiemlak.com/"+n.districtSlug+"-"+n.mahalleSlug+"-kiralik";
   var moreRent="https://www.google.com/search?q="+enc('kiralık daire '+n.name+' '+n.district+' İstanbul');
-  document.getElementById('sheet').innerHTML='<button class="x" aria-label="Close">×</button>'+
-    '<h2>'+n.name+'</h2>'+
+  document.getElementById('side').innerHTML='<button class="back" type="button" id="backBtn">'+S().backList+'</button>'+
+    '<div class="dh2">'+n.name+'</div>'+
     '<div class="meta"><span class="pill t'+n.tier+'">'+S().tier[n.tier]+'</span><span class="pill">'+n.district+' · '+S().side[st.side]+'</span><span class="pill">'+S().stop+' '+st.num+': '+st.name+'</span>'+(n.walkToSchool?'<span class="pill walk">🚶</span>':'')+'</div>'+
     '<div class="desc">'+(nz(n,'desc')||'')+'</div>'+
     (cav?'<div class="cav">⚠️ '+cav+'</div>':'')+
@@ -217,34 +241,56 @@ function openModal(n){
       '<a class="tag" target="_blank" rel="noopener" href="'+hep+'">🏠 Hepsiemlak</a>'+
       '<a class="tag" target="_blank" rel="noopener" href="'+moreRent+'">🔎 '+S().more+'</a>'+
       '<a class="tag" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+origin+'">📍 '+S().openGm+'</a></div></div>';
-  document.querySelector('#sheet .x').onclick=closeModal;
-  document.getElementById('modal').classList.add('open');
-  if(n.geocodeOk)map.panTo([n.lat,n.lon]);
+  document.getElementById('backBtn').addEventListener('click',function(){selId=null;renderSide();});
+  if(n.geocodeOk){map.panTo([n.lat,n.lon]);nObjs.forEach(function(o){if(o.n===n&&o.marker)o.marker.openTooltip();});}
 }
-function closeModal(){document.getElementById('modal').classList.remove('open');}
-function showAddressResult(p,label){
-  if(addrMarker)map.removeLayer(addrMarker);
-  addrMarker=L.marker([p.lat,p.lon],{icon:L.divIcon({className:'',html:'<div style="background:#10b981;color:#fff;border:2px solid #fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px">🏠</div>',iconSize:[22,22],iconAnchor:[11,11]}),zIndexOffset:900}).addTo(map);
+
+/* ---- address focus mode ---- */
+function clearFocus(silent){
+  focused=false;
+  if(homeMarker){map.removeLayer(homeMarker);homeMarker=null;}
+  focusLines.forEach(function(l){map.removeLayer(l);});focusLines=[];
+  DATA.stops.forEach(function(st){if(st._mk&&!map.hasLayer(st._mk))st._mk.addTo(map);});
+  applyMarkers();
+  if(!silent){document.getElementById('addrOut').innerHTML='';if(homeBounds.length)map.fitBounds(homeBounds,{padding:[30,30]});}
+}
+function focusAddress(p,label){
+  focused=false; /* allow applyMarkers to run once to know state, then hide */
+  if(homeMarker){map.removeLayer(homeMarker);homeMarker=null;}
+  focusLines.forEach(function(l){map.removeLayer(l);});focusLines=[];
+  /* hide all neighborhood markers */
+  nObjs.forEach(function(o){if(o.marker&&map.hasLayer(o.marker))map.removeLayer(o.marker);});
+  focused=true;
   var best=nearestStop(p);var s=best.s;
-  map.fitBounds([[p.lat,p.lon],[s.lat,s.lon],[schoolLL.lat,schoolLL.lon]],{padding:[40,40]});
+  /* hide every stop except the nearest pickup */
+  DATA.stops.forEach(function(st){if(st._mk){if(st===s){if(!map.hasLayer(st._mk))st._mk.addTo(map);}else if(map.hasLayer(st._mk))map.removeLayer(st._mk);}});
+  homeMarker=L.marker([p.lat,p.lon],{icon:L.divIcon({className:'',html:'<div style="background:#10b981;color:#fff;border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.45)">🏠</div>',iconSize:[26,26],iconAnchor:[13,13]}),zIndexOffset:1100}).addTo(map);
+  var l1=L.polyline([[p.lat,p.lon],[s.lat,s.lon]],{color:'#10b981',weight:3,dashArray:'6,8',opacity:.9}).addTo(map);
+  var l2=L.polyline([[s.lat,s.lon],[schoolLL.lat,schoolLL.lon]],{color:'#012169',weight:3,dashArray:'2,7',opacity:.85}).addTo(map);
+  focusLines=[l1,l2];
+  map.fitBounds([[p.lat,p.lon],[s.lat,s.lon],[schoolLL.lat,schoolLL.lon]],{padding:[55,55]});
+  var toSchoolKm=haversine(s,schoolLL);
   document.getElementById('addrOut').innerHTML=(label?'<div style="color:var(--mut);font-size:.78rem;margin-bottom:6px">'+label+'</div>':'')+
-    S().nearestStop+' <b>'+S().stop+' '+s.num+' · '+s.name+'</b> (~'+best.d.toFixed(1)+' '+S().km+').'+
-    '<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">'+
+    '<div>'+S().nearestStop+' <b>'+S().stop+' '+s.num+' · '+s.name+'</b></div>'+
+    '<div style="color:var(--mut);font-size:.84rem;margin-top:2px">'+S().home2stop+': ~'+best.d.toFixed(1)+' '+S().km+' · '+S().toSchool+' ~'+toSchoolKm.toFixed(1)+' '+S().km+'</div>'+
+    '<div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">'+
     '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(p),ll(s),'transit')+'">🚶 '+S().homeStop+' '+s.num+' <span class="mini">'+S().transitWalk+'</span></a>'+
-    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(s),ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().ref+'</span></a></div>';
+    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(s),ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().ref+'</span></a></div>'+
+    '<button class="resetbtn" type="button" id="resetFocus">'+S().showAll+'</button>';
+  document.getElementById('resetFocus').addEventListener('click',function(){clearFocus(false);});
 }
 function planFromAddress(){
   var q=document.getElementById('addr').value.trim();var out=document.getElementById('addrOut');
   if(!q){out.textContent=S().noAddr;return;}
   out.textContent=S().locating;
   fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=tr&q='+enc(q+', İstanbul, Türkiye'),{headers:{'Accept':'application/json'}})
-   .then(function(r){return r.json();}).then(function(j){if(!j.length){out.innerHTML=S().notFound;return;}showAddressResult({lat:+j[0].lat,lon:+j[0].lon},j[0].display_name);})
+   .then(function(r){return r.json();}).then(function(j){if(!j.length){out.innerHTML=S().notFound;return;}focusAddress({lat:+j[0].lat,lon:+j[0].lon},j[0].display_name);})
    .catch(function(){out.textContent=S().lookupFail;});
 }
 function planFromLocation(){
   var out=document.getElementById('addrOut');out.textContent=S().locating2;
   if(!navigator.geolocation){out.textContent=S().noGeo;return;}
-  navigator.geolocation.getCurrentPosition(function(pos){showAddressResult({lat:pos.coords.latitude,lon:pos.coords.longitude},null);},
+  navigator.geolocation.getCurrentPosition(function(pos){focusAddress({lat:pos.coords.latitude,lon:pos.coords.longitude},null);},
     function(err){out.textContent=S().geoFail+' ('+err.message+').';},{enableHighAccuracy:false,timeout:10000});
 }
 function applyLang(){
@@ -262,11 +308,13 @@ function applyLang(){
   document.querySelector('.chip[data-tier="1"]').textContent=S().tier[1];
   document.querySelector('.chip[data-tier="2"]').textContent=S().tier[2];
   document.querySelector('.chip[data-tier="3"]').textContent=S().tier[3];
-  document.querySelector('.chip[data-walk]').textContent=S().walk;
+  document.getElementById('walkChip').textContent=S().walk;
   document.getElementById('mapfoot').innerHTML=S().foot;
   document.querySelectorAll('#langtog button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===LANG);});
   DATA.stops.forEach(function(st){if(st._mk)st._mk.bindPopup(stopPopup(st));});
-  buildLegend();render();
+  buildLegend();
+  if(selId){var n=DATA.neighborhoods.filter(function(x){return x.name===selId;})[0];if(n){openDetail(n);} else renderSide();}
+  else renderSide();
 }
 </script>
 <script>window.ENKA_PHASE='housing';</script>
