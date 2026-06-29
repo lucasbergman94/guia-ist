@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>ENKA Istanbul · Housing & Commute Map</title>
-<meta name="description" content="Interactive map of ENKA's service-bus stops and nearby neighborhoods, with live routes from your address to your stop and to school." />
+<meta name="description" content="Interactive map of ENKA's service-bus stops and nearby neighborhoods, with live routes." />
 <link rel="icon" type="image/png" href="./assets/favicon.png" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
   integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -13,7 +13,7 @@
   .wrap{max-width:1200px}
   .intro{padding:18px 0 4px}
   .intro h1{font-size:clamp(24px,5vw,34px);font-weight:600;letter-spacing:-.03em}
-  .intro p{color:var(--mut);font-size:.92rem;margin-top:6px;max-width:680px}
+  .intro p{color:var(--mut);font-size:.92rem;margin-top:6px;max-width:720px}
   .controls{display:flex;flex-direction:column;gap:10px;margin:14px 0}
   .addr{padding:14px 16px}
   .addr .ttl{font-size:.9rem;font-weight:600;margin-bottom:8px}
@@ -32,7 +32,6 @@
   .ncard .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
   .ncard .nm{font-weight:600;font-size:.96rem;letter-spacing:-.01em}
   .ncard .ol{color:var(--mut);font-size:.82rem;margin-top:2px}
-  /* sheet content */
   .sheet h2{margin:0 34px 0 0;font-size:1.2rem;font-weight:600;letter-spacing:-.02em}
   .sheet .meta{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
   .sheet .desc{font-size:.92rem;color:var(--txt);margin:8px 0}
@@ -46,41 +45,43 @@
   a.route{display:flex;align-items:center;gap:9px;background:var(--card2);border:1px solid var(--bd);color:var(--txt);border-radius:14px;padding:12px 13px;font-size:.88rem;font-weight:600;margin-top:8px}
   a.route .mini{font-size:.72rem;color:var(--mut);font-weight:400}
   .leaflet-popup-content a{color:var(--acc);font-weight:600}
+  @media(max-width:420px){.topbar{gap:8px;padding-left:12px;padding-right:12px}.brand .logo{height:26px}.langtog button{padding:5px 9px}}
 </style>
 </head>
 <body>
   <div class="topbar">
-    <a class="tlink" href="./index.html">← Guide</a>
+    <a class="tlink" id="backlink" href="./index.html">← Guide</a>
     <span class="brand" style="margin-left:6px"><img class="logo" src="./assets/enka-logo-white.png" alt="ENKA Schools" /></span>
     <span class="spacer"></span>
+    <div class="langtog" id="langtog"><button type="button" data-lang="en">EN</button><button type="button" data-lang="tr">TR</button></div>
     <button class="switch" aria-label="Toggle dark mode"><span class="s-ic sun">☀️</span><span class="s-ic moon">🌙</span><span class="knob"></span></button>
   </div>
 
   <main class="wrap">
     <section class="intro">
-      <h1>Housing & commute map</h1>
-      <p>The 9 service-bus stops, neighborhoods near each, and live routes. The bus runs from a stop to school, so live where you can reach a stop easily. Bus times: confirm with HR.</p>
+      <h1 id="introTitle">Housing & commute map</h1>
+      <p id="introP"></p>
     </section>
 
     <div class="controls">
       <div class="card addr">
-        <div class="ttl">📍 Type your home address (or a neighborhood)</div>
+        <div class="ttl" id="addrTtl"></div>
         <div class="row">
-          <input id="addr" class="input" type="text" placeholder="e.g. İstinye Caddesi 100, Sarıyer" aria-label="Your address" style="flex:1;min-width:180px" />
-          <button class="btn" id="addrGo" type="button">Find nearest stop</button>
-          <button class="btn ghost" id="locate" type="button">Use my location</button>
+          <input id="addr" class="input" type="text" aria-label="Your address" style="flex:1;min-width:180px" />
+          <button class="btn" id="addrGo" type="button"></button>
+          <button class="btn ghost" id="locate" type="button"></button>
         </div>
         <div class="out" id="addrOut"></div>
       </div>
-      <input id="q" class="input" type="search" placeholder="Search a neighborhood…" aria-label="Search a neighborhood" />
+      <input id="q" class="input" type="search" aria-label="Search a neighborhood" />
       <div class="row">
-        <span class="label">Price</span>
-        <span class="chip t1" data-tier="1" role="button" tabindex="0" aria-pressed="false">€ Lower</span>
-        <span class="chip t2" data-tier="2" role="button" tabindex="0" aria-pressed="false">€€ Mid</span>
-        <span class="chip t3" data-tier="3" role="button" tabindex="0" aria-pressed="false">€€€ Higher</span>
-        <span class="chip" data-walk="1" role="button" tabindex="0" aria-pressed="false">🚶 Walk to school</span>
+        <span class="label" id="lblPrice"></span>
+        <span class="chip t1" data-tier="1" role="button" tabindex="0" aria-pressed="false"></span>
+        <span class="chip t2" data-tier="2" role="button" tabindex="0" aria-pressed="false"></span>
+        <span class="chip t3" data-tier="3" role="button" tabindex="0" aria-pressed="false"></span>
+        <span class="chip" data-walk="1" role="button" tabindex="0" aria-pressed="false"></span>
       </div>
-      <div class="row" id="stopChips"><span class="label">Stop</span></div>
+      <div class="row" id="stopChips"><span class="label" id="lblStop"></span></div>
     </div>
 
     <div id="map"></div>
@@ -88,9 +89,7 @@
     <div class="list" id="list"></div>
   </main>
 
-  <footer class="foot">
-    Neighborhood notes are factual summaries from the ENKA service-bus document; "explore nearby" and rental links open live results on Google Maps and rental sites. Pin locations are auto-geocoded and may be slightly off. Bus schedule and times: confirm with HR. Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors.
-  </footer>
+  <footer class="foot" id="mapfoot"></footer>
 
   <div class="modal" id="modal"><div class="ov" id="ov"></div><div class="sheet" id="sheet"></div></div>
 
@@ -98,149 +97,176 @@
   integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="./theme.js"></script>
 <script>
-const css=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
-const TIER={1:{c:'#34a853',l:'€ Lower'},2:{c:'#d9a328',l:'€€ Mid'},3:{c:'#e0533a',l:'€€€ Higher'}};
-const SIDE={Europe:'#012169',Asia:'#7c3aed'};
-const state={tiers:new Set(),stops:new Set(),walk:false,q:''};
-let DATA,map,schoolLL,stopById={},nObjs=[],addrMarker=null;
-const enc=encodeURIComponent;
-const gmDir=(o,d,m)=>`https://www.google.com/maps/dir/?api=1&origin=${o}&destination=${d}&travelmode=${m}`;
-const gmSearch=q=>`https://www.google.com/maps/search/?api=1&query=${enc(q)}`;
-const ll=p=>`${p.lat},${p.lon}`;
-function haversine(a,b){const R=6371,r=Math.PI/180,dLat=(b.lat-a.lat)*r,dLon=(b.lon-a.lon)*r,
-  x=Math.sin(dLat/2)**2+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLon/2)**2;return 2*R*Math.asin(Math.sqrt(x));}
-function nearestStop(p){let best=null;DATA.stops.filter(s=>s.geocodeOk).forEach(s=>{const d=haversine(p,s);if(!best||d<best.d)best={s,d};});return best;}
+var MT={
+ en:{back:"← Guide",title:"Housing & commute map",intro:"The 9 service-bus stops, neighborhoods near each, and live routes. The bus runs from a stop to school, so live where you can reach a stop easily. Bus times: confirm with HR.",
+   addrTtl:"📍 Type your home address (or a neighborhood)",addrPh:"e.g. İstinye Caddesi 100, Sarıyer",findStop:"Find nearest stop",useLoc:"Use my location",searchPh:"Search a neighborhood…",
+   price:"Price",tier:{1:"€ Lower",2:"€€ Mid",3:"€€€ Higher"},walk:"🚶 Walk to school",stop:"Stop",
+   legBus:"Bus stop",legSchool:"School ★",legWalk:"🚶 = walk to school",
+   commute:"Your commute",toStop:"Route to your stop",stopSchool:"Stop → school",busRef:"(reference of the bus route)",
+   nearby:"Explore nearby (live)",rentals:"Rentals in this area",more:"More rental sites",openGm:"Open in Google Maps",
+   near:[["🚇 Metro & transit","metro istasyonu"],["🛒 Supermarkets","süpermarket"],["🍽️ Restaurants","restaurants"],["🍺 Bars","bars"],["💊 Pharmacies","eczane"],["🏋️ Gyms","gym"]],
+   nearestStop:"Nearest stop:",km:"km straight-line",homeStop:"Home → Stop",transitWalk:"(transit/walking)",ref:"(reference)",
+   locating:"Locating address…",locating2:"Locating…",noAddr:"Type an address or neighborhood first.",notFound:"Could not find that address. Add the district (e.g. \"…, Sarıyer\"), or use a neighborhood name.",lookupFail:"Address lookup failed. Check your connection and try again.",noGeo:"Geolocation not available. Type your address instead.",geoFail:"Could not get your location",
+   asiaNote:"Asian-side stops: the school suggests settling in before choosing the Asian side.",routeStopSchool:"Route this stop → school ›",side:{Europe:"Europe",Asia:"Asia"},
+   foot:"Neighborhood notes are factual summaries from the ENKA service-bus document; 'explore nearby' and rental links open live results on Google Maps and rental sites. Pin locations are auto-geocoded and may be slightly off. Bus schedule and times: confirm with HR. Map data © OpenStreetMap contributors."},
+ tr:{back:"← Rehber",title:"Konut ve ulaşım haritası",intro:"9 servis durağı, her birinin yakınındaki mahalleler ve canlı rotalar. Servis bir duraktan okula gider, bu yüzden bir durağa kolayca ulaşabileceğiniz yerde oturun. Servis saatleri: İK ile teyit edin.",
+   addrTtl:"📍 Ev adresinizi (ya da bir mahalle) yazın",addrPh:"örn. İstinye Caddesi 100, Sarıyer",findStop:"En yakın durağı bul",useLoc:"Konumumu kullan",searchPh:"Mahalle ara…",
+   price:"Fiyat",tier:{1:"€ Düşük",2:"€€ Orta",3:"€€€ Yüksek"},walk:"🚶 Okula yürüme",stop:"Durak",
+   legBus:"Otobüs durağı",legSchool:"Okul ★",legWalk:"🚶 = okula yürüme",
+   commute:"Ulaşımınız",toStop:"Durağınıza rota",stopSchool:"Durak → okul",busRef:"(servis rotası referansı)",
+   nearby:"Yakını keşfedin (canlı)",rentals:"Bu bölgede kiralık",more:"Diğer kiralık siteleri",openGm:"Google Haritalar'da aç",
+   near:[["🚇 Metro ve ulaşım","metro istasyonu"],["🛒 Süpermarketler","süpermarket"],["🍽️ Restoranlar","restoran"],["🍺 Barlar","bar"],["💊 Eczaneler","eczane"],["🏋️ Spor salonları","spor salonu"]],
+   nearestStop:"En yakın durak:",km:"km kuş uçuşu",homeStop:"Ev → Durak",transitWalk:"(toplu taşıma/yürüme)",ref:"(referans)",
+   locating:"Adres bulunuyor…",locating2:"Konum bulunuyor…",noAddr:"Önce bir adres veya mahalle yazın.",notFound:"Bu adres bulunamadı. İlçeyi ekleyin (örn. \"…, Sarıyer\") ya da bir mahalle adı kullanın.",lookupFail:"Adres araması başarısız. Bağlantınızı kontrol edip tekrar deneyin.",noGeo:"Konum mevcut değil. Bunun yerine adresinizi yazın.",geoFail:"Konumunuz alınamadı",
+   asiaNote:"Asya yakası durakları: okul, Asya yakasını seçmeden önce yerleşmenizi öneriyor.",routeStopSchool:"Bu duraktan okula rota ›",side:{Europe:"Avrupa",Asia:"Asya"},
+   foot:"Mahalle notları ENKA servis belgesinden alınan nesnel özetlerdir; 'yakını keşfet' ve kiralık bağlantıları canlı sonuçlar açar. Pin konumları otomatik üretilmiştir ve hafif kayabilir. Servis saatleri: İK ile teyit edin. Harita verisi © OpenStreetMap katkıda bulunanlar."}
+};
+var LANG="en";try{var sv=localStorage.getItem("enka-lang");if(sv==="tr"||sv==="en")LANG=sv;}catch(e){}
+function S(){return MT[LANG];}
+function nz(n,f){return (LANG==="tr"&&n[f+"_tr"])?n[f+"_tr"]:n[f];}
+var TIERC={1:"#34a853",2:"#d9a328",3:"#e0533a"};
+var SIDE={Europe:"#012169",Asia:"#7c3aed"};
+var state={tiers:new Set(),stops:new Set(),walk:false,q:""};
+var DATA,map,schoolLL,stopById={},nObjs=[],addrMarker=null;
+var enc=encodeURIComponent;
+var gmDir=function(o,d,m){return "https://www.google.com/maps/dir/?api=1&origin="+o+"&destination="+d+"&travelmode="+m;};
+var gmSearch=function(q){return "https://www.google.com/maps/search/?api=1&query="+enc(q);};
+var ll=function(p){return p.lat+","+p.lon;};
+function haversine(a,b){var R=6371,r=Math.PI/180,dLat=(b.lat-a.lat)*r,dLon=(b.lon-a.lon)*r,x=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(dLon/2)*Math.sin(dLon/2);return 2*R*Math.asin(Math.sqrt(x));}
+function nearestStop(p){var best=null;DATA.stops.filter(function(s){return s.geocodeOk;}).forEach(function(s){var d=haversine(p,s);if(!best||d<best.d)best={s:s,d:d};});return best;}
 
-fetch('./data.json').then(r=>r.json()).then(d=>{DATA=d;init();})
-  .catch(e=>{document.getElementById('list').innerHTML='<p style="color:var(--t3)">Could not load map data.</p>';console.error(e);});
+fetch('./data.json?v=2').then(function(r){return r.json();}).then(function(d){DATA=d;init();})
+  .catch(function(e){document.getElementById('list').innerHTML='<p style="color:var(--t3)">Could not load map data.</p>';});
 
 function init(){
   map=L.map('map',{zoomControl:true}).setView([41.09,29.01],12);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
-  const bounds=[];
-  const s=DATA.school;schoolLL={lat:s.lat,lon:s.lon};
-  L.marker([s.lat,s.lon],{icon:L.divIcon({className:'',html:'<div style="background:'+(css('--school')||'#fe5252')+';color:#fff;border:2px solid #fff;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 6px rgba(0,0,0,.45)">★</div>',iconSize:[30,30],iconAnchor:[15,15]}),zIndexOffset:1000}).addTo(map).bindPopup(`<b>${s.name}</b><br>${s.address}`);
+  var bounds=[];var s=DATA.school;schoolLL={lat:s.lat,lon:s.lon};
+  L.marker([s.lat,s.lon],{icon:L.divIcon({className:'',html:'<div style="background:#fe5252;color:#fff;border:2px solid #fff;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 6px rgba(0,0,0,.45)">★</div>',iconSize:[30,30],iconAnchor:[15,15]}),zIndexOffset:1000}).addTo(map).bindPopup("<b>"+s.name+"</b><br>"+s.address);
   bounds.push([s.lat,s.lon]);
-  DATA.stops.forEach(st=>{stopById[st.num]=st;if(!st.geocodeOk)return;const col=SIDE[st.side]||'#555';
-    L.marker([st.lat,st.lon],{icon:L.divIcon({className:'',html:`<div style="background:${col};color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.45)">${st.num}</div>`,iconSize:[24,24],iconAnchor:[12,12]})}).addTo(map)
-      .bindPopup(`<b>Stop ${st.num} · ${st.name}</b><br>${st.side} side`+(st.side==='Asia'?'<br><i>Asian-side stops: the school suggests settling in before choosing the Asian side.</i>':'')+`<br><a href="${gmDir(ll(st),ll(schoolLL),'driving')}" target="_blank" rel="noopener">Route this stop → school ›</a>`);
-    if(st.side==='Europe')bounds.push([st.lat,st.lon]);});
-  DATA.neighborhoods.forEach(n=>{let marker=null;
-    if(n.geocodeOk){marker=L.circleMarker([n.lat,n.lon],{radius:8,color:'#fff',weight:1.5,fillColor:TIER[n.tier].c,fillOpacity:.95}).addTo(map).bindTooltip(n.name,{direction:'top'});
-      marker.on('click',()=>openModal(n));bounds.push([n.lat,n.lon]);}
-    nObjs.push({n,marker});});
+  DATA.stops.forEach(function(st){stopById[st.num]=st;if(!st.geocodeOk)return;var col=SIDE[st.side]||'#555';
+    var mk=L.marker([st.lat,st.lon],{icon:L.divIcon({className:'',html:'<div style="background:'+col+';color:#fff;border:2px solid #fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.45)">'+st.num+'</div>',iconSize:[24,24],iconAnchor:[12,12]})}).addTo(map);
+    st._mk=mk;if(st.side==='Europe')bounds.push([st.lat,st.lon]);});
+  DATA.neighborhoods.forEach(function(n){var marker=null;
+    if(n.geocodeOk){marker=L.circleMarker([n.lat,n.lon],{radius:8,color:'#fff',weight:1.5,fillColor:TIERC[n.tier],fillOpacity:.95}).addTo(map).bindTooltip(n.name,{direction:'top'});
+      marker.on('click',function(){openModal(n);});bounds.push([n.lat,n.lon]);}
+    nObjs.push({n:n,marker:marker});});
   if(bounds.length)map.fitBounds(bounds,{padding:[30,30]});
-  buildStopChips();buildLegend();wireControls();render();
+  buildStopChips();wireControls();applyLang();
 }
-function buildStopChips(){const box=document.getElementById('stopChips');
-  DATA.stops.filter(s=>s.side==='Europe').forEach(s=>{const c=document.createElement('span');
-    c.className='chip';c.setAttribute('role','button');c.tabIndex=0;c.setAttribute('aria-pressed','false');
-    c.dataset.stop=s.num;c.textContent=s.num;c.title=s.name;box.appendChild(c);});}
+function stopPopup(st){return "<b>"+S().stop+" "+st.num+" · "+st.name+"</b><br>"+S().side[st.side]+(st.side==='Asia'?'<br><i>'+S().asiaNote+'</i>':'')+'<br><a href="'+gmDir(ll(st),ll(schoolLL),'driving')+'" target="_blank" rel="noopener">'+S().routeStopSchool+'</a>';}
+function buildStopChips(){var box=document.getElementById('stopChips');
+  DATA.stops.filter(function(s){return s.side==='Europe';}).forEach(function(s){var c=document.createElement('span');
+    c.className='chip';c.setAttribute('role','button');c.tabIndex=0;c.setAttribute('aria-pressed','false');c.dataset.stop=s.num;c.textContent=s.num;c.title=s.name;box.appendChild(c);});}
 function buildLegend(){document.getElementById('legend').innerHTML=
-  `<span><span class="stopBadge" style="background:${SIDE.Europe}">N</span>Bus stop</span>`+
-  `<span><span class="dot" style="background:${css('--school')||'#fe5252'}"></span>School ★</span>`+
-  Object.entries(TIER).map(([k,v])=>`<span><span class="dot" style="background:${v.c}"></span>${v.l}</span>`).join('')+
-  `<span>🚶 = walk to school</span>`;}
+  '<span><span class="stopBadge" style="background:'+SIDE.Europe+'">N</span>'+S().legBus+'</span>'+
+  '<span><span class="dot" style="background:#fe5252"></span>'+S().legSchool+'</span>'+
+  [1,2,3].map(function(k){return '<span><span class="dot" style="background:'+TIERC[k]+'"></span>'+S().tier[k]+'</span>';}).join('')+
+  '<span>'+S().legWalk+'</span>';}
 function wireControls(){
-  document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value.toLowerCase();render();});
-  document.querySelectorAll('.chip[data-tier]').forEach(c=>{const t=+c.dataset.tier;
-    const tog=()=>{state.tiers.has(t)?state.tiers.delete(t):state.tiers.add(t);c.setAttribute('aria-pressed',state.tiers.has(t));render();};
-    c.addEventListener('click',tog);c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});});
-  const wc=document.querySelector('.chip[data-walk]');
-  wc.addEventListener('click',()=>{state.walk=!state.walk;wc.setAttribute('aria-pressed',state.walk);render();});
-  document.getElementById('stopChips').addEventListener('click',e=>{const c=e.target.closest('[data-stop]');if(!c)return;const s=+c.dataset.stop;
-    state.stops.has(s)?state.stops.delete(s):state.stops.add(s);c.setAttribute('aria-pressed',state.stops.has(s));render();});
+  document.getElementById('q').addEventListener('input',function(e){state.q=e.target.value.toLowerCase();render();});
+  document.querySelectorAll('.chip[data-tier]').forEach(function(c){var tn=+c.dataset.tier;
+    var tog=function(){state.tiers.has(tn)?state.tiers.delete(tn):state.tiers.add(tn);c.setAttribute('aria-pressed',state.tiers.has(tn));render();};
+    c.addEventListener('click',tog);c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog();}});});
+  var wc=document.querySelector('.chip[data-walk]');wc.addEventListener('click',function(){state.walk=!state.walk;wc.setAttribute('aria-pressed',state.walk);render();});
+  document.getElementById('stopChips').addEventListener('click',function(e){var c=e.target.closest('[data-stop]');if(!c)return;var sn=+c.dataset.stop;state.stops.has(sn)?state.stops.delete(sn):state.stops.add(sn);c.setAttribute('aria-pressed',state.stops.has(sn));render();});
   document.getElementById('ov').addEventListener('click',closeModal);
   document.getElementById('locate').addEventListener('click',planFromLocation);
   document.getElementById('addrGo').addEventListener('click',planFromAddress);
-  document.getElementById('addr').addEventListener('keydown',e=>{if(e.key==='Enter')planFromAddress();});
+  document.getElementById('addr').addEventListener('keydown',function(e){if(e.key==='Enter')planFromAddress();});
+  document.getElementById('langtog').querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(){LANG=b.dataset.lang;try{localStorage.setItem('enka-lang',LANG);}catch(e){}applyLang();});});
 }
 function match(n){
   if(state.tiers.size&&!state.tiers.has(n.tier))return false;
   if(state.stops.size&&!state.stops.has(n.stop))return false;
   if(state.walk&&!n.walkToSchool)return false;
-  if(state.q&&!(n.name.toLowerCase().includes(state.q)||(n.oneLiner||'').toLowerCase().includes(state.q)||(n.district||'').toLowerCase().includes(state.q)))return false;
+  if(state.q&&!(n.name.toLowerCase().indexOf(state.q)>-1||(nz(n,'oneLiner')||'').toLowerCase().indexOf(state.q)>-1||(n.district||'').toLowerCase().indexOf(state.q)>-1))return false;
   return true;
 }
 function render(){
-  nObjs.forEach(({n,marker})=>{if(!marker)return;if(match(n)){if(!map.hasLayer(marker))marker.addTo(map);}else{if(map.hasLayer(marker))map.removeLayer(marker);}});
-  const list=document.getElementById('list');list.innerHTML='';
-  const filtered=DATA.neighborhoods.filter(match);
-  if(!filtered.length){list.innerHTML='<p style="color:var(--mut)">No neighborhoods match these filters.</p>';return;}
-  const byStop={};filtered.forEach(n=>{(byStop[n.stop]=byStop[n.stop]||[]).push(n);});
-  Object.keys(byStop).map(Number).sort((a,b)=>a-b).forEach(sn=>{const st=stopById[sn];
-    const h=document.createElement('div');h.className='stopGroup';
-    h.innerHTML=`<span class="stopBadge" style="background:${SIDE[st.side]||'#555'}">${sn}</span> Stop ${sn} · ${st.name}`;list.appendChild(h);
-    byStop[sn].sort((a,b)=>a.tier-b.tier||a.name.localeCompare(b.name)).forEach(n=>{
-      const card=document.createElement('div');card.className='ncard';
-      card.innerHTML=`<div class="top"><span class="nm">${n.name}</span><span style="display:flex;gap:6px">${n.walkToSchool?'<span class="pill walk">🚶 school</span>':''}<span class="pill t${n.tier}">${['','€','€€','€€€'][n.tier]}</span></span></div><div class="ol">${n.oneLiner||''} · ${n.district}</div>`;
-      card.addEventListener('click',()=>openModal(n));list.appendChild(card);});});
+  nObjs.forEach(function(o){if(!o.marker)return;if(match(o.n)){if(!map.hasLayer(o.marker))o.marker.addTo(map);}else{if(map.hasLayer(o.marker))map.removeLayer(o.marker);}});
+  var list=document.getElementById('list');list.innerHTML='';
+  var filtered=DATA.neighborhoods.filter(match);
+  if(!filtered.length){list.innerHTML='<p style="color:var(--mut)">'+(LANG==="tr"?"Bu filtrelerle eşleşen mahalle yok.":"No neighborhoods match these filters.")+'</p>';return;}
+  var byStop={};filtered.forEach(function(n){(byStop[n.stop]=byStop[n.stop]||[]).push(n);});
+  Object.keys(byStop).map(Number).sort(function(a,b){return a-b;}).forEach(function(sn){var st=stopById[sn];
+    var h=document.createElement('div');h.className='stopGroup';h.innerHTML='<span class="stopBadge" style="background:'+(SIDE[st.side]||'#555')+'">'+sn+'</span> '+S().stop+' '+sn+' · '+st.name;list.appendChild(h);
+    byStop[sn].sort(function(a,b){return a.tier-b.tier||a.name.localeCompare(b.name);}).forEach(function(n){
+      var card=document.createElement('div');card.className='ncard';
+      card.innerHTML='<div class="top"><span class="nm">'+n.name+'</span><span style="display:flex;gap:6px">'+(n.walkToSchool?'<span class="pill walk">🚶</span>':'')+'<span class="pill t'+n.tier+'">'+['','€','€€','€€€'][n.tier]+'</span></span></div><div class="ol">'+(nz(n,'oneLiner')||'')+' · '+n.district+'</div>';
+      card.addEventListener('click',function(){openModal(n);});list.appendChild(card);});});
 }
 function openModal(n){
-  const st=stopById[n.stop];
-  const origin=n.geocodeOk?ll(n):enc(n.name+', İstanbul, Türkiye');
-  const stopLL=st&&st.geocodeOk?ll(st):enc(st.name+', İstanbul');
-  const near=[['🚇 Metro & transit','metro istasyonu '+n.name+' İstanbul'],['🛒 Supermarkets','süpermarket '+n.name+' İstanbul'],['🍽️ Restaurants','restaurants '+n.name+' İstanbul'],['🍺 Bars','bars '+n.name+' İstanbul'],['💊 Pharmacies','eczane '+n.name+' İstanbul'],['🏋️ Gyms','gym '+n.name+' İstanbul']];
-  const hep=`https://www.hepsiemlak.com/${n.districtSlug}-${n.mahalleSlug}-kiralik`;
-  const moreRent=`https://www.google.com/search?q=${enc('kiralık daire '+n.name+' '+n.district+' İstanbul')}`;
-  const sheet=document.getElementById('sheet');
-  sheet.innerHTML=`<button class="x" aria-label="Close">×</button>
-    <h2>${n.name}</h2>
-    <div class="meta">
-      <span class="pill t${n.tier}">${TIER[n.tier].l}</span>
-      <span class="pill">${n.district} · ${st.side}</span>
-      <span class="pill">Stop ${st.num}: ${st.name}</span>
-      ${n.walkToSchool?'<span class="pill walk">🚶 walk to school</span>':''}
-    </div>
-    <div class="desc">${n.desc||''}</div>
-    ${n.caveat?`<div class="cav">⚠️ ${n.caveat}</div>`:''}
-    <div class="grp"><h3>Your commute</h3>
-      <a class="route" target="_blank" rel="noopener" href="${gmDir(origin,stopLL,'walking')}">🚶 Route to your stop <span class="mini">(${n.name} → Stop ${st.num})</span></a>
-      <a class="route" target="_blank" rel="noopener" href="${gmDir(stopLL,ll(schoolLL),'driving')}">🚌 Stop → school <span class="mini">(reference of the bus route)</span></a>
-    </div>
-    <div class="grp"><h3>Explore nearby (live)</h3><div class="chips">
-      ${near.map(([lbl,q])=>`<a class="tag" target="_blank" rel="noopener" href="${gmSearch(q)}">${lbl}</a>`).join('')}
-    </div></div>
-    <div class="grp"><h3>Rentals in this area</h3><div class="chips">
-      <a class="tag" target="_blank" rel="noopener" href="${hep}">🏠 Hepsiemlak</a>
-      <a class="tag" target="_blank" rel="noopener" href="${moreRent}">🔎 More rental sites</a>
-      <a class="tag" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${origin}">📍 Open in Google Maps</a>
-    </div></div>`;
-  sheet.querySelector('.x').onclick=closeModal;
+  var st=stopById[n.stop];
+  var origin=n.geocodeOk?ll(n):enc(n.name+', İstanbul, Türkiye');
+  var stopLL=st&&st.geocodeOk?ll(st):enc(st.name+', İstanbul');
+  var cav=nz(n,'caveat');
+  var near=S().near.map(function(x){return '<a class="tag" target="_blank" rel="noopener" href="'+gmSearch(x[1]+' '+n.name+' İstanbul')+'">'+x[0]+'</a>';}).join('');
+  var hep="https://www.hepsiemlak.com/"+n.districtSlug+"-"+n.mahalleSlug+"-kiralik";
+  var moreRent="https://www.google.com/search?q="+enc('kiralık daire '+n.name+' '+n.district+' İstanbul');
+  document.getElementById('sheet').innerHTML='<button class="x" aria-label="Close">×</button>'+
+    '<h2>'+n.name+'</h2>'+
+    '<div class="meta"><span class="pill t'+n.tier+'">'+S().tier[n.tier]+'</span><span class="pill">'+n.district+' · '+S().side[st.side]+'</span><span class="pill">'+S().stop+' '+st.num+': '+st.name+'</span>'+(n.walkToSchool?'<span class="pill walk">🚶</span>':'')+'</div>'+
+    '<div class="desc">'+(nz(n,'desc')||'')+'</div>'+
+    (cav?'<div class="cav">⚠️ '+cav+'</div>':'')+
+    '<div class="grp"><h3>'+S().commute+'</h3>'+
+      '<a class="route" target="_blank" rel="noopener" href="'+gmDir(origin,stopLL,'walking')+'">🚶 '+S().toStop+' <span class="mini">('+n.name+' → '+S().stop+' '+st.num+')</span></a>'+
+      '<a class="route" target="_blank" rel="noopener" href="'+gmDir(stopLL,ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().busRef+'</span></a></div>'+
+    '<div class="grp"><h3>'+S().nearby+'</h3><div class="chips">'+near+'</div></div>'+
+    '<div class="grp"><h3>'+S().rentals+'</h3><div class="chips">'+
+      '<a class="tag" target="_blank" rel="noopener" href="'+hep+'">🏠 Hepsiemlak</a>'+
+      '<a class="tag" target="_blank" rel="noopener" href="'+moreRent+'">🔎 '+S().more+'</a>'+
+      '<a class="tag" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+origin+'">📍 '+S().openGm+'</a></div></div>';
+  document.querySelector('#sheet .x').onclick=closeModal;
   document.getElementById('modal').classList.add('open');
   if(n.geocodeOk)map.panTo([n.lat,n.lon]);
 }
 function closeModal(){document.getElementById('modal').classList.remove('open');}
-
 function showAddressResult(p,label){
   if(addrMarker)map.removeLayer(addrMarker);
   addrMarker=L.marker([p.lat,p.lon],{icon:L.divIcon({className:'',html:'<div style="background:#10b981;color:#fff;border:2px solid #fff;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:12px">🏠</div>',iconSize:[22,22],iconAnchor:[11,11]}),zIndexOffset:900}).addTo(map);
-  const best=nearestStop(p);const s=best.s;
+  var best=nearestStop(p);var s=best.s;
   map.fitBounds([[p.lat,p.lon],[s.lat,s.lon],[schoolLL.lat,schoolLL.lon]],{padding:[40,40]});
-  document.getElementById('addrOut').innerHTML=
-    `${label?`<div style="color:var(--mut);font-size:.78rem;margin-bottom:6px">${label}</div>`:''}`+
-    `Nearest stop: <b>Stop ${s.num} · ${s.name}</b> (~${best.d.toFixed(1)} km straight-line).
-     <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-     <a class="route" target="_blank" rel="noopener" href="${gmDir(ll(p),ll(s),'transit')}">🚶 Home → Stop ${s.num} <span class="mini">(transit/walking)</span></a>
-     <a class="route" target="_blank" rel="noopener" href="${gmDir(ll(s),ll(schoolLL),'driving')}">🚌 Stop → school <span class="mini">(reference)</span></a>
-     </div>`;
+  document.getElementById('addrOut').innerHTML=(label?'<div style="color:var(--mut);font-size:.78rem;margin-bottom:6px">'+label+'</div>':'')+
+    S().nearestStop+' <b>'+S().stop+' '+s.num+' · '+s.name+'</b> (~'+best.d.toFixed(1)+' '+S().km+').'+
+    '<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">'+
+    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(p),ll(s),'transit')+'">🚶 '+S().homeStop+' '+s.num+' <span class="mini">'+S().transitWalk+'</span></a>'+
+    '<a class="route" target="_blank" rel="noopener" href="'+gmDir(ll(s),ll(schoolLL),'driving')+'">🚌 '+S().stopSchool+' <span class="mini">'+S().ref+'</span></a></div>';
 }
-async function planFromAddress(){
-  const q=document.getElementById('addr').value.trim();const out=document.getElementById('addrOut');
-  if(!q){out.textContent='Type an address or neighborhood first.';return;}
-  out.textContent='Locating address…';
-  try{
-    const url='https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=tr&q='+enc(q+', İstanbul, Türkiye');
-    const r=await fetch(url,{headers:{'Accept':'application/json'}});const j=await r.json();
-    if(!j.length){out.innerHTML='Could not find that address. Try adding the district (e.g. "…, Sarıyer"), or use a neighborhood name.';return;}
-    showAddressResult({lat:+j[0].lat,lon:+j[0].lon}, j[0].display_name);
-  }catch(e){out.textContent='Address lookup failed. Check your connection and try again.';}
+function planFromAddress(){
+  var q=document.getElementById('addr').value.trim();var out=document.getElementById('addrOut');
+  if(!q){out.textContent=S().noAddr;return;}
+  out.textContent=S().locating;
+  fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=tr&q='+enc(q+', İstanbul, Türkiye'),{headers:{'Accept':'application/json'}})
+   .then(function(r){return r.json();}).then(function(j){if(!j.length){out.innerHTML=S().notFound;return;}showAddressResult({lat:+j[0].lat,lon:+j[0].lon},j[0].display_name);})
+   .catch(function(){out.textContent=S().lookupFail;});
 }
 function planFromLocation(){
-  const out=document.getElementById('addrOut');out.textContent='Locating…';
-  if(!navigator.geolocation){out.textContent='Geolocation not available. Type your address instead.';return;}
-  navigator.geolocation.getCurrentPosition(pos=>{showAddressResult({lat:pos.coords.latitude,lon:pos.coords.longitude},'Using your current location');},
-    err=>{out.textContent='Could not get your location ('+err.message+'). Type your address instead.';},{enableHighAccuracy:false,timeout:10000});
+  var out=document.getElementById('addrOut');out.textContent=S().locating2;
+  if(!navigator.geolocation){out.textContent=S().noGeo;return;}
+  navigator.geolocation.getCurrentPosition(function(pos){showAddressResult({lat:pos.coords.latitude,lon:pos.coords.longitude},null);},
+    function(err){out.textContent=S().geoFail+' ('+err.message+').';},{enableHighAccuracy:false,timeout:10000});
+}
+function applyLang(){
+  document.documentElement.lang=LANG;
+  document.getElementById('backlink').textContent=S().back;
+  document.getElementById('introTitle').textContent=S().title;
+  document.getElementById('introP').textContent=S().intro;
+  document.getElementById('addrTtl').textContent=S().addrTtl;
+  document.getElementById('addr').placeholder=S().addrPh;
+  document.getElementById('addrGo').textContent=S().findStop;
+  document.getElementById('locate').textContent=S().useLoc;
+  document.getElementById('q').placeholder=S().searchPh;
+  document.getElementById('lblPrice').textContent=S().price;
+  document.getElementById('lblStop').textContent=S().stop;
+  document.querySelector('.chip[data-tier="1"]').textContent=S().tier[1];
+  document.querySelector('.chip[data-tier="2"]').textContent=S().tier[2];
+  document.querySelector('.chip[data-tier="3"]').textContent=S().tier[3];
+  document.querySelector('.chip[data-walk]').textContent=S().walk;
+  document.getElementById('mapfoot').innerHTML=S().foot;
+  document.querySelectorAll('#langtog button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===LANG);});
+  DATA.stops.forEach(function(st){if(st._mk)st._mk.bindPopup(stopPopup(st));});
+  buildLegend();render();
 }
 </script>
 <script>window.ENKA_PHASE='housing';</script>

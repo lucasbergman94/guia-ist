@@ -149,7 +149,10 @@
       "geocodeUsed": "Çamlıtepe, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "haciosman",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Sakin, yeşil, metroya bağlı",
+      "desc_tr": "Hacıosman metro durağının (M2) hemen yanında, yerel olanaklara sahip sakin bir konut bölgesi. Sarıyer.",
+      "caveat_tr": ""
     },
     {
       "name": "Tarabya",
@@ -168,7 +171,10 @@
       "geocodeUsed": "Tarabya, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "tarabya",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Boğaz kıyısı, kozmopolit",
+      "desc_tr": "Boğaz kıyısında restoranları ve sahil yürüyüşü olan bir semt; eski konsolosluk yazlıkları. Kiralar yüksek.",
+      "caveat_tr": ""
     },
     {
       "name": "Kireçburnu",
@@ -187,7 +193,10 @@
       "geocodeUsed": "Kireçburnu, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "kirecburnu",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Boğaz kıyısı, deniz ürünleri",
+      "desc_tr": "Sarıyer'de deniz ürünleri restoranlarıyla bilinen küçük bir sahil bölgesi.",
+      "caveat_tr": "Servis duraklarına biraz uzak."
     },
     {
       "name": "Darüşşafaka",
@@ -206,7 +215,10 @@
       "geocodeUsed": "Darüşşafaka, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "darussafaka",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Sakin, metroya yürüme",
+      "desc_tr": "Darüşşafaka metro durağının (M2) yanında konut bölgesi. Gazeticiler Sitesi gibi siteler var.",
+      "caveat_tr": ""
     },
     {
       "name": "Emirgan",
@@ -225,7 +237,10 @@
       "geocodeUsed": "Emirgan, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "emirgan",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Boğaz semti, büyük park",
+      "desc_tr": "Sarıyer'de Emirgan Korusu ve sahil restoranları olan bir Boğaz semti. Kiralar yüksek.",
+      "caveat_tr": ""
     },
     {
       "name": "Maslak",
@@ -244,7 +259,10 @@
       "geocodeUsed": "Maslak, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "maslak",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "İş merkezi, az konut",
+      "desc_tr": "Çoğunlukla iş merkezi; arkasında lüks siteler var.",
+      "caveat_tr": "Maslak içinde konut seçeneği az."
     },
     {
       "name": "Poligon",
@@ -264,7 +282,10 @@
       "geocodeUsed": "Poligon, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "poligon",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Okula yakın",
+      "desc_tr": "Sarıyer'de okula yakın, daha uygun fiyatlı seçenekleri olan konut bölgesi.",
+      "caveat_tr": "Sokaklar değişken; Google Street View'e bakın."
     },
     {
       "name": "Reşitpaşa",
@@ -283,7 +304,10 @@
       "geocodeUsed": "Reşitpaşa, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "resitpasa",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Uygun fiyatlı, Maslak yakını",
+      "desc_tr": "Sarıyer'de Maslak yakınında, daha uygun seçenekleri olan konut bölgesi.",
+      "caveat_tr": "Sokaklar değişken; Google Street View'e bakın."
     },
     {
       "name": "Yeniköy",
@@ -302,7 +326,10 @@
       "geocodeUsed": "Yeniköy, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "yenikoy",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Boğaz semti, pahalı",
+      "desc_tr": "Sarıyer'de güzel bir Boğaz semti. Kiralar yüksek.",
+      "caveat_tr": ""
     },
     {
       "name": "İstinye",
@@ -321,7 +348,10 @@
       "geocodeUsed": "İstinye, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "istinye",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Okula yürüme; İstinye Park",
+      "desc_tr": "Sarıyer'de İstinye Park AVM'nin olduğu Boğaz semti. Okula yürüme mesafesi.",
+      "caveat_tr": "Okula yürüyüş yokuş."
     },
     {
       "name": "Baltalimanı",
@@ -340,7 +370,10 @@
       "geocodeUsed": "Baltalimanı, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "baltalimani",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Küçük Boğaz koyu; metro yok",
+      "desc_tr": "Emirgan ile Rumelihisarı arasında küçük bir Boğaz koyu; çoğunlukla eski villalar ve bahçe daireleri.",
+      "caveat_tr": "Metro yok; otobüs seyrek; alışveriş Emirgan/İstinye'de (10-15 dk)."
     },
     {
       "name": "Levent",
@@ -359,7 +392,10 @@
       "geocodeUsed": "Levent, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "levent",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "İş ve alışveriş merkezi; M2",
+      "desc_tr": "M2 metro hattında, uluslararası restoran ve AVM'lerin olduğu yoğun iş ve alışveriş bölgesi.",
+      "caveat_tr": ""
     },
     {
       "name": "Nisbetiye",
@@ -378,7 +414,10 @@
       "geocodeUsed": "Nisbetiye, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "nisbetiye",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Levent yakını, sakin",
+      "desc_tr": "Levent ile Etiler arasında, elçiliklerin de olduğu az katlı konut bölgesi. Yürünebilir.",
+      "caveat_tr": ""
     },
     {
       "name": "Bebek",
@@ -397,7 +436,10 @@
       "geocodeUsed": "Bebek, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "bebek",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Boğaz kıyısı, expat topluluğu",
+      "desc_tr": "Beşiktaş'ta sahil yürüyüşü ve kafe kültürüyle Boğaz kıyısı semti; yerleşik uluslararası topluluk. Kiralar yüksek.",
+      "caveat_tr": ""
     },
     {
       "name": "Etiler",
@@ -416,7 +458,10 @@
       "geocodeUsed": "Etiler, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "etiler",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Konut, expat topluluğu",
+      "desc_tr": "Beşiktaş'ta restoran ve özel okullarıyla konut semti; yerleşik uluslararası topluluk.",
+      "caveat_tr": ""
     },
     {
       "name": "Esentepe",
@@ -435,7 +480,10 @@
       "geocodeUsed": "Esentepe, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "esentepe",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Karma, durağa yürüme",
+      "desc_tr": "Zincirlikuyu yakınında karma iş/konut bölgesi; yüksek katlı konut ve iyi ulaşım (Zorlu yakın).",
+      "caveat_tr": ""
     },
     {
       "name": "Balmumcu",
@@ -454,7 +502,10 @@
       "geocodeUsed": "Balmumcu, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "balmumcu",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Konut, merkezi",
+      "desc_tr": "Zincirlikuyu ile Beşiktaş arasında, Zorlu Center yakınında konut bölgesi.",
+      "caveat_tr": ""
     },
     {
       "name": "Arnavutköy",
@@ -473,7 +524,10 @@
       "geocodeUsed": "Arnavutköy, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "arnavutkoy",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Boğaz köyü, eski yapı",
+      "desc_tr": "Beşiktaş'ta 19. yüzyıl ahşap yalıları ve balıkçı limanı olan Boğaz köyü.",
+      "caveat_tr": "Eski yapı stoğu; araç/otobüse bağlı."
     },
     {
       "name": "Kuruçeşme",
@@ -492,7 +546,10 @@
       "geocodeUsed": "Kuruçeşme, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "kurucesme",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Boğaz kıyısı şerit",
+      "desc_tr": "Beşiktaş'ta restoran ve kulüpleri olan dar bir Boğaz kıyısı şeridi.",
+      "caveat_tr": "Konut az ve pahalı."
     },
     {
       "name": "Kültür",
@@ -512,7 +569,10 @@
       "geocodeUsed": "Kültür Mahallesi, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "kultur",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Etiler yakını tepeler",
+      "desc_tr": "Etiler ile Boğaz sırtı arasında az katlı konut bölgesi.",
+      "caveat_tr": ""
     },
     {
       "name": "Rumelihisarı",
@@ -531,7 +591,10 @@
       "geocodeUsed": "Rumelihisarı, Sarıyer, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "rumelihisari",
-      "districtSlug": "sariyer"
+      "districtSlug": "sariyer",
+      "oneLiner_tr": "Boğaz, Boğaziçi Üniv.",
+      "desc_tr": "Tarihi hisar ve Boğaziçi Üniversitesi yanında Boğaz semti; sahilde balık restoranları.",
+      "caveat_tr": "Küçük bölge, az perakende."
     },
     {
       "name": "Gayrettepe",
@@ -550,7 +613,10 @@
       "geocodeUsed": "Gayrettepe, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "gayrettepe",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "İyi bağlantı (M2 + metrobüs)",
+      "desc_tr": "M2 metro ve metrobüsle iyi bağlantılı, orta segment daireleri olan karma bölge.",
+      "caveat_tr": ""
     },
     {
       "name": "Dikilitaş",
@@ -569,7 +635,10 @@
       "geocodeUsed": "Dikilitaş, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "dikilitas",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Beşiktaş merkez yakını",
+      "desc_tr": "Balmumcu ile Beşiktaş merkez arasında, vapur ve metrobüse yakın kompakt konut bölgesi.",
+      "caveat_tr": ""
     },
     {
       "name": "Akatlar",
@@ -588,7 +657,10 @@
       "geocodeUsed": "Akatlar, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "akatlar",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Konut; market, park",
+      "desc_tr": "1. Levent yakınında büyük marketler (Migros, CarrefourSA) ve parkları olan yerleşik konut bölgesi.",
+      "caveat_tr": ""
     },
     {
       "name": "Mecidiyeköy",
@@ -607,7 +679,10 @@
       "geocodeUsed": "Mecidiyeköy, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "mecidiyekoy",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Büyük ulaşım merkezi",
+      "desc_tr": "Yoğun, merkezi ve büyük ulaşım merkezi (metrobüs, M2, çok sayıda otobüs).",
+      "caveat_tr": ""
     },
     {
       "name": "19 Mayıs",
@@ -627,7 +702,10 @@
       "geocodeUsed": "19 Mayıs Mahallesi, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "19-mayis",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Mecidiyeköy yakını konut",
+      "desc_tr": "Mecidiyeköy'ün kuzeydoğusunda, günlük olanakları olan konut bölgesi; orta segment kira.",
+      "caveat_tr": ""
     },
     {
       "name": "İzzet Paşa",
@@ -647,7 +725,10 @@
       "geocodeUsed": "İzzet Paşa, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "izzet-pasa",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Konut, merkezi",
+      "desc_tr": "Şişli/Mecidiyeköy yakınında, yerel dükkanları olan küçük konut bölgesi; merkezi.",
+      "caveat_tr": ""
     },
     {
       "name": "Şişli (merkez)",
@@ -666,7 +747,10 @@
       "geocodeUsed": "Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "merkez",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Ticari merkez; hastaneler",
+      "desc_tr": "Şişli'nin ticari merkezi; mağazalar, özel hastaneler ve konsolosluklar; orta segment kira.",
+      "caveat_tr": ""
     },
     {
       "name": "Teşvikiye & Meşrutiyet",
@@ -685,7 +769,10 @@
       "geocodeUsed": "Teşvikiye, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "tesvikiye",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Lüks, Nişantaşı yakını",
+      "desc_tr": "Nişantaşı yakınında butikleri ve özel klinikleri olan lüks konut bölgesi; eski prestijli binalar. Kiralar yüksek.",
+      "caveat_tr": ""
     },
     {
       "name": "Harbiye & Halaskargazi",
@@ -704,7 +791,10 @@
       "geocodeUsed": "Harbiye, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "harbiye",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Merkezi, iyi bağlantı",
+      "desc_tr": "Taksim, Nişantaşı ve Şişli arasında, otobüs ve metro erişimi iyi merkezi bölge.",
+      "caveat_tr": ""
     },
     {
       "name": "Abbasağa & Vişnezade",
@@ -723,7 +813,10 @@
       "geocodeUsed": "Abbasağa, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "abbasaga",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Beşiktaş yakını yamaç",
+      "desc_tr": "Beşiktaş'ın iç kısmında; parkı, kafeleri ve barları olan yamaç konut bölgeleri.",
+      "caveat_tr": ""
     },
     {
       "name": "Beşiktaş (merkez)",
@@ -742,7 +835,10 @@
       "geocodeUsed": "Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "merkez",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Merkezi; vapur, çarşı",
+      "desc_tr": "Vapur iskelesi, balık pazarı ve stadı olan yoğun merkezi semt; güçlü ulaşım (Asya'ya vapur, metrobüs, otobüs).",
+      "caveat_tr": "Yoğun; maç günleri gürültülü."
     },
     {
       "name": "Cihannüma",
@@ -761,7 +857,10 @@
       "geocodeUsed": "Cihannüma, Beşiktaş, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "cihannuma",
-      "districtSlug": "besiktas"
+      "districtSlug": "besiktas",
+      "oneLiner_tr": "Beşiktaş üstü tepe",
+      "desc_tr": "Beşiktaş'ın üstünde manzaralı sırtta konut bölgesi; merkeze yaklaşık 10 dk yürüyüş.",
+      "caveat_tr": "Dönüş yokuşu dik."
     },
     {
       "name": "Bomonti & Feriköy",
@@ -780,7 +879,10 @@
       "geocodeUsed": "Bomonti, Şişli, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "bomonti",
-      "districtSlug": "sisli"
+      "districtSlug": "sisli",
+      "oneLiner_tr": "Konut; organik pazar; M2",
+      "desc_tr": "Barları, atölyeleri ve Feriköy organik pazarı olan bitişik konut bölgeleri; Osmanbey/Şişli'den M2.",
+      "caveat_tr": ""
     },
     {
       "name": "İnönü & Gümüşsuyu",
@@ -799,7 +901,10 @@
       "geocodeUsed": "Gümüşsuyu, Beyoğlu, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "gumussuyu",
-      "districtSlug": "beyoglu"
+      "districtSlug": "beyoglu",
+      "oneLiner_tr": "Dik, merkezi, Kabataş yakını",
+      "desc_tr": "Taksim ile Kabataş arasında, Boğaz manzaralı ve Kabataş metrobüs/tramvay aktarmasına yakın dik bölgeler.",
+      "caveat_tr": "Dik arazi."
     },
     {
       "name": "Cihangir",
@@ -818,7 +923,10 @@
       "geocodeUsed": "Cihangir, Beyoğlu, İstanbul",
       "geocodeOk": true,
       "mahalleSlug": "cihangir",
-      "districtSlug": "beyoglu"
+      "districtSlug": "beyoglu",
+      "oneLiner_tr": "Merkezi; kafe kültürü",
+      "desc_tr": "Beyoğlu'nda kafeleri ve uluslararası topluluğuyla bilinen merkezi semt; İngilizce yaygın.",
+      "caveat_tr": "Dik sokaklar; eski binalar; kiralar yükseldi."
     }
   ]
 }
